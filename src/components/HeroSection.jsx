@@ -1,7 +1,6 @@
 import { ArrowRight, CalendarDays, Globe2, Sparkles } from 'lucide-react'
 import { useTranslation } from '../i18n'
 import CountdownTimer from './CountdownTimer'
-import HeroSlider from './HeroSlider'
 
 export default function HeroSection() {
   const t = useTranslation()
@@ -60,7 +59,6 @@ export default function HeroSection() {
 
           <CountdownTimer />
         </div>
-        <HeroSlider slides={t.hero.slides} label={t.hero.sliderLabel} heading={t.hero.sliderHeading} />
       </div>
     </section>
   )
