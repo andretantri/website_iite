@@ -15,29 +15,6 @@ export default function HeroSection() {
 
   return (
     <section id="hero" className="fade-up relative overflow-hidden px-4 py-20 sm:px-6 lg:px-8">
-      {/* Animated Background */}
-      <div className="hero-bg-animated" aria-hidden="true">
-        <div className="hero-orb hero-orb--cyan" />
-        <div className="hero-orb hero-orb--purple" />
-        <div className="hero-orb hero-orb--green" />
-        <div className="hero-orb hero-orb--pink" />
-        <div className="hero-grid" />
-        <div className="hero-particles">
-          <div className="hero-particle" />
-          <div className="hero-particle" />
-          <div className="hero-particle" />
-          <div className="hero-particle" />
-          <div className="hero-particle" />
-          <div className="hero-particle" />
-          <div className="hero-particle" />
-          <div className="hero-particle" />
-          <div className="hero-particle" />
-          <div className="hero-particle" />
-        </div>
-        <div className="hero-shimmer-line" />
-        <div className="hero-shimmer-line" />
-      </div>
-
       <div className="relative z-10 mx-auto max-w-7xl">
         <div className="mb-12 flex flex-col gap-8 rounded-[32px] border border-white/10 bg-iite-dark/80 p-8 shadow-glass backdrop-blur-xl sm:p-12">
           <div className="flex flex-col gap-6 text-center sm:text-left">
