@@ -1,13 +1,44 @@
-import { ArrowRight, CalendarDays, Globe2, Sparkles } from 'lucide-react'
+import { ArrowRight, CalendarDays, Globe2, Sparkles, Trophy, BookOpen, Mic2, Leaf, Store } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { useTranslation } from '../i18n'
-import CountdownTimer from './CountdownTimer'
+
+const activities = [
+  { key: 'competition', to: '/innovation_competition', icon: Trophy, color: 'text-iite-cyan' },
+  { key: 'proceeding', to: '/proceeding', icon: BookOpen, color: 'text-rose-400' },
+  { key: 'seminar', to: '/international_seminar', icon: Mic2, color: 'text-iite-purple' },
+  { key: 'greenyouth', to: '/greenyouth', icon: Leaf, color: 'text-iite-green' },
+  { key: 'msme', to: '/msme', icon: Store, color: 'text-amber-400' },
+]
 
 export default function HeroSection() {
   const t = useTranslation()
 
   return (
     <section id="hero" className="fade-up relative overflow-hidden px-4 py-20 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
+      {/* Animated Background */}
+      <div className="hero-bg-animated" aria-hidden="true">
+        <div className="hero-orb hero-orb--cyan" />
+        <div className="hero-orb hero-orb--purple" />
+        <div className="hero-orb hero-orb--green" />
+        <div className="hero-orb hero-orb--pink" />
+        <div className="hero-grid" />
+        <div className="hero-particles">
+          <div className="hero-particle" />
+          <div className="hero-particle" />
+          <div className="hero-particle" />
+          <div className="hero-particle" />
+          <div className="hero-particle" />
+          <div className="hero-particle" />
+          <div className="hero-particle" />
+          <div className="hero-particle" />
+          <div className="hero-particle" />
+          <div className="hero-particle" />
+        </div>
+        <div className="hero-shimmer-line" />
+        <div className="hero-shimmer-line" />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-7xl">
         <div className="mb-12 flex flex-col gap-8 rounded-[32px] border border-white/10 bg-iite-dark/80 p-8 shadow-glass backdrop-blur-xl sm:p-12">
           <div className="flex flex-col gap-6 text-center sm:text-left">
             <span className="inline-flex items-center justify-center rounded-full border border-iite-purple/30 bg-iite-purple/10 px-4 py-2 text-sm font-semibold uppercase tracking-[0.26em] text-iite-cyan sm:self-start">
@@ -57,7 +88,25 @@ export default function HeroSection() {
             </a>
           </div>
 
-          <CountdownTimer />
+          {/* Activities Box */}
+          <div className="rounded-[28px] border border-white/10 bg-white/5 p-5 shadow-glass backdrop-blur-xl sm:p-6">
+            <p className="text-sm uppercase tracking-[0.24em] text-slate-300">{t.home.activitiesTag}</p>
+            <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+              {activities.map(({ key, to, icon: Icon, color }) => (
+                <Link
+                  key={key}
+                  to={to}
+                  className="group flex flex-col items-center gap-3 rounded-3xl bg-slate-950/50 px-4 py-5 text-center ring-1 ring-white/10 transition duration-300 hover:bg-slate-950/70 hover:ring-white/20 hover:-translate-y-0.5"
+                >
+                  <Icon className={`h-6 w-6 ${color}`} />
+                  <p className="text-sm font-semibold text-white leading-tight">{t.home.cards[key].title}</p>
+                  <span className={`text-xs font-medium ${color} opacity-0 transition group-hover:opacity-100`}>
+                    {t.home.cards[key].cta} →
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
