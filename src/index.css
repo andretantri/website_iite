@@ -15,11 +15,79 @@ body {
 }
 
 html.light body {
-  @apply bg-white text-slate-900;
+  @apply bg-slate-50 text-slate-900;
 }
 
 html.dark body {
   @apply bg-iite-dark text-white;
+}
+
+/* LIGHT MODE OVERRIDES */
+html.light .bg-iite-dark\/80 {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+}
+html.light .bg-white\/5 {
+  background-color: rgba(0, 0, 0, 0.03) !important;
+}
+html.light .bg-white\/\[0\.04\] {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
+html.light .bg-white\/\[0\.06\] {
+  background-color: rgba(0, 0, 0, 0.06) !important;
+}
+html.light .bg-white\/\[0\.02\] {
+  background-color: rgba(0, 0, 0, 0.02) !important;
+}
+html.light .bg-slate-950\/50 {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+}
+
+html.light .border-white\/10 {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+html.light .border-white\/20 {
+  border-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+html.light .text-white {
+  color: #1e293b !important;
+}
+/* Ensure colored buttons retain white text */
+html.light a.bg-iite-purple.text-white {
+  color: #ffffff !important;
+}
+html.light .text-slate-300 {
+  color: #475569 !important;
+}
+html.light .text-slate-400 {
+  color: #64748b !important;
+}
+
+html.light .hover\:bg-white\/\[0\.08\]:hover {
+  background-color: rgba(0, 0, 0, 0.06) !important;
+}
+html.light .hover\:bg-white\/\[0\.07\]:hover {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+html.light .hover\:bg-slate-950\/70:hover {
+  background-color: rgba(255, 255, 255, 1) !important;
+}
+html.light .ring-white\/10 {
+  --tw-ring-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Gradient backgrounds in light mode */
+html.light .from-\[\#350e38\] {
+  --tw-gradient-from: #f8fafc var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgba(248, 250, 252, 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+html.light .via-\[\#2c0b30\] {
+  --tw-gradient-to: rgba(248, 250, 252, 0)  var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), #f1f5f9 var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+}
+html.light .to-\[\#220925\] {
+  --tw-gradient-to: #e2e8f0 var(--tw-gradient-to-position) !important;
 }
 
 html.light .glass-card {

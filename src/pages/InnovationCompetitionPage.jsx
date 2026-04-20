@@ -8,6 +8,12 @@ export default function InnovationCompetitionPage({ theme }) {
   const p = t.pages.competition
   const [posterOpen, setPosterOpen] = useState(false)
 
+  const getWhatsAppUrl = (phone) => {
+    let cleaned = phone.replace(/\D/g, '')
+    if (cleaned.startsWith('0')) cleaned = '62' + cleaned.slice(1)
+    return `https://wa.me/${cleaned}`
+  }
+
   return (
     <PageLayout theme={theme} accentColor="cyan">
       {(accent) => (
@@ -127,7 +133,7 @@ export default function InnovationCompetitionPage({ theme }) {
                     <p><span className="text-slate-400">Account Name:</span> <span className="text-white font-medium">Yulita M.</span></p>
                     <div className="mt-4 flex items-center gap-2 pt-2 border-t border-white/10">
                       <Phone className="h-4 w-4 text-iite-cyan" />
-                      <span className="text-white">+62 896-6726-0189</span>
+                      <a href={getWhatsAppUrl('+62 896-6726-0189')} target="_blank" rel="noopener noreferrer" className="text-white hover:text-iite-cyan hover:underline">+62 896-6726-0189</a>
                     </div>
                   </div>
                 </div>
@@ -189,7 +195,9 @@ export default function InnovationCompetitionPage({ theme }) {
                       <Phone className="h-5 w-5 text-iite-cyan" />
                       <div>
                         <p className="font-semibold text-white">{host.name}</p>
-                        <p className="text-sm text-slate-300">{host.phone}</p>
+                        <a href={getWhatsAppUrl(host.phone)} target="_blank" rel="noopener noreferrer" className="text-sm text-slate-300 hover:text-white hover:underline">
+                          {host.phone}
+                        </a>
                       </div>
                     </div>
                   ))}

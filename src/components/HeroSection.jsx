@@ -55,15 +55,7 @@ export default function HeroSection() {
             </div>
           </div>
 
-          <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <p className="max-w-xl text-sm leading-7 text-slate-300 sm:text-base">
-              {t.hero.summary}
-            </p>
-            <a href="#contact" className="inline-flex items-center justify-center gap-2 rounded-full bg-iite-cyan px-6 py-3 text-sm font-semibold text-iite-dark transition hover:-translate-y-0.5 hover:bg-iite-cyan/80">
-              {t.hero.cta}
-              <ArrowRight className="h-4 w-4" />
-            </a>
-          </div>
+
 
           {/* Activities Box */}
           <div className="rounded-[28px] border border-white/10 bg-white/5 p-5 shadow-glass backdrop-blur-xl sm:p-6">

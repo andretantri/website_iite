@@ -70,16 +70,7 @@ export default function PageLayout({ theme, accentColor, children }) {
       {/* Background glow */}
       <div className={`pointer-events-none absolute inset-0 bg-gradient-radial ${accent.glow}`} aria-hidden="true" />
 
-      {/* Back to home */}
-      <div className="mx-auto max-w-7xl px-4 pt-6 sm:px-6">
-        <Link
-          to="/"
-          className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition hover:-translate-y-0.5 ${accent.btnOutline}`}
-        >
-          <ArrowLeft className="h-4 w-4" />
-          {t.pages.backHome}
-        </Link>
-      </div>
+
 
       {typeof children === 'function' ? children(accent) : children}
     </main>
