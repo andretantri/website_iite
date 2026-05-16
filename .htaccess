@@ -1,0 +1,17 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # 1. Jika file atau direktori diminta dan ada di root, biarkan saja
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # 2. Jika file atau direktori ada di dalam folder dist/, arahkan ke sana
+    RewriteCond %{DOCUMENT_ROOT}/dist/$1 -f [OR]
+    RewriteCond %{DOCUMENT_ROOT}/dist/$1 -d
+    RewriteRule ^(.*)$ dist/$1 [L]
+
+    # 3. Fallback untuk SPA (React/Vite Router): 
+    # Jika rute tidak ditemukan sebagai file, selalu load dist/index.html
+    RewriteRule ^(.*)$ dist/index.html [L]
+</IfModule>
