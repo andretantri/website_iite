@@ -9,6 +9,7 @@ import ProceedingPage from './pages/ProceedingPage'
 import InternationalSeminarPage from './pages/InternationalSeminarPage'
 import GreenYouthPage from './pages/GreenYouthPage'
 import MSMEPage from './pages/MSMEPage'
+import NewsPage from './pages/NewsPage'
 
 function HomePage() {
   return (
@@ -81,6 +82,7 @@ function App() {
           <Route path="/international_seminar" element={<InternationalSeminarPage theme={theme} />} />
           <Route path="/greenyouth" element={<GreenYouthPage theme={theme} />} />
           <Route path="/msme" element={<MSMEPage theme={theme} />} />
+          <Route path="/news" element={<NewsPage theme={theme} />} />
         </Routes>
         <Footer theme={theme} />
       </div>

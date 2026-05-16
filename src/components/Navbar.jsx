@@ -9,6 +9,7 @@ const pageLinks = [
   { key: 'seminar', to: '/international_seminar' },
   { key: 'greenyouth', to: '/greenyouth' },
   { key: 'msme', to: '/msme' },
+  { key: 'news', to: '/news' },
 ]
 
 export default function Navbar({ theme, setTheme }) {
@@ -28,13 +29,11 @@ export default function Navbar({ theme, setTheme }) {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6">
         <Link to="/" className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.2em]">
-          <span
-            className={`inline-flex h-10 w-10 items-center justify-center rounded-2xl ${
-              theme === 'dark' ? 'bg-white/10 text-iite-cyan' : 'bg-slate-100 text-iite-cyan'
-            }`}
-          >
-            I
-          </span>
+          <img
+            src="/images/logo.png"
+            alt="IITE 2026"
+            className="h-10 w-10 rounded-2xl object-contain"
+          />
           IITE 2026
         </Link>
 
