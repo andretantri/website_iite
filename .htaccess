@@ -1,14 +1,14 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    # 1. Jika file atau direktori diminta dan ada di root, biarkan saja
-    RewriteCond %{REQUEST_FILENAME} -f [OR]
-    RewriteCond %{REQUEST_FILENAME} -d
+    # 1. Jika file yang diminta benar-benar ada di root (selain index.html), biarkan saja
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteCond %{REQUEST_FILENAME} !index\.html$
     RewriteRule ^ - [L]
 
-    # 2. Jika file atau direktori ada di dalam folder dist/, arahkan ke sana
-    RewriteCond %{DOCUMENT_ROOT}/dist/$1 -f [OR]
-    RewriteCond %{DOCUMENT_ROOT}/dist/$1 -d
+    # 2. Jika file atau direktori ada di dalam folder dist/ secara relatif, arahkan ke sana
+    RewriteCond dist/$1 -f [OR]
+    RewriteCond dist/$1 -d
     RewriteRule ^(.*)$ dist/$1 [L]
 
     # 3. Fallback untuk SPA (React/Vite Router): 
