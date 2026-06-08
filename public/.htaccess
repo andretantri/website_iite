@@ -1,0 +1,11 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # 1. Jika file atau direktori yang diminta ada di dalam folder dist, layani langsung
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # 2. Jika file/direktori tidak ditemukan, arahkan ke index.html sebagai fallback SPA
+    RewriteRule ^ index.html [L]
+</IfModule>
