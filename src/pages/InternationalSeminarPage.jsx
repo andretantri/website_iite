@@ -85,7 +85,7 @@ export default function InternationalSeminarPage({ theme }) {
 
           {/* Speakers */}
           <section className="fade-up relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#350e38] via-[#2c0b30] to-[#220925]" />
+            <div className="absolute inset-0 card-section-bg" />
             <div className="relative px-4 py-20 sm:px-6 lg:px-8">
               <div className="mx-auto max-w-7xl">
                 <h2 className="mb-2 text-sm uppercase tracking-[0.26em] text-iite-purple">{p.speakersTag}</h2>
@@ -126,7 +126,7 @@ export default function InternationalSeminarPage({ theme }) {
 
           {/* Registration Fee */}
           <section className="fade-up relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#350e38] via-[#2c0b30] to-[#220925]" />
+            <div className="absolute inset-0 card-section-bg" />
             <div className="relative px-4 py-20 sm:px-6 lg:px-8">
               <div className="mx-auto max-w-7xl">
                 <h2 className="mb-2 text-sm uppercase tracking-[0.26em] text-iite-purple">{p.feeTag}</h2>
@@ -181,7 +181,7 @@ export default function InternationalSeminarPage({ theme }) {
 
           {/* Schedule & Contacts */}
           <section className="fade-up relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#350e38] via-[#2c0b30] to-[#220925]" />
+            <div className="absolute inset-0 card-section-bg" />
             <div className="relative px-4 py-20 sm:px-6 lg:px-8">
               <div className="mx-auto max-w-7xl">
                 <div className="grid gap-8 lg:grid-cols-2">

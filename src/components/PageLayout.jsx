@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowLeft, CalendarDays, Globe2, Sparkles } from 'lucide-react'
 import { useTranslation } from '../i18n'
+import VantaNetBackground from './VantaNetBackground'
 
 export default function PageLayout({ theme, accentColor, children }) {
   const t = useTranslation()
@@ -66,13 +67,14 @@ export default function PageLayout({ theme, accentColor, children }) {
   const accent = accentClasses[accentColor] || accentClasses.cyan
 
   return (
-    <main className="relative overflow-hidden">
+    <VantaNetBackground theme={theme} className="min-h-screen">
       {/* Background glow */}
-      <div className={`pointer-events-none absolute inset-0 bg-gradient-radial ${accent.glow}`} aria-hidden="true" />
+      <div className={`pointer-events-none absolute inset-0 bg-gradient-radial ${accent.glow} opacity-60 z-[1]`} aria-hidden="true" />
 
-
-
-      {typeof children === 'function' ? children(accent) : children}
-    </main>
+      {/* Main Content container */}
+      <main className="relative z-10">
+        {typeof children === 'function' ? children(accent) : children}
+      </main>
+    </VantaNetBackground>
   )
 }

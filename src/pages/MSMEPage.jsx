@@ -82,7 +82,7 @@ export default function MSMEPage({ theme }) {
 
           {/* Requirements */}
           <section className="fade-up relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#350e38] via-[#2c0b30] to-[#220925]" />
+            <div className="absolute inset-0 card-section-bg" />
             <div className="relative px-4 py-20 sm:px-6 lg:px-8">
               <div className="mx-auto max-w-7xl">
                 <div className="rounded-[32px] border border-iite-cyan/10 bg-white/[0.02] p-8 backdrop-blur-sm sm:p-12">

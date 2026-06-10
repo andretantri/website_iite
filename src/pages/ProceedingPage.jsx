@@ -89,7 +89,7 @@ export default function ProceedingPage({ theme }) {
 
           {/* Sub Themes — Soft warm rose */}
           <section className="fade-up relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#350e38] via-[#2c0b30] to-[#220925]" />
+            <div className="absolute inset-0 card-section-bg" />
             <div className="relative px-4 py-20 sm:px-6 lg:px-8">
               <div className="mx-auto max-w-7xl">
                 <h2 className="mb-2 text-sm uppercase tracking-[0.26em] text-rose-400">{p.categoriesTag}</h2>
@@ -138,7 +138,7 @@ export default function ProceedingPage({ theme }) {
 
           {/* Requirements & Facilities */}
           <section className="fade-up relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#350e38] via-[#2c0b30] to-[#220925]" />
+            <div className="absolute inset-0 card-section-bg" />
             <div className="relative px-4 py-20 sm:px-6 lg:px-8">
               <div className="mx-auto max-w-7xl">
                 <div className="rounded-[32px] border border-rose-400/10 bg-white/[0.02] p-8 backdrop-blur-sm sm:p-12">
@@ -179,7 +179,7 @@ export default function ProceedingPage({ theme }) {
 
           {/* Contacts */}
           <section className="fade-up relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#350e38] via-[#2c0b30] to-[#220925]" />
+            <div className="absolute inset-0 card-section-bg" />
             <div className="relative px-4 py-20 sm:px-6 lg:px-8">
               <div className="mx-auto max-w-7xl">
                 <h2 className="mb-2 text-sm uppercase tracking-[0.26em] text-rose-400">{p.contactsTag}</h2>

@@ -10,12 +10,13 @@ import InternationalSeminarPage from './pages/InternationalSeminarPage'
 import GreenYouthPage from './pages/GreenYouthPage'
 import MSMEPage from './pages/MSMEPage'
 import NewsPage from './pages/NewsPage'
+import VantaNetBackground from './components/VantaNetBackground'
 
-function HomePage() {
+function HomePage({ theme }) {
   return (
-    <main className="relative overflow-hidden">
+    <VantaNetBackground theme={theme} className="min-h-screen">
       <HeroSection />
-    </main>
+    </VantaNetBackground>
   )
 }
 
@@ -76,7 +77,7 @@ function App() {
         <Navbar theme={theme} setTheme={setTheme} />
         <ScrollToTop />
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<HomePage theme={theme} />} />
           <Route path="/innovation_competition" element={<InnovationCompetitionPage theme={theme} />} />
           <Route path="/proceeding" element={<ProceedingPage theme={theme} />} />
           <Route path="/international_seminar" element={<InternationalSeminarPage theme={theme} />} />

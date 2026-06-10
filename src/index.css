@@ -76,19 +76,17 @@ html.light .ring-white\/10 {
   --tw-ring-color: rgba(0, 0, 0, 0.08) !important;
 }
 
-/* Gradient backgrounds in light mode */
-html.light .from-\[\#350e38\] {
-  --tw-gradient-from: #f8fafc var(--tw-gradient-from-position) !important;
-  --tw-gradient-to: rgba(248, 250, 252, 0) var(--tw-gradient-to-position) !important;
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+/* Reusable semi-transparent background for card sections so Vanta Net can show through */
+.card-section-bg {
+  background: linear-gradient(to bottom right, rgba(59, 14, 61, 0.35), rgba(44, 11, 48, 0.25), rgba(26, 10, 40, 0.35));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
-html.light .via-\[\#2c0b30\] {
-  --tw-gradient-to: rgba(248, 250, 252, 0)  var(--tw-gradient-to-position) !important;
-  --tw-gradient-stops: var(--tw-gradient-from), #f1f5f9 var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+
+html.light .card-section-bg {
+  background: linear-gradient(to bottom right, rgba(248, 250, 252, 0.45), rgba(241, 245, 249, 0.35), rgba(226, 232, 240, 0.45)) !important;
 }
-html.light .to-\[\#220925\] {
-  --tw-gradient-to: #e2e8f0 var(--tw-gradient-to-position) !important;
-}
+
 
 html.light .glass-card {
   background: rgba(255, 255, 255, 0.16);
