@@ -76,7 +76,7 @@ export default function InnovationCompetitionPage({ theme }) {
                     {p.description}
                   </p>
                   <div className="mt-8 flex flex-wrap gap-4">
-                    <a href="#contact" className={`inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition hover:-translate-y-0.5 ${accent.btn}`}>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc0nMiW9Z0J8_JpB50PklL9Vf3U0ObNtJrXp2ty0Su0TmVM5A/viewform" target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition hover:-translate-y-0.5 ${accent.btn}`}>
                       {p.registerBtn}
                       <ArrowRight className="h-4 w-4" />
                     </a>
