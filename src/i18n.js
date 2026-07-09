@@ -135,8 +135,8 @@ const translations = {
       zoom: 'Zoom Hybrid Event Link akan diumumkan via email',
     },
     footer: {
-      copy1: '© 2026 Politeknik Indonusa Surakarta. IITE 2026.',
-      copy2: 'Desain SPA responsif dengan React + Vite + Tailwind CSS.',
+      copy1: '© 2026 IITE 2026.',
+      copy2: '',
     },
     countdown: {
       title: 'Hitung Mundur menuju IITE 2026',
@@ -559,8 +559,8 @@ const translations = {
       zoom: 'Zoom Hybrid Event Link will be announced via email',
     },
     footer: {
-      copy1: '© 2026 Politeknik Indonusa Surakarta. IITE 2026.',
-      copy2: 'Responsive SPA design with React + Vite + Tailwind CSS.',
+      copy1: '© 2026 IITE 2026.',
+      copy2: '',
     },
     countdown: {
       title: 'Countdown to IITE 2026',
