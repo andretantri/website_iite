@@ -73,7 +73,7 @@ export default function InternationalSeminarPage({ theme }) {
                     {p.description}
                   </p>
                   <div className="mt-8 flex flex-wrap gap-4">
-                    <a href="#contact" className={`inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition hover:-translate-y-0.5 ${accent.btn}`}>
+                    <a href="https://proceeding.iite.io/" target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition hover:-translate-y-0.5 ${accent.btn}`}>
                       {p.joinBtn}
                       <ArrowRight className="h-4 w-4" />
                     </a>
