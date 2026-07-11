@@ -1,4 +1,5 @@
 import { useTranslation } from '../i18n'
+import { Link } from 'react-router-dom'
 
 export default function Footer({ theme }) {
   const t = useTranslation()
@@ -11,7 +12,7 @@ export default function Footer({ theme }) {
           : 'border-slate-200/70 bg-white/95 text-slate-700'
       }`}
     >
-      <div className="mx-auto flex max-w-7xl flex-col items-center justify-center text-center">
+      <div className="mx-auto flex max-w-7xl flex-col items-center justify-center text-center gap-2">
         <p>{t.footer.copy1}</p>
         {t.footer.copy2 && <p>{t.footer.copy2}</p>}
       </div>

@@ -10,6 +10,7 @@ import InternationalSeminarPage from './pages/InternationalSeminarPage'
 import GreenYouthPage from './pages/GreenYouthPage'
 import MSMEPage from './pages/MSMEPage'
 import NewsPage from './pages/NewsPage'
+import AdminPage from './pages/AdminPage'
 import VantaNetBackground from './components/VantaNetBackground'
 
 function HomePage({ theme }) {
@@ -34,10 +35,7 @@ function App() {
     if (typeof window === 'undefined') return 'dark'
     return localStorage.getItem('theme') || 'dark'
   })
-  const [language, setLanguage] = useState(() => {
-    if (typeof window === 'undefined') return 'en'
-    return localStorage.getItem('language') || 'en'
-  })
+  const [language] = useState('en')
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark')
@@ -71,10 +69,10 @@ function App() {
   }, [language])
 
   return (
-    <LanguageProvider language={language} toggleLanguage={() => setLanguage(prev => (prev === 'id' ? 'en' : 'id'))}>
+    <LanguageProvider language="en" toggleLanguage={() => {}}>
       <div className={`min-h-screen ${theme === 'dark' ? 'bg-iite-dark text-white' : 'bg-white text-slate-900'} transition-colors duration-500`}>
         <div className="absolute inset-0 bg-hero-glow pointer-events-none" aria-hidden="true" />
-        <Navbar theme={theme} setTheme={setTheme} />
+        {location.pathname !== '/admin' && <Navbar theme={theme} setTheme={setTheme} />}
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<HomePage theme={theme} />} />
@@ -84,8 +82,9 @@ function App() {
           <Route path="/greenyouth" element={<GreenYouthPage theme={theme} />} />
           <Route path="/msme" element={<MSMEPage theme={theme} />} />
           <Route path="/news" element={<NewsPage theme={theme} />} />
+          <Route path="/admin" element={<AdminPage theme={theme} />} />
         </Routes>
-        <Footer theme={theme} />
+        {location.pathname !== '/admin' && <Footer theme={theme} />}
       </div>
     </LanguageProvider>
   )

@@ -32,7 +32,7 @@ export default function ProceedingPage({ theme }) {
                 <X className="h-5 w-5" />
               </button>
               <img
-                src="/images/proceeding-poster.png"
+                src={p.posterImage || "/images/proceeding-poster.png"}
                 alt="IITE 2026 Proceeding Poster"
                 className="max-h-[90vh] max-w-[90vw] rounded-[20px] border border-white/10 object-contain shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
@@ -49,7 +49,7 @@ export default function ProceedingPage({ theme }) {
                   <div className="relative cursor-pointer group" onClick={() => setPosterOpen(true)}>
                     <div className={`absolute -inset-4 rounded-[36px] bg-gradient-to-br from-rose-500/20 via-rose-600/20 to-rose-400/10 blur-2xl transition-opacity group-hover:opacity-80`} />
                     <img
-                      src="/images/proceeding-poster.png"
+                      src={p.posterImage || "/images/proceeding-poster.png"}
                       alt="IITE 2026 Proceeding Poster"
                       className="relative rounded-[28px] border border-white/10 shadow-glass max-h-[600px] w-auto object-contain transition duration-300 group-hover:scale-[1.02] group-hover:border-rose-400/30"
                     />

@@ -64,20 +64,12 @@ export default function Navbar({ theme, setTheme }) {
             {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
           </button>
 
-          <button
-            onClick={toggleLanguage}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-iite-cyan/50 bg-iite-cyan/10 text-iite-cyan transition hover:border-iite-cyan hover:bg-iite-cyan/20"
-            aria-label="Toggle language"
-          >
-            {t.nav.languageLabel}
-          </button>
-
-          <Link
-            to="/#contact"
+          <a
+            href="/#contact"
             className="rounded-full border border-iite-cyan/50 bg-iite-cyan/10 px-4 py-2 text-sm font-medium text-iite-cyan transition hover:border-iite-cyan hover:bg-iite-cyan/20"
           >
-            {t.nav.contactBtn}
-          </Link>
+            {t.nav.contactBtn || (language === 'id' ? 'Hubungi Kami' : 'Contact Us')}
+          </a>
         </nav>
 
         <div className="flex items-center gap-2 md:hidden">
@@ -91,13 +83,6 @@ export default function Navbar({ theme, setTheme }) {
             aria-label="Toggle theme"
           >
             {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
-          </button>
-          <button
-            onClick={toggleLanguage}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-iite-cyan/50 bg-iite-cyan/10 text-iite-cyan transition hover:border-iite-cyan hover:bg-iite-cyan/20"
-            aria-label="Toggle language"
-          >
-            {t.nav.languageLabel}
           </button>
           <button
             className={`inline-flex items-center rounded-lg border px-3 py-3 transition ${
@@ -136,13 +121,13 @@ export default function Navbar({ theme, setTheme }) {
                 {t.nav[link.key]}
               </Link>
             ))}
-            <Link
-              to="/#contact"
+            <a
+              href="/#contact"
               onClick={() => setOpen(false)}
-              className="rounded-full border border-iite-cyan/50 bg-iite-cyan/10 px-4 py-2 text-sm font-medium text-iite-cyan transition hover:border-iite-cyan hover:bg-iite-cyan/20"
+              className="rounded-full border border-iite-cyan/50 bg-iite-cyan/10 px-4 py-2 text-sm font-medium text-iite-cyan transition hover:border-iite-cyan hover:bg-iite-cyan/20 text-center"
             >
-              {t.nav.contactBtn}
-            </Link>
+              {t.nav.contactBtn || (language === 'id' ? 'Hubungi Kami' : 'Contact Us')}
+            </a>
           </div>
         </div>
       )}

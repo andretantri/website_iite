@@ -48,7 +48,7 @@ export default function HeroSection() {
               <div className="relative cursor-pointer group" onClick={() => setPosterOpen(true)}>
                 <div className="absolute -inset-4 rounded-[36px] bg-gradient-to-br from-iite-cyan/20 via-iite-purple/20 to-iite-green/10 blur-2xl transition-opacity group-hover:opacity-80" />
                 <img
-                  src="/images/conference-poster.png"
+                  src={t.hero.posterImage || "/images/conference-poster.png"}
                   alt="IITE 2026 International Conference Poster"
                   className="relative rounded-[28px] border border-white/10 shadow-glass w-auto object-contain transition duration-300 group-hover:scale-[1.02] group-hover:border-iite-cyan/30"
                 />
@@ -197,7 +197,7 @@ export default function HeroSection() {
             <X className="h-5 w-5" />
           </button>
           <img
-            src="/images/conference-poster.png"
+            src={t.hero.posterImage || "/images/conference-poster.png"}
             alt="IITE 2026 Conference Poster"
             className="max-h-[90vh] max-w-[90vw] rounded-[20px] border border-white/10 object-contain shadow-2xl"
             onClick={(e) => e.stopPropagation()}

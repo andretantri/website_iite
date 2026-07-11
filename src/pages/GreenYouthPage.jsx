@@ -38,7 +38,7 @@ export default function GreenYouthPage({ theme }) {
                 <X className="h-5 w-5" />
               </button>
               <img
-                src="/images/greenyouth_poster.png"
+                src={p.posterImage || "/images/greenyouth_poster.png"}
                 alt="Greenpreneur Youth 2026 Poster"
                 className="max-h-[90vh] max-w-[90vw] rounded-[20px] border border-white/10 object-contain shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
@@ -55,7 +55,7 @@ export default function GreenYouthPage({ theme }) {
                   <div className="relative cursor-pointer group" onClick={() => setPosterOpen(true)}>
                     <div className={`absolute -inset-4 rounded-[36px] bg-gradient-to-br from-emerald-500/20 via-emerald-600/20 to-emerald-400/10 blur-2xl transition-opacity group-hover:opacity-80`} />
                     <img
-                      src="/images/greenyouth_poster.png"
+                      src={p.posterImage || "/images/greenyouth_poster.png"}
                       alt="Greenpreneur Youth 2026 Poster"
                       className="relative rounded-[28px] border border-white/10 shadow-glass max-h-[600px] w-auto object-contain transition duration-300 group-hover:scale-[1.02] group-hover:border-emerald-400/30"
                     />

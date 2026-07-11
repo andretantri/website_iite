@@ -32,7 +32,7 @@ export default function InternationalSeminarPage({ theme }) {
                 <X className="h-5 w-5" />
               </button>
               <img
-                src="/images/conference-poster.png"
+                src={p.posterImage || "/images/conference-poster.png"}
                 alt="IITE 2026 Conference Poster"
                 className="max-h-[90vh] max-w-[90vw] rounded-[20px] border border-white/10 object-contain shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
@@ -49,7 +49,7 @@ export default function InternationalSeminarPage({ theme }) {
                   <div className="relative cursor-pointer group" onClick={() => setPosterOpen(true)}>
                     <div className={`absolute -inset-4 rounded-[36px] bg-gradient-to-br from-purple-500/20 via-fuchsia-600/20 to-purple-400/10 blur-2xl transition-opacity group-hover:opacity-80`} />
                     <img
-                      src="/images/conference-poster.png"
+                      src={p.posterImage || "/images/conference-poster.png"}
                       alt="IITE 2026 Conference Poster"
                       className="relative rounded-[28px] border border-white/10 shadow-glass max-h-[600px] w-auto object-contain transition duration-300 group-hover:scale-[1.02] group-hover:border-purple-400/30"
                     />
