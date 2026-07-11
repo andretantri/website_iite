@@ -27,6 +27,21 @@ export default function localCmsPlugin() {
             return
           }
         }
+
+        // 3. GET /api/get-translations
+        if (req.url === '/api/get-translations' && req.method === 'GET') {
+          try {
+            const targetPath = path.resolve(__dirname, 'src/translations-data.json')
+            const content = fs.readFileSync(targetPath, 'utf8')
+            res.writeHead(200, { 'Content-Type': 'application/json' })
+            res.end(content)
+            return
+          } catch (e) {
+            res.writeHead(500, { 'Content-Type': 'application/json' })
+            res.end(JSON.stringify({ success: false, error: e.message }))
+            return
+          }
+        }
         
         // 2. POST /api/upload-image
         if (req.url === '/api/upload-image' && req.method === 'POST') {

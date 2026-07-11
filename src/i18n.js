@@ -1,4 +1,4 @@
-import { createContext, createElement, useContext, useState } from 'react'
+import { createContext, createElement, useContext, useState, useEffect } from 'react'
 import defaultTranslations from './translations-data.json'
 
 export { defaultTranslations }
@@ -45,6 +45,24 @@ export function LanguageProvider({ language, toggleLanguage, children }) {
     }
     return defaultTranslations
   })
+
+  useEffect(() => {
+    const fetchTranslations = async () => {
+      try {
+        const endpoint = import.meta.env.DEV ? '/api/get-translations' : '/api/get-translations.php'
+        const res = await fetch(endpoint)
+        if (res.ok) {
+          const data = await res.json()
+          if (data && (data.id || data.en)) {
+            setCurrentTranslations(data)
+          }
+        }
+      } catch (err) {
+        console.error('Failed to load translations from server database:', err)
+      }
+    }
+    fetchTranslations()
+  }, [])
 
   const updateTranslations = (newTranslations) => {
     setCurrentTranslations(newTranslations)

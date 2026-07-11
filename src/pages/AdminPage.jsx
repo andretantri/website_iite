@@ -262,8 +262,9 @@ export default function AdminPage({ theme }) {
       // 1. Update React Context (localStorage)
       updateTranslations(editableTranslations)
 
-      // 2. Save directly to Disk JSON File (Vite server API middleware)
-      const res = await fetch('/api/save-translations', {
+      // 2. Save directly to Disk JSON File (Vite server API middleware or server PHP database API)
+      const endpoint = import.meta.env.DEV ? '/api/save-translations' : '/api/save-translations.php'
+      const res = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -292,7 +293,8 @@ export default function AdminPage({ theme }) {
       setShowConfirmReset(false)
       
       // Save default back to disk
-      await fetch('/api/save-translations', {
+      const endpoint = import.meta.env.DEV ? '/api/save-translations' : '/api/save-translations.php'
+      await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -318,7 +320,8 @@ export default function AdminPage({ theme }) {
     formData.append('image', file)
 
     try {
-      const response = await fetch('/api/upload-image', {
+      const endpoint = import.meta.env.DEV ? '/api/upload-image' : '/api/upload-image.php'
+      const response = await fetch(endpoint, {
         method: 'POST',
         body: formData
       })
@@ -873,7 +876,8 @@ export default function AdminPage({ theme }) {
                                       const formData = new FormData()
                                       formData.append('image', file)
                                       try {
-                                        const response = await fetch('/api/upload-image', {
+                                        const endpoint = import.meta.env.DEV ? '/api/upload-image' : '/api/upload-image.php'
+                                        const response = await fetch(endpoint, {
                                           method: 'POST',
                                           body: formData
                                         })
