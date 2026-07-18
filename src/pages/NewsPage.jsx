@@ -59,7 +59,10 @@ export default function NewsPage({ theme }) {
                   </span>
                 </div>
                 <h2 className="text-2xl font-bold text-white sm:text-3xl">{selectedArticle.title}</h2>
-                <p className="mt-6 text-base leading-8 text-slate-300">{selectedArticle.summary}</p>
+                <div
+                  className="mt-6 text-base leading-8 text-slate-300 prose prose-invert max-w-none news-content-html"
+                  dangerouslySetInnerHTML={{ __html: selectedArticle.content || selectedArticle.summary }}
+                />
               </div>
             </div>
           )}

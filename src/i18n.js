@@ -27,10 +27,10 @@ function mergeDeep(target, source) {
 
 const LanguageContext = createContext({
   language: 'id',
-  toggleLanguage: () => {},
+  toggleLanguage: () => { },
   translations: {},
-  updateTranslations: () => {},
-  resetTranslations: () => {},
+  updateTranslations: () => { },
+  resetTranslations: () => { },
 })
 
 export function LanguageProvider({ language, toggleLanguage, children }) {

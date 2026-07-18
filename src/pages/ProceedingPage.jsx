@@ -1,12 +1,24 @@
-import { useState } from 'react'
-import { BookOpen, Lightbulb, Users, CheckCircle2, ArrowRight, CreditCard, Phone, Building2, X, Search } from 'lucide-react'
-import { useTranslation } from '../i18n'
+import { useState, useRef } from 'react'
+import { BookOpen, Lightbulb, Users, CheckCircle2, ArrowRight, CreditCard, Phone, Building2, X, Search, ChevronLeft, ChevronRight, ArrowLeft } from 'lucide-react'
+import { useTranslation, useLanguage } from '../i18n'
 import PageLayout from '../components/PageLayout'
 
 export default function ProceedingPage({ theme }) {
   const t = useTranslation()
+  const { language } = useLanguage()
   const p = t.pages.proceeding
+  const posters = p.posters || []
   const [posterOpen, setPosterOpen] = useState(false)
+  const [selectedPoster, setSelectedPoster] = useState(null)
+  const scrollRef = useRef(null)
+
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      const { scrollLeft, clientWidth } = scrollRef.current
+      const offset = direction === 'left' ? -clientWidth : clientWidth
+      scrollRef.current.scrollTo({ left: scrollLeft + offset, behavior: 'smooth' })
+    }
+  }
 
   const getWhatsAppUrl = (phone) => {
     let cleaned = phone.replace(/\D/g, '')
@@ -37,6 +49,71 @@ export default function ProceedingPage({ theme }) {
                 className="max-h-[90vh] max-w-[90vw] rounded-[20px] border border-white/10 object-contain shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
               />
+            </div>
+          )}
+
+          {/* Poster Description Page Overlay */}
+          {selectedPoster && (
+            <div className="fixed inset-0 z-50 bg-iite-dark overflow-y-auto text-white">
+              {/* Header */}
+              <div className="sticky top-0 z-10 border-b border-white/10 bg-iite-dark/85 backdrop-blur-md px-4 py-4 sm:px-6 lg:px-8">
+                <div className="mx-auto max-w-7xl flex items-center justify-between">
+                  <button
+                    onClick={() => setSelectedPoster(null)}
+                    className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/10"
+                  >
+                    <ArrowLeft className="h-4 w-4" />
+                    {language === 'id' ? 'Kembali ke Poster Expo' : 'Back to Poster Expo'}
+                  </button>
+                  <span className="text-xs font-bold text-rose-400 uppercase tracking-widest">
+                    {language === 'id' ? 'Detail Poster' : 'Poster Details'}
+                  </span>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+                <div className="grid gap-12 lg:grid-cols-2">
+                  {/* Left Side: Large Poster Image */}
+                  <div className="flex justify-center items-start">
+                    <div className="relative group overflow-hidden rounded-[28px] border border-white/10 shadow-2xl bg-white/5 p-2">
+                      <img
+                        src={selectedPoster.image || "/images/proceeding-poster.png"}
+                        alt={selectedPoster.title}
+                        className="max-h-[75vh] w-auto object-contain rounded-[20px]"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Right Side: Poster Info */}
+                  <div className="rounded-[32px] border border-white/10 bg-white/[0.02] p-8 backdrop-blur-sm sm:p-12 space-y-6">
+                    <div>
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-rose-400/30 bg-rose-400/10 px-3 py-1 text-xs font-semibold text-rose-400">
+                        Poster Expo
+                      </span>
+                    </div>
+                    <h1 className="text-3xl font-extrabold text-white leading-tight sm:text-4xl">
+                      {selectedPoster.title}
+                    </h1>
+                    <div className="border-t border-b border-white/5 py-4 space-y-2">
+                      <p className="text-sm text-slate-400 font-medium">
+                        {language === 'id' ? 'Penulis / Presenter & Institusi:' : 'Authors / Presenter & Institution:'}
+                      </p>
+                      <p className="text-lg font-semibold text-rose-400">
+                        {selectedPoster.author}
+                      </p>
+                    </div>
+                    <div className="space-y-3">
+                      <h2 className="text-lg font-bold text-white">
+                        {language === 'id' ? 'Abstrak / Deskripsi:' : 'Abstract / Description:'}
+                      </h2>
+                      <p className="text-base text-slate-300 leading-relaxed whitespace-pre-wrap">
+                        {selectedPoster.desc}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           )}
 
@@ -86,6 +163,84 @@ export default function ProceedingPage({ theme }) {
               </div>
             </div>
           </section>
+
+          {/* Gallery Poster Section */}
+          {posters.length > 0 && (
+            <section className="fade-up px-4 py-8 sm:px-6 lg:px-8">
+              <div className="mx-auto max-w-7xl">
+                <div className="flex items-center justify-between mb-8">
+                  <div>
+                    <h2 className="text-sm uppercase tracking-[0.26em] text-rose-400">
+                      {language === 'id' ? 'Galeri Poster' : 'Poster Gallery'}
+                    </h2>
+                    <h3 className="text-3xl font-semibold text-white mt-1">
+                      {language === 'id' ? 'Koleksi Poster Penelitian' : 'Research Poster Collection'}
+                    </h3>
+                  </div>
+                  {posters.length > 3 && (
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => scroll('left')}
+                        className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition hover:bg-white/10"
+                        aria-label="Scroll Left"
+                      >
+                        <ChevronLeft className="h-5 w-5" />
+                      </button>
+                      <button
+                        onClick={() => scroll('right')}
+                        className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition hover:bg-white/10"
+                        aria-label="Scroll Right"
+                      >
+                        <ChevronRight className="h-5 w-5" />
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+                {/* Poster Cards Scroll Area */}
+                <div
+                  ref={scrollRef}
+                  className="flex gap-6 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory pb-4"
+                  style={{ scrollSnapType: 'x mandatory' }}
+                >
+                  {posters.map((poster, index) => (
+                    <div
+                      key={index}
+                      onClick={() => setSelectedPoster(poster)}
+                      className="w-full sm:w-[calc(50%-12px)] md:w-[calc(33.333%-16px)] shrink-0 snap-start cursor-pointer group"
+                    >
+                      <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-4 transition duration-300 group-hover:-translate-y-1 group-hover:border-rose-400/30 group-hover:bg-white/[0.08] flex flex-col h-full">
+                        {/* Poster Thumbnail */}
+                        <div className="relative aspect-[3/4] overflow-hidden rounded-xl bg-slate-950/40">
+                          <img
+                            src={poster.image || "/images/proceeding-poster.png"}
+                            alt={poster.title}
+                            className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-iite-dark/85 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition" />
+                        </div>
+                        {/* Poster Info */}
+                        <div className="mt-4 flex-1 flex flex-col justify-between">
+                          <div>
+                            <h4 className="font-semibold text-white text-base line-clamp-2 group-hover:text-rose-400 transition leading-snug">
+                              {poster.title}
+                            </h4>
+                            <p className="mt-2 text-xs font-medium text-rose-400/80 truncate">
+                              {poster.author}
+                            </p>
+                          </div>
+                          <div className="mt-3 flex items-center text-xs text-rose-400 font-semibold opacity-0 group-hover:opacity-100 transition duration-300">
+                            {language === 'id' ? 'Lihat Detail Poster' : 'View Poster Details'}
+                            <ArrowRight className="ml-1 h-3.5 w-3.5" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+          )}
 
           {/* Sub Themes — Soft warm rose */}
           <section className="fade-up relative overflow-hidden">
