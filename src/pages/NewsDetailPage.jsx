@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useParams, Link, useNavigate } from 'react'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import { Newspaper, Calendar, Tag, ArrowLeft, Share2, Eye, User, Image as ImageIcon } from 'lucide-react'
 import { useTranslation } from '../i18n'
 import PageLayout from '../components/PageLayout'
