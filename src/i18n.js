@@ -26,14 +26,14 @@ function mergeDeep(target, source) {
 }
 
 const LanguageContext = createContext({
-  language: 'id',
+  language: 'en',
   toggleLanguage: () => { },
   translations: {},
   updateTranslations: () => { },
   resetTranslations: () => { },
 })
 
-export function LanguageProvider({ language, toggleLanguage, children }) {
+export function LanguageProvider({ language = 'en', toggleLanguage, children }) {
   const [currentTranslations, setCurrentTranslations] = useState(() => {
     try {
       const stored = localStorage.getItem('iite_translations')
@@ -53,7 +53,7 @@ export function LanguageProvider({ language, toggleLanguage, children }) {
         const res = await fetch(endpoint)
         if (res.ok) {
           const data = await res.json()
-          if (data && (data.id || data.en)) {
+          if (data && (data.en || data.id)) {
             setCurrentTranslations(data)
           }
         }
@@ -78,8 +78,8 @@ export function LanguageProvider({ language, toggleLanguage, children }) {
     LanguageContext.Provider,
     {
       value: {
-        language,
-        toggleLanguage,
+        language: 'en',
+        toggleLanguage: () => {},
         translations: currentTranslations,
         updateTranslations,
         resetTranslations,
@@ -94,7 +94,7 @@ export function useLanguage() {
 }
 
 export function useTranslation() {
-  const { language, translations } = useContext(LanguageContext)
+  const { translations } = useContext(LanguageContext)
   const activeTranslations = translations || defaultTranslations
-  return activeTranslations[language] || activeTranslations.id
+  return activeTranslations.en || activeTranslations.id || defaultTranslations.en
 }

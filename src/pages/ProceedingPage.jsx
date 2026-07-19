@@ -171,74 +171,73 @@ export default function ProceedingPage({ theme }) {
             </div>
           </section>
 
-          {/* Gallery Poster Section */}
+          {/* Gallery Poster Section (Compact 10 posters per row layout) */}
           {posters.length > 0 && (
             <section className="fade-up px-4 py-8 sm:px-6 lg:px-8">
               <div className="mx-auto max-w-7xl">
-                <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center justify-between mb-6">
                   <div>
-                    <h2 className="text-sm uppercase tracking-[0.26em] text-rose-400">
-                      {language === 'id' ? 'Galeri Poster' : 'Poster Gallery'}
+                    <h2 className="text-xs uppercase tracking-[0.26em] text-rose-400 font-bold">
+                      Poster Gallery
                     </h2>
-                    <h3 className="text-3xl font-semibold text-white mt-1">
-                      {language === 'id' ? 'Koleksi Poster Penelitian' : 'Research Poster Collection'}
+                    <h3 className="text-2xl font-bold text-white mt-0.5">
+                      Research Poster Collection ({posters.length})
                     </h3>
                   </div>
-                  {posters.length > 3 && (
-                    <div className="flex gap-2">
+                  {posters.length > 1 && (
+                    <div className="flex gap-1.5">
                       <button
                         onClick={() => scroll('left')}
-                        className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition hover:bg-white/10"
+                        className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition hover:bg-white/10"
                         aria-label="Scroll Left"
                       >
-                        <ChevronLeft className="h-5 w-5" />
+                        <ChevronLeft className="h-4 w-4" />
                       </button>
                       <button
                         onClick={() => scroll('right')}
-                        className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition hover:bg-white/10"
+                        className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition hover:bg-white/10"
                         aria-label="Scroll Right"
                       >
-                        <ChevronRight className="h-5 w-5" />
+                        <ChevronRight className="h-4 w-4" />
                       </button>
                     </div>
                   )}
                 </div>
 
-                {/* Poster Cards Scroll Area */}
+                {/* Poster Cards Scroll Area (10 Posters per row on desktop) */}
                 <div
                   ref={scrollRef}
-                  className="flex gap-6 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory pb-4"
+                  className="flex gap-3 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory pb-4"
                   style={{ scrollSnapType: 'x mandatory' }}
                 >
                   {posters.map((poster, index) => (
                     <div
                       key={index}
                       onClick={() => setSelectedPoster(poster)}
-                      className="w-full sm:w-[calc(50%-12px)] md:w-[calc(33.333%-16px)] shrink-0 snap-start cursor-pointer group"
+                      className="w-[calc(50%-6px)] sm:w-[calc(25%-9px)] md:w-[calc(16.666%-10px)] lg:w-[calc(10%-11px)] min-w-[110px] shrink-0 snap-start cursor-pointer group"
                     >
-                      <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-4 transition duration-300 group-hover:-translate-y-1 group-hover:border-rose-400/30 group-hover:bg-white/[0.08] flex flex-col h-full">
+                      <div className="relative overflow-hidden rounded-xl border border-white/10 bg-white/[0.04] p-2 transition duration-300 group-hover:-translate-y-1 group-hover:border-rose-400/40 group-hover:bg-white/[0.08] flex flex-col h-full">
                         {/* Poster Thumbnail */}
-                        <div className="relative aspect-[3/4] overflow-hidden rounded-xl bg-slate-950/40">
+                        <div className="relative aspect-[3/4] overflow-hidden rounded-lg bg-slate-950/40">
                           <img
                             src={poster.image || "/images/proceeding-poster.png"}
                             alt={poster.title}
                             className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-iite-dark/85 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-iite-dark/85 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition" />
                         </div>
-                        {/* Poster Info */}
-                        <div className="mt-4 flex-1 flex flex-col justify-between">
+                        {/* Compact Poster Info */}
+                        <div className="mt-2 flex-1 flex flex-col justify-between">
                           <div>
-                            <h4 className="font-semibold text-white text-base line-clamp-2 group-hover:text-rose-400 transition leading-snug">
+                            <h4 className="font-bold text-white text-[11px] line-clamp-2 group-hover:text-rose-400 transition leading-tight">
                               {poster.title}
                             </h4>
-                            <p className="mt-2 text-xs font-medium text-rose-400/80 truncate">
+                            <p className="mt-1 text-[9px] font-semibold text-rose-400/90 truncate">
                               {poster.author}
                             </p>
                           </div>
-                          <div className="mt-3 flex items-center text-xs text-rose-400 font-semibold opacity-0 group-hover:opacity-100 transition duration-300">
-                            {language === 'id' ? 'Lihat Detail Poster' : 'View Poster Details'}
-                            <ArrowRight className="ml-1 h-3.5 w-3.5" />
+                          <div className="mt-1 text-[9px] text-slate-400 line-clamp-2 leading-tight">
+                            {poster.desc}
                           </div>
                         </div>
                       </div>
