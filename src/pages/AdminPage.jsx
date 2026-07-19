@@ -601,12 +601,14 @@ export default function AdminPage() {
   }
 
   // Article Managers
-  const handleSaveArticle = (e) => {
+  const handleSaveArticle = async (e) => {
     e.preventDefault()
     const path = SECTION_PATH_MAP['news_articles']
-    const articles = getNestedValue(editableTranslations[selectedLang], path) || []
+    const idArticles = getNestedValue(editableTranslations, ['id', ...path]) || []
+    const enArticles = getNestedValue(editableTranslations, ['en', ...path]) || []
+    const currentList = getNestedValue(editableTranslations[selectedLang], path) || (idArticles.length > 0 ? idArticles : enArticles)
     
-    let updatedArticles = [...articles]
+    let updatedArticles = [...currentList]
     if (editingArticleIndex !== null) {
       updatedArticles[editingArticleIndex] = articleForm
       showToast('Artikel berita berhasil diperbarui')
@@ -615,8 +617,12 @@ export default function AdminPage() {
       showToast('Artikel berita baru berhasil diterbitkan')
     }
 
-    const updated = setNestedValue(editableTranslations, [selectedLang, ...path], updatedArticles)
+    let updated = setNestedValue(editableTranslations, ['id', ...path], updatedArticles)
+    updated = setNestedValue(updated, ['en', ...path], updatedArticles)
+
     setEditableTranslations(updated)
+    await persistChanges(updated)
+
     setEditingArticleIndex(null)
     setIsArticleFormOpen(false)
     setArticleForm({
@@ -656,13 +662,16 @@ export default function AdminPage() {
     setIsArticleFormOpen(true)
   }
 
-  const handleDeleteArticle = (index) => {
+  const handleDeleteArticle = async (index) => {
     const path = SECTION_PATH_MAP['news_articles']
-    const articles = getNestedValue(editableTranslations[selectedLang], path) || []
-    const updatedArticles = articles.filter((_, i) => i !== index)
+    const idArticles = getNestedValue(editableTranslations, ['id', ...path]) || []
+    const updatedArticles = idArticles.filter((_, i) => i !== index)
     
-    const updated = setNestedValue(editableTranslations, [selectedLang, ...path], updatedArticles)
+    let updated = setNestedValue(editableTranslations, ['id', ...path], updatedArticles)
+    updated = setNestedValue(updated, ['en', ...path], updatedArticles)
+
     setEditableTranslations(updated)
+    await persistChanges(updated)
     showToast('Artikel berita berhasil dihapus', 'warning')
   }
 
@@ -682,13 +691,30 @@ export default function AdminPage() {
     }))
   }
 
+  // Helper to persist translations immediately to context, localStorage, & server
+  const persistChanges = async (newTranslations) => {
+    updateTranslations(newTranslations)
+    try {
+      const endpoint = import.meta.env.DEV ? '/api/save-translations' : '/api/save-translations.php'
+      await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newTranslations)
+      })
+    } catch (err) {
+      console.error('Failed to sync server:', err)
+    }
+  }
+
   // Poster Managers
-  const handleSavePoster = (e) => {
+  const handleSavePoster = async (e) => {
     e.preventDefault()
     const path = ['pages', 'proceeding', 'posters']
-    const posters = getNestedValue(editableTranslations[selectedLang], path) || []
-    
-    let updatedPosters = [...posters]
+    const idPosters = getNestedValue(editableTranslations, ['id', ...path]) || []
+    const enPosters = getNestedValue(editableTranslations, ['en', ...path]) || []
+    const currentList = getNestedValue(editableTranslations[selectedLang], path) || (idPosters.length > 0 ? idPosters : enPosters)
+
+    let updatedPosters = [...currentList]
     if (editingPosterIndex !== null) {
       updatedPosters[editingPosterIndex] = posterForm
       showToast('Data poster berhasil diperbarui')
@@ -697,8 +723,13 @@ export default function AdminPage() {
       showToast('Poster penelitian baru berhasil ditambahkan!')
     }
 
-    const updated = setNestedValue(editableTranslations, [selectedLang, ...path], updatedPosters)
+    // Sync poster list to both ID and EN so it renders in all language modes
+    let updated = setNestedValue(editableTranslations, ['id', ...path], updatedPosters)
+    updated = setNestedValue(updated, ['en', ...path], updatedPosters)
+
     setEditableTranslations(updated)
+    await persistChanges(updated)
+
     setEditingPosterIndex(null)
     setIsPosterFormOpen(false)
     setPosterForm({ title: '', author: '', desc: '', image: '' })
@@ -715,13 +746,16 @@ export default function AdminPage() {
     setIsPosterFormOpen(true)
   }
 
-  const handleDeletePoster = (index) => {
+  const handleDeletePoster = async (index) => {
     const path = ['pages', 'proceeding', 'posters']
-    const posters = getNestedValue(editableTranslations[selectedLang], path) || []
-    const updatedPosters = posters.filter((_, i) => i !== index)
+    const idPosters = getNestedValue(editableTranslations, ['id', ...path]) || []
+    const updatedPosters = idPosters.filter((_, i) => i !== index)
     
-    const updated = setNestedValue(editableTranslations, [selectedLang, ...path], updatedPosters)
+    let updated = setNestedValue(editableTranslations, ['id', ...path], updatedPosters)
+    updated = setNestedValue(updated, ['en', ...path], updatedPosters)
+
     setEditableTranslations(updated)
+    await persistChanges(updated)
     showToast('Poster penelitian dihapus dari galeri', 'warning')
   }
 

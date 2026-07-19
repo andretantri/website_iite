@@ -5,9 +5,16 @@ import PageLayout from '../components/PageLayout'
 
 export default function ProceedingPage({ theme }) {
   const t = useTranslation()
-  const { language } = useLanguage()
-  const p = t.pages.proceeding
-  const posters = p.posters || []
+  const { language, translations } = useLanguage()
+  const p = t?.pages?.proceeding || {}
+
+  // Safe poster fallback across languages so added posters always show up
+  const idPosters = translations?.id?.pages?.proceeding?.posters || []
+  const enPosters = translations?.en?.pages?.proceeding?.posters || []
+  const posters = (p.posters && p.posters.length > 0)
+    ? p.posters
+    : (idPosters.length > 0 ? idPosters : enPosters)
+
   const [posterOpen, setPosterOpen] = useState(false)
   const [selectedPoster, setSelectedPoster] = useState(null)
   const scrollRef = useRef(null)
