@@ -24,7 +24,14 @@ if (defined('USE_MYSQL') && USE_MYSQL) {
 // Function to fetch the translations JSON
 function get_translations() {
     global $conn;
-    $filePath = __DIR__ . '/translations-data.json';
+    
+    // Check persistent locations in order of priority
+    $paths = [
+        '/tmp/iite_translations.json',
+        __DIR__ . '/../../public/api/translations-data.json',
+        __DIR__ . '/storage/translations-data.json',
+        __DIR__ . '/translations-data.json'
+    ];
     
     if ($conn) {
         // Automatically create the translations table if it doesn't exist
@@ -32,22 +39,33 @@ function get_translations() {
         
         $result = $conn->query("SELECT json_data FROM translations WHERE id = 1");
         if ($result && $row = $result->fetch_assoc()) {
-            return json_decode($row['json_data'], true);
+            $parsed = json_decode($row['json_data'], true);
+            if ($parsed) return $parsed;
         }
         
-        // If MySQL is empty, seed it with the local json file
-        if (file_exists($filePath)) {
-            $initialData = file_get_contents($filePath);
-            $stmt = $conn->prepare("INSERT INTO translations (id, json_data) VALUES (1, ?) ON DUPLICATE KEY UPDATE json_data = ?");
-            $stmt->bind_param("ss", $initialData, $initialData);
-            $stmt->execute();
-            return json_decode($initialData, true);
+        // If MySQL is empty, seed it with the available json file
+        foreach ($paths as $filePath) {
+            if (file_exists($filePath)) {
+                $initialData = file_get_contents($filePath);
+                if ($initialData) {
+                    $stmt = $conn->prepare("INSERT INTO translations (id, json_data) VALUES (1, ?) ON DUPLICATE KEY UPDATE json_data = ?");
+                    $stmt->bind_param("ss", $initialData, $initialData);
+                    $stmt->execute();
+                    return json_decode($initialData, true);
+                }
+            }
         }
     }
     
-    // Fallback: Read from the local JSON file on the server
-    if (file_exists($filePath)) {
-        return json_decode(file_get_contents($filePath), true);
+    // Fallback: Read from the first existing persistent JSON file
+    foreach ($paths as $filePath) {
+        if (file_exists($filePath)) {
+            $content = file_get_contents($filePath);
+            if ($content) {
+                $parsed = json_decode($content, true);
+                if ($parsed) return $parsed;
+            }
+        }
     }
     
     return null;
@@ -57,10 +75,23 @@ function get_translations() {
 function save_translations($data) {
     global $conn;
     $jsonStr = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
-    $filePath = __DIR__ . '/translations-data.json';
     
-    // Always backup by writing to the file
-    @file_put_contents($filePath, $jsonStr);
+    $storageDir = __DIR__ . '/storage';
+    if (!is_dir($storageDir)) {
+        @mkdir($storageDir, 0777, true);
+    }
+
+    $paths = [
+        '/tmp/iite_translations.json',
+        $storageDir . '/translations-data.json',
+        __DIR__ . '/translations-data.json',
+        __DIR__ . '/../../public/api/translations-data.json',
+        __DIR__ . '/../../src/translations-data.json'
+    ];
+    
+    foreach ($paths as $filePath) {
+        @file_put_contents($filePath, $jsonStr);
+    }
     
     if ($conn) {
         $conn->query("CREATE TABLE IF NOT EXISTS translations (id INT PRIMARY KEY, json_data LONGTEXT)");
