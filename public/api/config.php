@@ -3,18 +3,32 @@
  * Database Configuration for IITE 2026 CMS
  */
 
-// Database Host (usually localhost)
-define('DB_HOST', 'localhost');
+// Auto-load .env configuration if present
+$envFile = __DIR__ . '/../../.env';
+if (file_exists($envFile)) {
+    $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lines as $line) {
+        if (strpos(trim($line), '#') === 0) continue;
+        if (strpos($line, '=') !== false) {
+            list($name, $value) = explode('=', $line, 2);
+            putenv(trim($name) . '=' . trim($value, '"\' '));
+        }
+    }
+}
+
+// Database Host
+defined('DB_HOST') || define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
 
 // Database Username
-define('DB_USER', '');
+defined('DB_USER') || define('DB_USER', getenv('DB_USERNAME') ?: getenv('DB_USER') ?: 'u601210817_iite_website');
 
 // Database Password
-define('DB_PASS', '');
+defined('DB_PASS') || define('DB_PASS', getenv('DB_PASSWORD') ?: getenv('DB_PASS') ?: '');
 
 // Database Name
-define('DB_NAME', '');
+defined('DB_NAME') || define('DB_NAME', getenv('DB_DATABASE') ?: getenv('DB_NAME') ?: 'u601210817_iite_website');
 
-// Set to true to store translations in a MySQL database table.
-// If set to false, it will fall back to file-based JSON database storage (translations-data.json).
-define('USE_MYSQL', false);
+// Enable MySQL automatically if database credentials are present
+$hasDbConfig = (DB_USER !== '' && DB_NAME !== '');
+defined('USE_MYSQL') || define('USE_MYSQL', $hasDbConfig);
+
