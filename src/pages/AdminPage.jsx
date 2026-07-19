@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import {
   Settings,
   Save,
@@ -17,16 +17,12 @@ import {
   Calendar,
   Tag,
   Upload,
-  ArrowLeft,
   LayoutGrid,
   FileText,
-  HelpCircle,
   Image as ImageIcon,
   Users,
   TrendingUp,
   Newspaper,
-  ChevronLeft,
-  ChevronRight,
   X,
   Link as LinkIcon,
   List,
@@ -37,11 +33,17 @@ import {
   AlignRight,
   AlignJustify,
   Undo,
-  Redo
+  Redo,
+  ExternalLink,
+  Edit3,
+  Layers,
+  Sparkles,
+  ChevronRight,
+  Check
 } from 'lucide-react'
 import { useLanguage, defaultTranslations } from '../i18n'
 
-// Rich Text Editor Component for News Content (Filament Style)
+// Rich Text Editor Component for News Content (Inertia Filament Style)
 function RichTextEditor({ value, onChange, placeholder }) {
   const editorRef = useRef(null)
 
@@ -65,13 +67,13 @@ function RichTextEditor({ value, onChange, placeholder }) {
   }
 
   return (
-    <div className="border border-white/10 rounded-xl bg-iite-dark/60 overflow-hidden focus-within:border-iite-cyan/50 focus-within:ring-1 focus-within:ring-iite-cyan/30 transition">
+    <div className="border border-slate-300 rounded-xl bg-white overflow-hidden focus-within:border-indigo-500 focus-within:ring-2 focus-within:ring-indigo-100 transition shadow-sm">
       {/* Toolbar */}
-      <div className="flex flex-wrap gap-1 bg-white/5 border-b border-white/10 p-2 text-slate-400">
+      <div className="flex flex-wrap gap-1 bg-slate-50 border-b border-slate-200 p-2 text-slate-600">
         <button
           type="button"
           onClick={() => execCommand('formatBlock', '<h2>')}
-          className="p-1 px-2 hover:text-white rounded hover:bg-white/5 font-semibold text-xs transition"
+          className="p-1 px-2.5 hover:text-indigo-600 hover:bg-slate-200/60 rounded font-semibold text-xs transition"
           title="Heading 2"
         >
           H2
@@ -79,16 +81,16 @@ function RichTextEditor({ value, onChange, placeholder }) {
         <button
           type="button"
           onClick={() => execCommand('formatBlock', '<h3>')}
-          className="p-1 px-2 hover:text-white rounded hover:bg-white/5 font-semibold text-xs transition"
+          className="p-1 px-2.5 hover:text-indigo-600 hover:bg-slate-200/60 rounded font-semibold text-xs transition"
           title="Heading 3"
         >
           H3
         </button>
-        <div className="w-[1px] bg-white/10 my-1 mx-1" />
+        <div className="w-[1px] bg-slate-200 my-1 mx-1" />
         <button
           type="button"
           onClick={() => execCommand('bold')}
-          className="p-1 px-2 hover:text-white rounded hover:bg-white/5 font-bold text-xs transition"
+          className="p-1 px-2.5 hover:text-indigo-600 hover:bg-slate-200/60 rounded font-bold text-xs transition"
           title="Bold"
         >
           B
@@ -96,19 +98,19 @@ function RichTextEditor({ value, onChange, placeholder }) {
         <button
           type="button"
           onClick={() => execCommand('italic')}
-          className="p-1 px-2 hover:text-white rounded hover:bg-white/5 italic text-xs transition"
+          className="p-1 px-2.5 hover:text-indigo-600 hover:bg-slate-200/60 rounded italic text-xs transition"
           title="Italic"
         >
           I
         </button>
-        <div className="w-[1px] bg-white/10 my-1 mx-1" />
+        <div className="w-[1px] bg-slate-200 my-1 mx-1" />
         <button
           type="button"
           onClick={() => {
             const url = prompt('Masukkan URL Link:')
             if (url) execCommand('createLink', url)
           }}
-          className="p-1.5 hover:text-white rounded hover:bg-white/5 transition"
+          className="p-1.5 hover:text-indigo-600 hover:bg-slate-200/60 rounded transition"
           title="Tambah Link"
         >
           <LinkIcon className="h-3.5 w-3.5" />
@@ -116,7 +118,7 @@ function RichTextEditor({ value, onChange, placeholder }) {
         <button
           type="button"
           onClick={() => execCommand('insertUnorderedList')}
-          className="p-1.5 hover:text-white rounded hover:bg-white/5 transition"
+          className="p-1.5 hover:text-indigo-600 hover:bg-slate-200/60 rounded transition"
           title="Bullet List"
         >
           <List className="h-3.5 w-3.5" />
@@ -124,7 +126,7 @@ function RichTextEditor({ value, onChange, placeholder }) {
         <button
           type="button"
           onClick={() => execCommand('insertOrderedList')}
-          className="p-1.5 hover:text-white rounded hover:bg-white/5 transition"
+          className="p-1.5 hover:text-indigo-600 hover:bg-slate-200/60 rounded transition"
           title="Numbered List"
         >
           <ListOrdered className="h-3.5 w-3.5" />
@@ -132,16 +134,16 @@ function RichTextEditor({ value, onChange, placeholder }) {
         <button
           type="button"
           onClick={() => execCommand('formatBlock', '<blockquote>')}
-          className="p-1.5 hover:text-white rounded hover:bg-white/5 transition"
+          className="p-1.5 hover:text-indigo-600 hover:bg-slate-200/60 rounded transition"
           title="Kutipan"
         >
           <Quote className="h-3.5 w-3.5" />
         </button>
-        <div className="w-[1px] bg-white/10 my-1 mx-1" />
+        <div className="w-[1px] bg-slate-200 my-1 mx-1" />
         <button
           type="button"
           onClick={() => execCommand('justifyLeft')}
-          className="p-1.5 hover:text-white rounded hover:bg-white/5 transition"
+          className="p-1.5 hover:text-indigo-600 hover:bg-slate-200/60 rounded transition"
           title="Rata Kiri"
         >
           <AlignLeft className="h-3.5 w-3.5" />
@@ -149,7 +151,7 @@ function RichTextEditor({ value, onChange, placeholder }) {
         <button
           type="button"
           onClick={() => execCommand('justifyCenter')}
-          className="p-1.5 hover:text-white rounded hover:bg-white/5 transition"
+          className="p-1.5 hover:text-indigo-600 hover:bg-slate-200/60 rounded transition"
           title="Rata Tengah"
         >
           <AlignCenter className="h-3.5 w-3.5" />
@@ -157,7 +159,7 @@ function RichTextEditor({ value, onChange, placeholder }) {
         <button
           type="button"
           onClick={() => execCommand('justifyRight')}
-          className="p-1.5 hover:text-white rounded hover:bg-white/5 transition"
+          className="p-1.5 hover:text-indigo-600 hover:bg-slate-200/60 rounded transition"
           title="Rata Kanan"
         >
           <AlignRight className="h-3.5 w-3.5" />
@@ -165,16 +167,16 @@ function RichTextEditor({ value, onChange, placeholder }) {
         <button
           type="button"
           onClick={() => execCommand('justifyFull')}
-          className="p-1.5 hover:text-white rounded hover:bg-white/5 transition"
+          className="p-1.5 hover:text-indigo-600 hover:bg-slate-200/60 rounded transition"
           title="Rata Kiri Kanan"
         >
           <AlignJustify className="h-3.5 w-3.5" />
         </button>
-        <div className="w-[1px] bg-white/10 my-1 mx-1" />
+        <div className="w-[1px] bg-slate-200 my-1 mx-1" />
         <button
           type="button"
           onClick={() => execCommand('undo')}
-          className="p-1.5 hover:text-white rounded hover:bg-white/5 transition"
+          className="p-1.5 hover:text-indigo-600 hover:bg-slate-200/60 rounded transition"
           title="Batal (Undo)"
         >
           <Undo className="h-3.5 w-3.5" />
@@ -182,7 +184,7 @@ function RichTextEditor({ value, onChange, placeholder }) {
         <button
           type="button"
           onClick={() => execCommand('redo')}
-          className="p-1.5 hover:text-white rounded hover:bg-white/5 transition"
+          className="p-1.5 hover:text-indigo-600 hover:bg-slate-200/60 rounded transition"
           title="Ulangi (Redo)"
         >
           <Redo className="h-3.5 w-3.5" />
@@ -194,74 +196,98 @@ function RichTextEditor({ value, onChange, placeholder }) {
         ref={editorRef}
         contentEditable
         onInput={handleInput}
-        className="p-4 min-h-[220px] outline-none text-sm text-white prose prose-invert max-w-none focus:ring-0"
+        className="p-4 min-h-[200px] outline-none text-sm text-slate-800 prose max-w-none focus:ring-0"
         placeholder={placeholder}
       />
     </div>
   )
 }
 
-// Friendly Indonesian names for sections
-const PAGE_CARDS = [
+// Navigation structure matching Laravel Inertia Sidebar style
+const SIDEBAR_GROUPS = [
   {
-    id: 'nav_footer',
-    title: 'Navigasi & Footer',
-    desc: 'Ubah teks menu navigasi, tombol kontak, dan hak cipta di bagian bawah website.',
-    icon: Settings,
-    sections: ['nav', 'footer']
+    category: 'MENU UTAMA',
+    items: [
+      {
+        id: 'overview',
+        title: 'Ringkasan Dashboard',
+        desc: 'Ringkasan performa website, statistik pengunjung, dan status server.',
+        icon: LayoutGrid,
+        badge: 'Status'
+      },
+      {
+        id: 'proceeding',
+        title: 'Galeri Poster Prosiding',
+        desc: 'Kelola koleksi poster penelitian, deskripsi expo, biaya pendaftaran, dan narahubung.',
+        icon: ImageIcon,
+        badge: 'Expo',
+        sections: ['proceeding']
+      },
+      {
+        id: 'news',
+        title: 'Manajer Berita & CMS',
+        desc: 'Tulis dan kelola publikasi berita, artikel inovasi, dan meta SEO.',
+        icon: Newspaper,
+        badge: 'Berita',
+        sections: ['news_meta', 'news_articles']
+      }
+    ]
   },
   {
-    id: 'home',
-    title: 'Halaman Beranda',
-    desc: 'Kelola judul banner, hitung mundur, slider banner, deskripsi IITE, program utama, dan kontak.',
-    icon: LayoutGrid,
-    sections: ['hero', 'about', 'activities', 'timeline', 'contact', 'countdown', 'home']
+    category: 'PROGRAM & HAKIM',
+    items: [
+      {
+        id: 'competition',
+        title: 'Kompetisi Inovasi',
+        desc: 'Kelola kategori kompetisi, biaya, persyaratan, dan timeline.',
+        icon: Sparkles,
+        sections: ['competition']
+      },
+      {
+        id: 'seminar',
+        title: 'Seminar Internasional',
+        desc: 'Atur keynote speakers, sub-tema, biaya, dan rekening pembayaran.',
+        icon: Users,
+        sections: ['seminar']
+      },
+      {
+        id: 'greenyouth',
+        title: 'Program Pemuda Hijau',
+        desc: 'Atur kompetisi ide usaha Greenpreneur mahasiswa.',
+        icon: Layers,
+        sections: ['greenyouth']
+      },
+      {
+        id: 'msme',
+        title: 'Penghargaan UMKM',
+        desc: 'Kelola ketentuan UMKM Award, aspek penilaian, dan link form.',
+        icon: Tag,
+        sections: ['msme']
+      }
+    ]
   },
   {
-    id: 'competition',
-    title: 'Halaman Kompetisi Inovasi',
-    desc: 'Edit kategori kompetisi, biaya pendaftaran, persyaratan, jadwal, dan narahubung.',
-    icon: FileText,
-    sections: ['competition']
-  },
-  {
-    id: 'proceeding',
-    title: 'Halaman Poster Prosiding',
-    desc: 'Edit sub-tema poster, biaya, persyaratan masuk, timeline kegiatan, dan kontak admin.',
-    icon: FileText,
-    sections: ['proceeding']
-  },
-  {
-    id: 'seminar',
-    title: 'Halaman Seminar Internasional',
-    desc: 'Atur detail pembicara, sub-tema konferensi, biaya, no rekening pembayaran, dan jadwal acara.',
-    icon: FileText,
-    sections: ['seminar']
-  },
-  {
-    id: 'greenyouth',
-    title: 'Halaman Pemuda Hijau',
-    desc: 'Edit detail kompetisi Greenpreneur untuk mahasiswa Polinus Surakarta.',
-    icon: FileText,
-    sections: ['greenyouth']
-  },
-  {
-    id: 'msme',
-    title: 'Halaman UMKM Award',
-    desc: 'Atur ketentuan penghargaan UMKM, aspek penilaian, timeline, dan link form pendaftaran.',
-    icon: FileText,
-    sections: ['msme']
-  },
-  {
-    id: 'news',
-    title: 'Manajer Berita & Informasi',
-    desc: 'Tulis artikel berita baru, edit artikel berita yang sudah ada, atau hapus berita.',
-    icon: Tag,
-    sections: ['news_meta', 'news_articles']
+    category: 'PENGATURAN WEBSITE',
+    items: [
+      {
+        id: 'home',
+        title: 'Halaman Beranda',
+        desc: 'Edit hero banner, slider agenda, deskripsi IITE, dan hitung mundur.',
+        icon: FileText,
+        sections: ['hero', 'about', 'activities', 'timeline', 'contact', 'countdown', 'home']
+      },
+      {
+        id: 'nav_footer',
+        title: 'Navigasi & Footer',
+        desc: 'Ubah menu header, tombol kontak, dan teks hak cipta.',
+        icon: Settings,
+        sections: ['nav', 'footer']
+      }
+    ]
   }
 ]
 
-// Map technical section ID to path in translations
+// Technical section path mapping
 const SECTION_PATH_MAP = {
   nav: ['nav'],
   footer: ['footer'],
@@ -281,9 +307,8 @@ const SECTION_PATH_MAP = {
   news_articles: ['pages', 'news', 'articles']
 }
 
-// Convert technical keys to Indonesian
+// Technical field labels to Indonesian
 const FIELD_LABELS = {
-  // Navigation
   home: 'Menu Beranda',
   about: 'Menu Tentang Kami',
   activities: 'Menu Kegiatan',
@@ -297,50 +322,40 @@ const FIELD_LABELS = {
   news: 'Menu Berita',
   adminLoginBtn: 'Teks Tombol Login Admin',
   languageLabel: 'Teks Label Bahasa',
-  posterImage: 'Poster / Pamflet Utama Halaman',
-  
-  // Hero
-  badge: 'Label/Badge Atas',
+  posterImage: 'Gambar Banner / Poster Utama',
+  badge: 'Label Badge Atas',
   description: 'Deskripsi Singkat',
   time: 'Waktu Pelaksanaan',
   location: 'Lokasi Acara',
   organizer: 'Penyelenggara',
   summary: 'Ringkasan Acara',
   cta: 'Teks Tombol Pendaftaran',
-  countdown: 'Teks Info Hitung Mundur',
+  countdown: 'Hitung Mundur',
   speakersTag: 'Tag Pembicara',
   speakersTitle: 'Judul Sesi Pembicara',
-  clickToEnlarge: 'Teks Petunjuk Perbesar Gambar',
+  clickToEnlarge: 'Petunjuk Perbesar Gambar',
   registrationFeeTag: 'Label Biaya Registrasi',
   registrationFeeTitle: 'Judul Biaya Call Paper',
   paymentTitle: 'Judul Informasi Pembayaran',
   contactPerson: 'Label Narahubung',
-  sliderLabel: 'Label Sorotan/Slider',
+  sliderLabel: 'Label Sorotan',
   sliderHeading: 'Judul Sampul Agenda',
-  
-  // About
   tag: 'Tag Bagian',
   heading: 'Judul Utama',
   programTitle: 'Judul Fokus Program',
   programText: 'Deskripsi Fokus Program',
   benefitTitle: 'Judul Manfaat Peserta',
   benefitText: 'Deskripsi Manfaat Peserta',
-
-  // News
   latestNews: 'Judul Berita Terbaru',
   readMore: 'Teks Baca Selengkapnya',
   publishedAt: 'Teks Dipublikasikan',
   category: 'Teks Kategori',
   allCategories: 'Teks Semua Kategori',
-  searchPlaceholder: 'Teks Placeholder Cari Berita',
-  
-  // Posters
+  searchPlaceholder: 'Placeholder Cari Berita',
   posters: 'Daftar Poster Prosiding',
   author: 'Penulis & Institusi',
   desc: 'Abstrak / Deskripsi Poster',
-
-  // Countdown
-  title: 'Judul Hitung Mundur',
+  title: 'Judul Utama / Nama',
 }
 
 function formatFieldName(key) {
@@ -365,7 +380,7 @@ function setNestedValue(obj, path, value) {
   return newObj
 }
 
-export default function AdminPage({ theme }) {
+export default function AdminPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -373,8 +388,8 @@ export default function AdminPage({ theme }) {
 
   const { translations, updateTranslations, resetTranslations } = useLanguage()
 
-  const [selectedLang, setSelectedLang] = useState('en')
-  const [activeCard, setActiveCard] = useState(null) // selected PAGE_CARD
+  const [selectedLang, setSelectedLang] = useState('id')
+  const [activeItem, setActiveItem] = useState(SIDEBAR_GROUPS[0].items[0]) // default: overview
   const [editableTranslations, setEditableTranslations] = useState(null)
   
   const [toast, setToast] = useState(null)
@@ -395,6 +410,7 @@ export default function AdminPage({ theme }) {
     desc: '',
     image: ''
   })
+
   const [articleForm, setArticleForm] = useState({
     title: '',
     date: '',
@@ -448,18 +464,16 @@ export default function AdminPage({ theme }) {
     setIsLoggedIn(false)
     setUsername('')
     setPassword('')
-    setActiveCard(null)
-    showToast('Berhasil keluar', 'info')
+    setActiveItem(SIDEBAR_GROUPS[0].items[0])
+    showToast('Berhasil keluar dari sesi admin', 'info')
   }
 
-  // Save changes to localStorage & Disk Database
+  // Save changes to localStorage & Server File API
   const handleSave = async () => {
     setIsSaving(true)
     try {
-      // 1. Update React Context (localStorage)
       updateTranslations(editableTranslations)
 
-      // 2. Save directly to Disk JSON File (Vite server API middleware or server PHP database API)
       const endpoint = import.meta.env.DEV ? '/api/save-translations' : '/api/save-translations.php'
       const res = await fetch(endpoint, {
         method: 'POST',
@@ -471,13 +485,13 @@ export default function AdminPage({ theme }) {
       const result = await res.json()
       
       if (result.success) {
-        showToast('Perubahan berhasil disimpan permanen ke database disk!')
+        showToast('Perubahan berhasil disimpan permanen ke database!')
       } else {
-        showToast('Tersimpan di local browser. Server error: ' + result.error, 'warning')
+        showToast('Tersimpan di local browser. Status server: ' + result.error, 'warning')
       }
     } catch (err) {
       console.error(err)
-      showToast('Tersimpan secara lokal di browser Anda! (Untuk server production, pastikan untuk download i18n.js)', 'info')
+      showToast('Perubahan tersimpan di browser Anda.', 'info')
     } finally {
       setIsSaving(false)
     }
@@ -489,7 +503,6 @@ export default function AdminPage({ theme }) {
       setEditableTranslations(JSON.parse(JSON.stringify(defaultTranslations)))
       setShowConfirmReset(false)
       
-      // Save default back to disk
       const endpoint = import.meta.env.DEV ? '/api/save-translations' : '/api/save-translations.php'
       await fetch(endpoint, {
         method: 'POST',
@@ -499,13 +512,13 @@ export default function AdminPage({ theme }) {
         body: JSON.stringify(defaultTranslations)
       })
 
-      showToast('Semua informasi di-reset kembali ke bawaan pabrik!', 'info')
+      showToast('Semua data berhasil di-reset ke pengaturan awal!', 'info')
     } catch (e) {
-      showToast('Reset lokal berhasil.', 'info')
+      showToast('Reset lokal selesai.', 'info')
     }
   }
 
-  // Upload poster / image
+  // Upload image
   const handleImageUpload = async (e, pathArray, indexOrKey, fieldName) => {
     const file = e.target.files[0]
     if (!file) return
@@ -524,37 +537,31 @@ export default function AdminPage({ theme }) {
       })
       const data = await response.json()
       if (data.success) {
-        // Set value in our editable translations state
         const targetPath = [selectedLang, ...pathArray]
-        
         let currentSectionVal = getNestedValue(editableTranslations, targetPath)
         
         if (typeof indexOrKey === 'number') {
-          // It is inside an array (e.g. news articles array or speakers array)
           currentSectionVal[indexOrKey][fieldName] = data.url
         } else if (indexOrKey) {
-          // It is inside a nested object (e.g. pages.news)
           currentSectionVal[indexOrKey] = data.url
         } else {
-          // Simple field
           currentSectionVal[fieldName] = data.url
         }
 
         const updated = setNestedValue(editableTranslations, targetPath, currentSectionVal)
         setEditableTranslations(updated)
-        showToast('Gambar poster berhasil diunggah!')
+        showToast('File gambar berhasil diunggah!')
       } else {
-        showToast('Gagal mengunggah gambar: ' + data.error, 'danger')
+        showToast('Gagal upload gambar: ' + data.error, 'danger')
       }
     } catch (err) {
       console.error(err)
-      showToast('Gagal mengunggah gambar. Pastikan server dev berjalan.', 'danger')
+      showToast('Gagal mengunggah file. Pastikan server aktif.', 'danger')
     } finally {
       setUploadingImageKey(null)
     }
   }
 
-  // Generic setters
   const updateSectionValue = (sectionId, key, value) => {
     const path = SECTION_PATH_MAP[sectionId]
     const fullPath = [selectedLang, ...path, key]
@@ -562,13 +569,12 @@ export default function AdminPage({ theme }) {
     setEditableTranslations(updated)
   }
 
-  // Array Add/Delete/Move Helpers
   const addArrayItem = (sectionId, key, template) => {
     const path = SECTION_PATH_MAP[sectionId]
     const arr = getNestedValue(editableTranslations[selectedLang], [...path, key]) || []
     const updatedArr = [...arr, JSON.parse(JSON.stringify(template))]
     updateSectionValue(sectionId, key, updatedArr)
-    showToast('Item baru ditambahkan')
+    showToast('Data baru berhasil ditambahkan')
   }
 
   const removeArrayItem = (sectionId, key, index) => {
@@ -603,10 +609,10 @@ export default function AdminPage({ theme }) {
     let updatedArticles = [...articles]
     if (editingArticleIndex !== null) {
       updatedArticles[editingArticleIndex] = articleForm
-      showToast('Artikel berhasil diperbarui')
+      showToast('Artikel berita berhasil diperbarui')
     } else {
       updatedArticles.unshift(articleForm)
-      showToast('Artikel berita baru ditambahkan')
+      showToast('Artikel berita baru berhasil diterbitkan')
     }
 
     const updated = setNestedValue(editableTranslations, [selectedLang, ...path], updatedArticles)
@@ -657,26 +663,7 @@ export default function AdminPage({ theme }) {
     
     const updated = setNestedValue(editableTranslations, [selectedLang, ...path], updatedArticles)
     setEditableTranslations(updated)
-    showToast('Artikel berita dihapus', 'warning')
-  }
-
-  const uploadFile = async (file) => {
-    const formData = new FormData()
-    formData.append('image', file)
-    try {
-      const endpoint = import.meta.env.DEV ? '/api/upload-image' : '/api/upload-image.php'
-      const response = await fetch(endpoint, {
-        method: 'POST',
-        body: formData
-      })
-      const data = await response.json()
-      if (data.success) {
-        return data.url
-      }
-    } catch (err) {
-      showToast('Gagal mengunggah gambar', 'danger')
-    }
-    return null
+    showToast('Artikel berita berhasil dihapus', 'warning')
   }
 
   const handleTitleChange = (e) => {
@@ -704,10 +691,10 @@ export default function AdminPage({ theme }) {
     let updatedPosters = [...posters]
     if (editingPosterIndex !== null) {
       updatedPosters[editingPosterIndex] = posterForm
-      showToast('Poster berhasil diperbarui')
+      showToast('Data poster berhasil diperbarui')
     } else {
       updatedPosters.push(posterForm)
-      showToast('Poster penelitian baru ditambahkan')
+      showToast('Poster penelitian baru berhasil ditambahkan!')
     }
 
     const updated = setNestedValue(editableTranslations, [selectedLang, ...path], updatedPosters)
@@ -735,24 +722,24 @@ export default function AdminPage({ theme }) {
     
     const updated = setNestedValue(editableTranslations, [selectedLang, ...path], updatedPosters)
     setEditableTranslations(updated)
-    showToast('Poster penelitian dihapus', 'warning')
+    showToast('Poster penelitian dihapus dari galeri', 'warning')
   }
 
   if (!isLoggedIn) {
     return (
-      <div className="flex min-h-[80vh] items-center justify-center px-4 py-16">
-        <div className="w-full max-w-md rounded-[28px] border border-white/10 bg-iite-dark/60 p-8 shadow-glass backdrop-blur-xl sm:p-10">
+      <div className="flex min-h-screen items-center justify-center bg-slate-100 px-4 py-16">
+        <div className="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-8 shadow-xl sm:p-10">
           <div className="flex flex-col items-center text-center">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-iite-cyan/30 bg-iite-cyan/10 text-iite-cyan mb-4">
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-50 border border-indigo-100 text-indigo-600 mb-4">
               <Lock className="h-7 w-7" />
             </div>
-            <h1 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">Admin Portal</h1>
-            <p className="mt-2 text-sm text-slate-400">Masukkan kredensial untuk mengakses editor website</p>
+            <h1 className="text-2xl font-bold tracking-tight text-slate-800">Admin Portal IITE 2026</h1>
+            <p className="mt-2 text-sm text-slate-500">Masuk untuk mengelola konten dan galeri website</p>
           </div>
 
-          <form className="mt-8 space-y-6" onSubmit={handleLogin}>
+          <form className="mt-8 space-y-5" onSubmit={handleLogin}>
             {loginError && (
-              <div className="flex items-center gap-2 rounded-xl border border-rose-500/20 bg-rose-500/10 p-4 text-sm text-rose-400">
+              <div className="flex items-center gap-2 rounded-xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-600">
                 <AlertCircle className="h-5 w-5 shrink-0" />
                 <span>{loginError}</span>
               </div>
@@ -760,35 +747,35 @@ export default function AdminPage({ theme }) {
 
             <div className="space-y-4">
               <div>
-                <label className="text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-2">Username</label>
+                <label className="text-xs font-bold uppercase tracking-wider text-slate-600 block mb-1.5">Username</label>
                 <input
                   type="text"
                   required
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  placeholder="Masukkan username"
-                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition focus:border-iite-cyan/50 focus:ring-1 focus:ring-iite-cyan/30"
+                  placeholder="Masukkan username admin"
+                  className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-800 placeholder-slate-400 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
                 />
               </div>
 
               <div>
-                <label className="text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-2">Password</label>
+                <label className="text-xs font-bold uppercase tracking-wider text-slate-600 block mb-1.5">Password</label>
                 <input
                   type="password"
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition focus:border-iite-cyan/50 focus:ring-1 focus:ring-iite-cyan/30"
+                  className="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-800 placeholder-slate-400 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
                 />
               </div>
             </div>
 
             <button
               type="submit"
-              className="w-full rounded-xl bg-iite-cyan px-4 py-3 text-sm font-semibold text-iite-dark shadow-lg shadow-iite-cyan/20 transition hover:bg-iite-cyan/90"
+              className="w-full rounded-xl bg-indigo-600 px-4 py-3 text-sm font-bold text-white shadow-lg shadow-indigo-200 transition hover:bg-indigo-700"
             >
-              Masuk
+              Masuk Dashboard
             </button>
           </form>
         </div>
@@ -798,21 +785,24 @@ export default function AdminPage({ theme }) {
 
   if (!editableTranslations) {
     return (
-      <div className="flex min-h-[50vh] items-center justify-center text-slate-400">
-        Menyiapkan editor halaman...
+      <div className="flex min-h-screen items-center justify-center bg-slate-50 text-slate-500">
+        Menyiapkan Dashboard Admin...
       </div>
     )
   }
 
+  const currentPosters = getNestedValue(editableTranslations[selectedLang], ['pages', 'proceeding', 'posters']) || []
+  const currentArticles = getNestedValue(editableTranslations[selectedLang], ['pages', 'news', 'articles']) || []
+
   return (
-    <div className="min-h-screen bg-iite-dark text-white flex flex-col md:flex-row w-full">
+    <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col">
       {/* Toast Alert */}
       {toast && (
-        <div className={`fixed bottom-5 right-5 z-50 flex items-center gap-3 rounded-2xl px-5 py-4 text-sm font-semibold shadow-xl backdrop-blur-md transition-all duration-300 ${
-          toast.type === 'success' ? 'bg-emerald-500/90 text-white border border-emerald-400/20' :
-          toast.type === 'warning' ? 'bg-amber-500/90 text-white border border-amber-400/20' :
-          toast.type === 'info' ? 'bg-cyan-500/90 text-iite-dark border border-cyan-400/20' :
-          'bg-rose-500/90 text-white border border-rose-400/20'
+        <div className={`fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl px-5 py-4 text-sm font-semibold shadow-2xl transition-all duration-300 ${
+          toast.type === 'success' ? 'bg-emerald-600 text-white' :
+          toast.type === 'warning' ? 'bg-amber-500 text-white' :
+          toast.type === 'info' ? 'bg-indigo-600 text-white' :
+          'bg-rose-600 text-white'
         }`}>
           {toast.type === 'success' && <CheckCircle className="h-5 w-5" />}
           {toast.type === 'warning' && <AlertCircle className="h-5 w-5" />}
@@ -821,1046 +811,818 @@ export default function AdminPage({ theme }) {
         </div>
       )}
 
-      {/* LEFT SIDEBAR (vertical sidebar menu) */}
-      <aside className="w-full md:w-80 shrink-0 border-r border-white/10 bg-iite-dark/80 backdrop-blur-xl flex flex-col h-auto md:h-screen md:sticky md:top-0">
-        {/* Sidebar Header */}
-        <div className="p-6 border-b border-white/10 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-iite-cyan/30 bg-iite-cyan/10 text-iite-cyan">
-              <Settings className="h-5 w-5" />
+      {/* TOP INERTIA HEADER NAVBAR */}
+      <header className="sticky top-0 z-40 bg-white border-b border-slate-200 shadow-sm px-4 lg:px-8 py-3.5 flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2.5">
+            <div className="h-9 w-9 rounded-xl bg-indigo-600 text-white font-black text-lg flex items-center justify-center shadow-md shadow-indigo-200">
+              I
             </div>
             <div>
-              <h2 className="font-bold text-white tracking-wide text-sm">IITE 2026</h2>
-              <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Control Panel</p>
+              <h1 className="font-extrabold text-slate-900 text-base leading-tight">Dashboard Admin IITE</h1>
+              <p className="text-[11px] text-slate-500 font-medium">Laravel Inertia Management Portal</p>
             </div>
           </div>
+          <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-semibold border border-emerald-200">
+            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+            Terhubung Database
+          </span>
+        </div>
+
+        {/* Right Header Controls */}
+        <div className="flex items-center gap-3">
+          {/* Language Switcher */}
+          <div className="flex items-center bg-slate-100 rounded-xl p-1 border border-slate-200 text-xs font-bold">
+            <button
+              onClick={() => setSelectedLang('id')}
+              className={`px-3 py-1.5 rounded-lg transition ${selectedLang === 'id' ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-500 hover:text-slate-800'}`}
+            >
+              🇮🇩 ID
+            </button>
+            <button
+              onClick={() => setSelectedLang('en')}
+              className={`px-3 py-1.5 rounded-lg transition ${selectedLang === 'en' ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-500 hover:text-slate-800'}`}
+            >
+              🇬🇧 EN
+            </button>
+          </div>
+
+          <a
+            href="/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden md:inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50 transition shadow-sm"
+          >
+            <ExternalLink className="h-3.5 w-3.5 text-slate-500" />
+            Website Utama
+          </a>
+
+          <button
+            onClick={handleSave}
+            disabled={isSaving}
+            className="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-4 py-2 text-xs font-bold text-white shadow-md shadow-indigo-200 hover:bg-indigo-700 transition disabled:opacity-50"
+          >
+            <Save className="h-3.5 w-3.5" />
+            {isSaving ? 'Menyimpan...' : 'Simpan Database'}
+          </button>
+
+          <button
+            onClick={() => setShowConfirmReset(true)}
+            className="p-2 rounded-xl border border-slate-200 bg-white text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition"
+            title="Reset Database"
+          >
+            <RotateCcw className="h-4 w-4" />
+          </button>
+
           <button
             onClick={handleLogout}
-            className="p-2 text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 rounded-xl transition md:hidden"
-            title="Keluar"
+            className="p-2 rounded-xl border border-rose-200 bg-rose-50 text-rose-600 hover:bg-rose-100 transition"
+            title="Keluar Admin"
           >
             <LogOut className="h-4 w-4" />
           </button>
         </div>
+      </header>
 
-        {/* Sidebar Navigation */}
-        <nav className="flex-1 overflow-y-auto p-4 space-y-1.5 scrollbar-thin">
-          <button
-            onClick={() => setActiveCard(null)}
-            className={`w-full flex items-center gap-3 rounded-xl px-4 py-3 text-left text-sm font-semibold transition ${
-              activeCard === null
-                ? 'bg-iite-cyan text-iite-dark'
-                : 'text-slate-300 hover:bg-white/5 hover:text-white'
-            }`}
-          >
-            <LayoutGrid className="h-4 w-4" />
-            <span>Dashboard & Statistik</span>
-          </button>
-
-          <div className="pt-4 pb-1 px-4 text-[10px] font-bold text-slate-500 uppercase tracking-wider">
-            Edit Halaman
+      {/* MAIN CONTENT WRAPPER */}
+      <div className="flex-1 flex overflow-hidden">
+        {/* LEFT INERTIA SIDEBAR */}
+        <aside className="w-64 lg:w-72 bg-white border-r border-slate-200 shrink-0 hidden md:flex flex-col justify-between overflow-y-auto p-4 space-y-6">
+          <div className="space-y-6">
+            {SIDEBAR_GROUPS.map((group, gIdx) => (
+              <div key={gIdx} className="space-y-2">
+                <div className="px-3 text-[10px] font-extrabold uppercase tracking-wider text-slate-400">
+                  {group.category}
+                </div>
+                <div className="space-y-1">
+                  {group.items.map((item) => {
+                    const ItemIcon = item.icon
+                    const isActive = activeItem.id === item.id
+                    return (
+                      <button
+                        key={item.id}
+                        onClick={() => setActiveItem(item)}
+                        className={`w-full flex items-center justify-between rounded-xl px-3.5 py-2.5 text-left text-xs font-semibold transition ${
+                          isActive
+                            ? 'bg-indigo-50 text-indigo-600 border border-indigo-100 shadow-sm'
+                            : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                        }`}
+                      >
+                        <div className="flex items-center gap-3 truncate">
+                          <ItemIcon className={`h-4 w-4 shrink-0 ${isActive ? 'text-indigo-600' : 'text-slate-400'}`} />
+                          <span className="truncate">{item.title}</span>
+                        </div>
+                        {item.badge && (
+                          <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold uppercase ${
+                            isActive ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-500'
+                          }`}>
+                            {item.badge}
+                          </span>
+                        )}
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+            ))}
           </div>
 
-          {PAGE_CARDS.map((card) => {
-            const CardIcon = card.icon
-            const isActive = activeCard && activeCard.id === card.id
-            return (
+          {/* Admin User info footer */}
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3.5 flex items-center gap-3">
+            <div className="h-9 w-9 rounded-xl bg-indigo-100 text-indigo-600 font-bold flex items-center justify-center text-xs">
+              AD
+            </div>
+            <div className="min-w-0 flex-1">
+              <p className="text-xs font-bold text-slate-800 truncate">Admin PKL / IITE</p>
+              <p className="text-[10px] text-slate-500 truncate">admin@poltekindonusa.ac.id</p>
+            </div>
+          </div>
+        </aside>
+
+        {/* RIGHT WORKSPACE AREA */}
+        <main className="flex-1 overflow-y-auto p-4 lg:p-8 space-y-6">
+          {/* Header Title Section */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
+            <div>
+              <h2 className="text-xl font-bold text-slate-900">{activeItem.title}</h2>
+              <p className="text-xs text-slate-500 mt-1">{activeItem.desc}</p>
+            </div>
+
+            {/* Quick Action Button for Poster / News */}
+            {activeItem.id === 'proceeding' && (
               <button
-                key={card.id}
-                onClick={() => setActiveCard(card)}
-                className={`w-full flex items-center gap-3 rounded-xl px-4 py-3 text-left text-sm font-semibold transition ${
-                  isActive
-                    ? 'bg-iite-cyan text-iite-dark'
-                    : 'text-slate-300 hover:bg-white/5 hover:text-white'
-                }`}
+                onClick={() => {
+                  setEditingPosterIndex(null)
+                  setPosterForm({ title: '', author: '', desc: '', image: '' })
+                  setIsPosterFormOpen(true)
+                }}
+                className="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-4 py-2.5 text-xs font-bold text-white shadow-md shadow-indigo-200 hover:bg-indigo-700 transition"
               >
-                <CardIcon className="h-4 w-4 shrink-0" />
-                <span className="truncate">{card.title}</span>
+                <Plus className="h-4 w-4" />
+                Tambah Poster Baru
               </button>
-            )
-          })}
-        </nav>
+            )}
 
-        {/* Sidebar Footer */}
-        <div className="p-4 border-t border-white/10 space-y-3 bg-white/[0.01]">
-          <div className="flex gap-2">
-            <button
-              onClick={handleSave}
-              disabled={isSaving}
-              className="flex-1 flex items-center justify-center gap-1.5 rounded-xl bg-iite-cyan px-3 py-2 text-xs font-bold text-iite-dark shadow-lg shadow-iite-cyan/10 hover:bg-iite-cyan/95 transition disabled:opacity-55"
-            >
-              <Save className="h-3.5 w-3.5" />
-              {isSaving ? 'Simpan...' : 'Simpan'}
-            </button>
-
-            <button
-              onClick={() => setShowConfirmReset(true)}
-              className="flex h-8.5 w-9.5 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-400 hover:bg-white/10 hover:text-white transition"
-              title="Reset ke Bawaan"
-            >
-              <RotateCcw className="h-3.5 w-3.5" />
-            </button>
-
-            <button
-              onClick={handleLogout}
-              className="hidden md:flex h-8.5 w-9.5 items-center justify-center rounded-xl border border-rose-500/20 bg-rose-500/10 text-rose-400 hover:bg-rose-500/20 transition"
-              title="Keluar"
-            >
-              <LogOut className="h-3.5 w-3.5" />
-            </button>
+            {activeItem.id === 'news' && (
+              <button
+                onClick={() => {
+                  setEditingArticleIndex(null)
+                  setArticleForm({
+                    title: '',
+                    date: '',
+                    category: '',
+                    summary: '',
+                    image: '',
+                    slug: '',
+                    content: '',
+                    additionalImages: [],
+                    isPublished: true,
+                    metaTitle: '',
+                    metaDescription: '',
+                    metaKeywords: '',
+                    tags: ''
+                  })
+                  setIsArticleFormOpen(true)
+                }}
+                className="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-4 py-2.5 text-xs font-bold text-white shadow-md shadow-indigo-200 hover:bg-indigo-700 transition"
+              >
+                <Plus className="h-4 w-4" />
+                Tambah Artikel Berita
+              </button>
+            )}
           </div>
-        </div>
-      </aside>
 
-      {/* RIGHT CONTENT AREA */}
-      <main className="flex-1 min-w-0 overflow-y-auto h-screen p-6 md:p-8 space-y-6">
-        {/* Main Content Header */}
-        <div className="flex justify-between items-center pb-4 border-b border-white/5">
-          <div>
-            <h1 className="text-xl font-bold text-white tracking-wide">
-              {activeCard ? activeCard.title : 'Dashboard Utama & Statistik'}
-            </h1>
-            <p className="text-xs text-slate-400 mt-1">
-              {activeCard ? activeCard.desc : 'Statistik dan ringkasan sistem web IITE 2026'}
-            </p>
-          </div>
-        </div>
-
-        {/* Dashboard Content */}
-        {activeCard === null ? (
-          /* dashboard statistics & system state */
-          <div className="space-y-6 animate-admin-fade">
-            {/* Top Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {/* Statistic Card 1: Daily Visitors */}
-              <div className="rounded-[24px] border border-white/10 bg-white/[0.04] p-6 backdrop-blur-sm relative overflow-hidden group">
-                <div className="absolute right-4 top-4 text-iite-cyan/20 group-hover:scale-110 transition duration-300">
-                  <Users className="h-10 w-10" />
-                </div>
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Pengunjung Hari Ini</p>
-                <div className="mt-4 flex items-baseline gap-2">
-                  <span className="text-4xl font-extrabold text-white">184</span>
-                  <span className="text-xs text-emerald-400 font-semibold flex items-center">+12.4%</span>
-                </div>
-                <p className="text-[10px] text-slate-500 mt-2">Terakhir diperbarui: Baru saja</p>
-              </div>
-
-              {/* Statistic Card 2: Weekly Visitors */}
-              <div className="rounded-[24px] border border-white/10 bg-white/[0.04] p-6 backdrop-blur-sm relative overflow-hidden group">
-                <div className="absolute right-4 top-4 text-iite-purple/20 group-hover:scale-110 transition duration-300">
-                  <TrendingUp className="h-10 w-10" />
-                </div>
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Pengunjung Seminggu</p>
-                <div className="mt-4 flex items-baseline gap-2">
-                  <span className="text-4xl font-extrabold text-white">1,248</span>
-                  <span className="text-xs text-emerald-400 font-semibold flex items-center">+8.2%</span>
-                </div>
-                <p className="text-[10px] text-slate-500 mt-2">Rentang 7 hari terakhir</p>
-              </div>
-
-              {/* Statistic Card 3: Monthly Visitors */}
-              <div className="rounded-[24px] border border-white/10 bg-white/[0.04] p-6 backdrop-blur-sm relative overflow-hidden group">
-                <div className="absolute right-4 top-4 text-emerald-400/20 group-hover:scale-110 transition duration-300">
-                  <Calendar className="h-10 w-10" />
-                </div>
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Pengunjung Sebulan</p>
-                <div className="mt-4 flex items-baseline gap-2">
-                  <span className="text-4xl font-extrabold text-white">4,820</span>
-                  <span className="text-xs text-emerald-400 font-semibold flex items-center">+15.7%</span>
-                </div>
-                <p className="text-[10px] text-slate-500 mt-2">Periode bulan berjalan</p>
-              </div>
-
-              {/* Statistic Card 4: News Articles Count */}
-              <div className="rounded-[24px] border border-white/10 bg-white/[0.04] p-6 backdrop-blur-sm relative overflow-hidden group">
-                <div className="absolute right-4 top-4 text-amber-400/20 group-hover:scale-110 transition duration-300">
-                  <Newspaper className="h-10 w-10" />
-                </div>
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Berita & Informasi</p>
-                <div className="mt-4 flex items-baseline gap-2">
-                  <span className="text-4xl font-extrabold text-white">
-                    {editableTranslations[selectedLang]?.pages?.news?.articles?.length || 0}
-                  </span>
-                  <span className="text-xs text-slate-400">Artikel Aktif</span>
-                </div>
-                <p className="text-[10px] text-slate-500 mt-2">Dapat diedit di Manajer Berita</p>
-              </div>
-            </div>
-
-            {/* Main Stats Details (Countries & System Info) */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              {/* Demographics Card */}
-              <div className="lg:col-span-2 rounded-[24px] border border-white/10 bg-white/[0.02] p-6 backdrop-blur-sm space-y-5">
-                <div className="flex items-center justify-between pb-2 border-b border-white/5">
-                  <h3 className="text-sm font-bold text-white flex items-center gap-2">
-                    <Globe className="h-5 w-5 text-iite-cyan" />
-                    Asal Negara Pengunjung
-                  </h3>
-                  <span className="text-[10px] bg-iite-cyan/10 text-iite-cyan font-bold px-2 py-0.5 rounded-full uppercase">Geo IP Analytics</span>
-                </div>
-                
-                <div className="space-y-4">
-                  {/* Indonesia */}
-                  <div className="space-y-1.5">
-                    <div className="flex justify-between text-xs font-semibold">
-                      <span className="text-slate-200">🇮🇩 Indonesia</span>
-                      <span className="text-white">74.2% <span className="text-slate-400 font-normal">(3,576 hits)</span></span>
-                    </div>
-                    <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
-                      <div className="h-full bg-gradient-to-r from-iite-cyan to-iite-purple rounded-full" style={{ width: '74.2%' }} />
-                    </div>
+          {/* SECTION 1: OVERVIEW DASHBOARD */}
+          {activeItem.id === 'overview' && (
+            <div className="space-y-6">
+              {/* Stat Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                  <div className="flex items-center justify-between text-slate-500 mb-2">
+                    <span className="text-xs font-bold uppercase tracking-wider">Total Poster Expo</span>
+                    <ImageIcon className="h-5 w-5 text-indigo-600" />
                   </div>
+                  <div className="text-3xl font-black text-slate-900">{currentPosters.length}</div>
+                  <p className="text-[11px] text-slate-500 mt-1">Ditampilkan di Galeri Poster</p>
+                </div>
 
-                  {/* Malaysia */}
-                  <div className="space-y-1.5">
-                    <div className="flex justify-between text-xs font-semibold">
-                      <span className="text-slate-200">🇲🇾 Malaysia</span>
-                      <span className="text-white">12.5% <span className="text-slate-400 font-normal">(602 hits)</span></span>
-                    </div>
-                    <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
-                      <div className="h-full bg-gradient-to-r from-iite-purple to-emerald-500 rounded-full" style={{ width: '12.5%' }} />
-                    </div>
+                <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                  <div className="flex items-center justify-between text-slate-500 mb-2">
+                    <span className="text-xs font-bold uppercase tracking-wider">Total Berita</span>
+                    <Newspaper className="h-5 w-5 text-indigo-600" />
                   </div>
+                  <div className="text-3xl font-black text-slate-900">{currentArticles.length}</div>
+                  <p className="text-[11px] text-slate-500 mt-1">Artikel Berita Terbit</p>
+                </div>
 
-                  {/* Singapore */}
-                  <div className="space-y-1.5">
-                    <div className="flex justify-between text-xs font-semibold">
-                      <span className="text-slate-200">🇸🇬 Singapura</span>
-                      <span className="text-white">6.8% <span className="text-slate-400 font-normal">(327 hits)</span></span>
-                    </div>
-                    <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
-                      <div className="h-full bg-gradient-to-r from-emerald-500 to-amber-400 rounded-full" style={{ width: '6.8%' }} />
-                    </div>
+                <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                  <div className="flex items-center justify-between text-slate-500 mb-2">
+                    <span className="text-xs font-bold uppercase tracking-wider">Pengunjung Hari Ini</span>
+                    <Users className="h-5 w-5 text-emerald-600" />
                   </div>
+                  <div className="text-3xl font-black text-slate-900">184</div>
+                  <p className="text-[11px] text-emerald-600 font-semibold mt-1">+12.4% dari kemarin</p>
+                </div>
 
-                  {/* Australia */}
-                  <div className="space-y-1.5">
-                    <div className="flex justify-between text-xs font-semibold">
-                      <span className="text-slate-200">🇦🇺 Australia</span>
-                      <span className="text-white">4.1% <span className="text-slate-400 font-normal">(198 hits)</span></span>
-                    </div>
-                    <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
-                      <div className="h-full bg-amber-400 rounded-full" style={{ width: '4.1%' }} />
-                    </div>
+                <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                  <div className="flex items-center justify-between text-slate-500 mb-2">
+                    <span className="text-xs font-bold uppercase tracking-wider">Status Database</span>
+                    <CheckCircle className="h-5 w-5 text-emerald-600" />
                   </div>
-
-                  {/* Lainnya */}
-                  <div className="space-y-1.5">
-                    <div className="flex justify-between text-xs font-semibold">
-                      <span className="text-slate-200">🌐 Negara Lainnya</span>
-                      <span className="text-white">2.4% <span className="text-slate-400 font-normal">(117 hits)</span></span>
-                    </div>
-                    <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
-                      <div className="h-full bg-slate-500 rounded-full" style={{ width: '2.4%' }} />
-                    </div>
-                  </div>
+                  <div className="text-lg font-bold text-emerald-600">Aktif (Live JSON)</div>
+                  <p className="text-[11px] text-slate-500 mt-1">Tersimpan di file server</p>
                 </div>
               </div>
 
-              {/* System & Active Logs Info Card */}
-              <div className="rounded-[24px] border border-white/10 bg-white/[0.02] p-6 backdrop-blur-sm space-y-4">
-                <div className="flex items-center justify-between pb-2 border-b border-white/5">
-                  <h3 className="text-sm font-bold text-white flex items-center gap-2">
-                    <Settings className="h-4.5 w-4.5 text-iite-purple animate-pulse" />
-                    Informasi CMS & Sistem
-                  </h3>
-                </div>
-                
-                <div className="space-y-3.5 text-xs">
-                  <div className="flex justify-between py-1 border-b border-white/5 text-slate-400">
-                    <span>Database CMS</span>
-                    <span className="text-emerald-400 font-bold flex items-center gap-1">
-                      <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                      JSON File (Terhubung)
-                    </span>
-                  </div>
-                  <div className="flex justify-between py-1 border-b border-white/5 text-slate-400">
-                    <span>Lokasi Data</span>
-                    <span className="text-white font-mono text-[10px] bg-slate-950 px-1.5 py-0.5 rounded">translations-data.json</span>
-                  </div>
-                  <div className="flex justify-between py-1 border-b border-white/5 text-slate-400">
-                    <span>Bahasa Terdaftar</span>
-                    <span className="text-white font-medium">INDONESIA (id), ENGLISH (en)</span>
-                  </div>
-                  <div className="flex justify-between py-1 border-b border-white/5 text-slate-400">
-                    <span>Unggah Media</span>
-                    <span className="text-white font-medium">Aktif (/public/uploads/)</span>
-                  </div>
-                  <div className="flex justify-between py-1 border-b border-white/5 text-slate-400">
-                    <span>Vite CMS Dev Server</span>
-                    <span className="text-iite-cyan font-semibold">Active Port 4175</span>
-                  </div>
-                  <div className="flex justify-between py-1 text-slate-400">
-                    <span>Batas Ukuran File</span>
-                    <span className="text-white font-medium">Maks. 10 MB / upload</span>
-                  </div>
+              {/* Quick Navigation Cards */}
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
+                <h3 className="text-sm font-bold text-slate-900">Pintas Pengelolaan Konten Website</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <button
+                    onClick={() => setActiveItem(SIDEBAR_GROUPS[0].items[1])}
+                    className="flex items-center gap-4 rounded-xl border border-slate-200 bg-slate-50 p-4 text-left hover:border-indigo-400 hover:bg-indigo-50/50 transition group"
+                  >
+                    <div className="h-10 w-10 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center shrink-0">
+                      <ImageIcon className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-slate-800 group-hover:text-indigo-600 transition">Galeri Poster Prosiding</h4>
+                      <p className="text-xs text-slate-500">Tambah, edit & upload gambar poster expo</p>
+                    </div>
+                  </button>
+
+                  <button
+                    onClick={() => setActiveItem(SIDEBAR_GROUPS[0].items[2])}
+                    className="flex items-center gap-4 rounded-xl border border-slate-200 bg-slate-50 p-4 text-left hover:border-indigo-400 hover:bg-indigo-50/50 transition group"
+                  >
+                    <div className="h-10 w-10 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center shrink-0">
+                      <Newspaper className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-slate-800 group-hover:text-indigo-600 transition">Manajer Berita & CMS</h4>
+                      <p className="text-xs text-slate-500">Tulis artikel baru & editor rich text</p>
+                    </div>
+                  </button>
+
+                  <button
+                    onClick={() => setActiveItem(SIDEBAR_GROUPS[1].items[0])}
+                    className="flex items-center gap-4 rounded-xl border border-slate-200 bg-slate-50 p-4 text-left hover:border-indigo-400 hover:bg-indigo-50/50 transition group"
+                  >
+                    <div className="h-10 w-10 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center shrink-0">
+                      <Sparkles className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-slate-800 group-hover:text-indigo-600 transition">Kompetisi & Seminar</h4>
+                      <p className="text-xs text-slate-500">Kelola sub-tema, biaya & narahubung</p>
+                    </div>
+                  </button>
                 </div>
               </div>
             </div>
-          </div>
-        ) : (
-          /* Editor form rendered inside Content Area */
-          <div className="rounded-[24px] border border-white/10 bg-iite-dark/40 p-6 shadow-glass backdrop-blur-xl">
-            {activeCard.sections.map((sectionId) => {
-              const path = SECTION_PATH_MAP[sectionId]
-              const sectionData = getNestedValue(editableTranslations[selectedLang], path)
-              
-              if (!sectionData) return null
+          )}
 
-              return (
-                <div key={sectionId} className="space-y-8 border-b border-white/5 pb-8 mb-8 last:border-0 last:pb-0 last:mb-0">
-                  <div className="border-l-2 border-iite-cyan pl-3">
-                    <h2 className="text-lg font-bold text-white">Bagian: {sectionId.replace('_', ' ').toUpperCase()}</h2>
-                    <p className="text-xs text-slate-500 mt-0.5">Kode path: {path.join('.')}</p>
+          {/* SECTION 2: GALERI POSTER PROSIDING (Dedicated Expo Section) */}
+          {activeItem.id === 'proceeding' && (
+            <div className="space-y-6">
+              {/* Poster List Card */}
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-6">
+                <div className="flex items-center justify-between border-b border-slate-200 pb-4">
+                  <div>
+                    <h3 className="text-base font-bold text-slate-900">Daftar Poster Expo Penelitian ({currentPosters.length})</h3>
+                    <p className="text-xs text-slate-500">Poster yang ada di daftar ini akan otomatis tampil pada Galeri Poster di Halaman Poster Prosiding.</p>
                   </div>
+                  <button
+                    onClick={() => {
+                      setEditingPosterIndex(null)
+                      setPosterForm({ title: '', author: '', desc: '', image: '' })
+                      setIsPosterFormOpen(true)
+                    }}
+                    className="inline-flex items-center gap-1.5 rounded-xl bg-indigo-600 px-3.5 py-2 text-xs font-bold text-white shadow-sm hover:bg-indigo-700 transition"
+                  >
+                    <Plus className="h-4 w-4" />
+                    Tambah Poster
+                  </button>
+                </div>
 
-                  {/* Special News Article List Editor inside Manager */}
-                  {sectionId === 'news_articles' ? (
-                    <div className="space-y-6">
-                       {isArticleFormOpen ? (
-                        <form onSubmit={handleSaveArticle} className="space-y-6 animate-admin-fade">
-                          {/* Breadcrumbs & Title */}
-                          <div className="flex flex-col gap-1.5 border-b border-white/5 pb-4">
-                            <div className="flex items-center gap-2 text-xs font-semibold text-slate-500">
-                              <span>Berita & Informasi</span>
-                              <span>/</span>
-                              <span className="text-slate-400">{editingArticleIndex !== null ? 'Edit Artikel' : 'Tulis Baru'}</span>
-                            </div>
-                            <h3 className="text-xl font-bold text-white tracking-tight">
-                              {editingArticleIndex !== null ? '✏️ Edit Artikel Berita' : '➕ Tulis Artikel Berita Baru'}
-                            </h3>
-                          </div>
-
-                          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
-                            {/* Main Inputs (Col span 2) */}
-                            <div className="lg:col-span-2 space-y-6">
-                              {/* Group 1: Kategori, Judul, Slug, Deskripsi Singkat */}
-                              <div className="rounded-2xl border border-white/10 bg-slate-900/30 p-6 space-y-5">
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                  <div>
-                                    <label className="text-xs font-semibold text-slate-400 block mb-1">
-                                      Kategori Berita <span className="text-rose-500">*</span>
-                                    </label>
-                                    <select
-                                      required
-                                      value={articleForm.category}
-                                      onChange={(e) => setArticleForm({ ...articleForm, category: e.target.value })}
-                                      className="w-full rounded-xl border border-white/10 bg-iite-dark/60 px-4 py-2.5 text-sm text-white focus:border-iite-cyan/50 focus:ring-1 focus:ring-iite-cyan/30 focus:outline-none transition"
-                                    >
-                                      <option value="" disabled>Pilih Kategori</option>
-                                      <option value="Pengumuman">Pengumuman</option>
-                                      <option value="Event">Event</option>
-                                      <option value="Pembicara">Pembicara</option>
-                                      <option value="Kegiatan">Kegiatan</option>
-                                      <option value="Panduan">Panduan</option>
-                                      <option value="UMKM">UMKM</option>
-                                    </select>
-                                  </div>
-
-                                  <div>
-                                    <label className="text-xs font-semibold text-slate-400 block mb-1">
-                                      Judul Artikel <span className="text-rose-500">*</span>
-                                    </label>
-                                    <input
-                                      type="text"
-                                      required
-                                      value={articleForm.title}
-                                      onChange={handleTitleChange}
-                                      className="w-full rounded-xl border border-white/10 bg-iite-dark/60 px-4 py-2.5 text-sm text-white focus:border-iite-cyan/50 focus:ring-1 focus:ring-iite-cyan/30 focus:outline-none transition"
-                                      placeholder="Ketik judul berita di sini..."
-                                    />
-                                  </div>
-                                </div>
-
-                                <div>
-                                  <label className="text-xs font-semibold text-slate-400 block mb-1">
-                                    Slug URL <span className="text-rose-500">*</span>
-                                  </label>
-                                  <input
-                                    type="text"
-                                    required
-                                    value={articleForm.slug}
-                                    onChange={(e) => setArticleForm({ ...articleForm, slug: e.target.value })}
-                                    className="w-full rounded-xl border border-white/10 bg-iite-dark/60 px-4 py-2.5 text-sm text-white focus:border-iite-cyan/50 focus:ring-1 focus:ring-iite-cyan/30 focus:outline-none transition"
-                                    placeholder="contoh-slug-url-artikel"
-                                  />
-                                </div>
-
-                                <div>
-                                  <label className="text-xs font-semibold text-slate-400 block mb-1">
-                                    Isi Singkat / Ringkasan Berita <span className="text-rose-500">*</span>
-                                  </label>
-                                  <textarea
-                                    required
-                                    rows={2}
-                                    value={articleForm.summary}
-                                    onChange={(e) => setArticleForm({ ...articleForm, summary: e.target.value })}
-                                    className="w-full rounded-xl border border-white/10 bg-iite-dark/60 px-4 py-2.5 text-sm text-white focus:border-iite-cyan/50 focus:ring-1 focus:ring-iite-cyan/30 focus:outline-none transition"
-                                    placeholder="Ringkasan singkat isi berita yang akan tampil di grid depan..."
-                                  />
-                                </div>
-
-                                <div>
-                                  <label className="text-xs font-semibold text-slate-400 block mb-1">
-                                    Isi Detail Berita (Rich Text Editor) <span className="text-rose-500">*</span>
-                                  </label>
-                                  <RichTextEditor
-                                    value={articleForm.content}
-                                    onChange={(html) => setArticleForm(prev => ({ ...prev, content: html }))}
-                                    placeholder="Tulis artikel lengkap di sini dengan format visual..."
-                                  />
-                                </div>
-                              </div>
-
-                              {/* Group 2: Media Uploader */}
-                              <div className="rounded-2xl border border-white/10 bg-slate-900/30 p-6 space-y-5">
-                                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider border-b border-white/5 pb-2">Media & Banner</h4>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                  {/* Main Image */}
-                                  <div>
-                                    <label className="text-xs font-semibold text-slate-400 block mb-2">
-                                      Main Image (Gambar Utama) <span className="text-rose-500">*</span>
-                                    </label>
-                                    <div
-                                      onDragOver={(e) => e.preventDefault()}
-                                      onDrop={async (e) => {
-                                        e.preventDefault()
-                                        const file = e.dataTransfer.files[0]
-                                        if (file) {
-                                          const url = await uploadFile(file)
-                                          if (url) {
-                                            setArticleForm(prev => ({ ...prev, image: url }))
-                                            showToast('Gambar utama diunggah!')
-                                          }
-                                        }
-                                      }}
-                                      className="border-2 border-dashed border-white/10 rounded-xl p-4 text-center hover:border-iite-cyan/50 transition cursor-pointer relative bg-slate-950/20"
-                                    >
-                                      <input
-                                        type="file"
-                                        accept="image/*"
-                                        onChange={async (e) => {
-                                          const file = e.target.files[0]
-                                          if (file) {
-                                            const url = await uploadFile(file)
-                                            if (url) {
-                                              setArticleForm(prev => ({ ...prev, image: url }))
-                                              showToast('Gambar utama diunggah!')
-                                            }
-                                          }
-                                        }}
-                                        className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
-                                      />
-                                      {articleForm.image ? (
-                                        <div className="space-y-2">
-                                          <img src={articleForm.image} alt="Preview" className="h-28 mx-auto object-cover rounded-lg" />
-                                          <span className="text-[10px] text-slate-400 block truncate">{articleForm.image}</span>
-                                          <button
-                                            type="button"
-                                            onClick={(e) => {
-                                              e.preventDefault()
-                                              e.stopPropagation()
-                                              setArticleForm(prev => ({ ...prev, image: '' }))
-                                            }}
-                                            className="text-[10px] text-rose-400 font-semibold block mx-auto hover:underline"
-                                          >
-                                            Hapus Gambar
-                                          </button>
-                                        </div>
-                                      ) : (
-                                        <div className="py-4 space-y-2">
-                                          <Upload className="h-6 w-6 text-slate-400 mx-auto" />
-                                          <p className="text-xs text-slate-300 font-medium">Drag & Drop files or <span className="text-iite-cyan">Browse</span></p>
-                                          <p className="text-[10px] text-slate-500">Mendukung PNG, JPG, JPEG (Maks. 2MB)</p>
-                                        </div>
-                                      )}
-                                    </div>
-                                  </div>
-
-                                  {/* Additional Images */}
-                                  <div>
-                                    <label className="text-xs font-semibold text-slate-400 block mb-2">
-                                      Additional Images (Gambar Tambahan)
-                                    </label>
-                                    <div className="grid grid-cols-3 gap-2 mb-2 max-h-[96px] overflow-y-auto">
-                                      {(articleForm.additionalImages || []).map((img, idx) => (
-                                        <div key={idx} className="relative group aspect-square rounded-lg border border-white/10 overflow-hidden bg-slate-950/20">
-                                          <img src={img} alt="" className="w-full h-full object-cover" />
-                                          <button
-                                            type="button"
-                                            onClick={() => {
-                                              setArticleForm(prev => ({
-                                                ...prev,
-                                                additionalImages: prev.additionalImages.filter((_, i) => i !== idx)
-                                              }))
-                                            }}
-                                            className="absolute inset-0 bg-black/60 flex items-center justify-center text-rose-500 opacity-0 group-hover:opacity-100 transition"
-                                          >
-                                            <Trash2 className="h-4 w-4" />
-                                          </button>
-                                        </div>
-                                      ))}
-                                    </div>
-                                    <label className="flex items-center justify-center gap-1.5 border border-dashed border-white/20 hover:border-iite-cyan/50 hover:bg-white/5 text-slate-300 hover:text-white rounded-xl py-3.5 cursor-pointer text-xs transition">
-                                      <Plus className="h-4 w-4 text-iite-cyan" /> Add to additional Images
-                                      <input
-                                        type="file"
-                                        accept="image/*"
-                                        className="hidden"
-                                        onChange={async (e) => {
-                                          const file = e.target.files[0]
-                                          if (file) {
-                                            const url = await uploadFile(file)
-                                            if (url) {
-                                              setArticleForm(prev => ({
-                                                ...prev,
-                                                additionalImages: [...(prev.additionalImages || []), url]
-                                              }))
-                                              showToast('Gambar tambahan ditambahkan!')
-                                            }
-                                          }
-                                        }}
-                                      />
-                                    </label>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
-                            {/* Sidebar Column (Col span 1) */}
-                            <div className="space-y-6">
-                              {/* Publish Settings Card */}
-                              <div className="rounded-2xl border border-white/10 bg-slate-900/30 p-6 space-y-4">
-                                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider border-b border-white/5 pb-2">Status Publikasi</h4>
-                                <div className="flex items-center justify-between py-1">
-                                  <span className="text-xs font-semibold text-slate-300">Is published <span className="text-rose-500">*</span></span>
-                                  <button
-                                    type="button"
-                                    onClick={() => setArticleForm({ ...articleForm, isPublished: !articleForm.isPublished })}
-                                    className={`relative inline-flex h-6 w-11 items-center rounded-full transition duration-300 ${
-                                      articleForm.isPublished ? 'bg-iite-cyan' : 'bg-white/10'
-                                    }`}
-                                  >
-                                    <span
-                                      className={`inline-block h-4 w-4 transform rounded-full bg-white transition duration-300 ${
-                                        articleForm.isPublished ? 'translate-x-6' : 'translate-x-1'
-                                      }`}
-                                    />
-                                  </button>
-                                </div>
-
-                                <div>
-                                  <label className="text-xs font-semibold text-slate-400 block mb-1">
-                                    Tanggal Publish <span className="text-rose-500">*</span>
-                                  </label>
-                                  <input
-                                    type="text"
-                                    required
-                                    value={articleForm.date}
-                                    onChange={(e) => setArticleForm({ ...articleForm, date: e.target.value })}
-                                    className="w-full rounded-xl border border-white/10 bg-iite-dark/60 px-4 py-2.5 text-sm text-white focus:border-iite-cyan/50 focus:ring-1 focus:ring-iite-cyan/30 focus:outline-none transition"
-                                    placeholder="18 Jul 2026, 10:33"
-                                  />
-                                  <p className="text-[10px] text-slate-500 mt-1.5 leading-relaxed">
-                                    Tanggal dan waktu berita akan/sudah diterbitkan. Kosongkan untuk menggunakan tanggal saat ini.
-                                  </p>
-                                </div>
-                              </div>
-
-                              {/* SEO & Metadata Card */}
-                              <div className="rounded-2xl border border-white/10 bg-slate-900/30 p-6 space-y-4">
-                                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider border-b border-white/5 pb-2">SEO & Metadata</h4>
-                                
-                                <div>
-                                  <label className="text-xs font-semibold text-slate-400 block mb-1">Meta Title (SEO)</label>
-                                  <input
-                                    type="text"
-                                    value={articleForm.metaTitle || ''}
-                                    onChange={(e) => setArticleForm({ ...articleForm, metaTitle: e.target.value })}
-                                    className="w-full rounded-xl border border-white/10 bg-iite-dark/60 px-4 py-2.5 text-sm text-white focus:border-iite-cyan/50 focus:ring-1 focus:ring-iite-cyan/30 focus:outline-none transition"
-                                  />
-                                  <p className="text-[10px] text-slate-500 mt-1 leading-relaxed">
-                                    Judul di Google/tab browser. Maks 60 karakter. Otomatis terisi dari judul berita.
-                                  </p>
-                                </div>
-
-                                <div>
-                                  <label className="text-xs font-semibold text-slate-400 block mb-1">Meta Description (SEO)</label>
-                                  <textarea
-                                    rows={2}
-                                    value={articleForm.metaDescription || ''}
-                                    onChange={(e) => setArticleForm({ ...articleForm, metaDescription: e.target.value })}
-                                    className="w-full rounded-xl border border-white/10 bg-iite-dark/60 px-4 py-2.5 text-sm text-white focus:border-iite-cyan/50 focus:ring-1 focus:ring-iite-cyan/30 focus:outline-none transition"
-                                    placeholder="Ringkasan singkat isi berita untuk hasil pencarian Google..."
-                                  />
-                                  <p className="text-[10px] text-slate-500 mt-1 leading-relaxed">
-                                    Deskripsi di Google. Idealnya 120-160 karakter.
-                                  </p>
-                                </div>
-
-                                <div>
-                                  <label className="text-xs font-semibold text-slate-400 block mb-1">Meta Keywords</label>
-                                  <input
-                                    type="text"
-                                    value={articleForm.metaKeywords || ''}
-                                    onChange={(e) => setArticleForm({ ...articleForm, metaKeywords: e.target.value })}
-                                    className="w-full rounded-xl border border-white/10 bg-iite-dark/60 px-4 py-2.5 text-sm text-white focus:border-iite-cyan/50 focus:ring-1 focus:ring-iite-cyan/30 focus:outline-none transition"
-                                    placeholder="kata kunci 1, kata kunci 2, kata kunci 3"
-                                  />
-                                  <p className="text-[10px] text-slate-500 mt-1 leading-relaxed">
-                                    Kata kunci dipisah koma. Contoh: politeknik, berita, akademik
-                                  </p>
-                                </div>
-
-                                <div>
-                                  <label className="text-xs font-semibold text-slate-400 block mb-1">Tags</label>
-                                  <input
-                                    type="text"
-                                    value={articleForm.tags || ''}
-                                    onChange={(e) => setArticleForm({ ...articleForm, tags: e.target.value })}
-                                    className="w-full rounded-xl border border-white/10 bg-iite-dark/60 px-4 py-2.5 text-sm text-white focus:border-iite-cyan/50 focus:ring-1 focus:ring-iite-cyan/30 focus:outline-none transition"
-                                    placeholder="tag1, tag2, tag3"
-                                  />
-                                  <p className="text-[10px] text-slate-500 mt-1 leading-relaxed">
-                                    Tag untuk berita terkait. Dipisah koma. Contoh: wisuda, akademik, kegiatan
-                                  </p>
-                                </div>
-                              </div>
+                {currentPosters.length === 0 ? (
+                  <div className="rounded-xl border border-dashed border-slate-300 p-8 text-center text-slate-500 space-y-3">
+                    <ImageIcon className="h-10 w-10 text-slate-400 mx-auto" />
+                    <p className="text-sm font-medium">Belum ada poster di dalam galeri.</p>
+                    <button
+                      onClick={() => {
+                        setEditingPosterIndex(null)
+                        setPosterForm({ title: '', author: '', desc: '', image: '' })
+                        setIsPosterFormOpen(true)
+                      }}
+                      className="inline-flex items-center gap-1.5 rounded-xl bg-indigo-50 text-indigo-600 px-4 py-2 text-xs font-bold hover:bg-indigo-100 transition"
+                    >
+                      <Plus className="h-4 w-4" /> Tambah Poster Pertama
+                    </button>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {currentPosters.map((poster, index) => (
+                      <div key={index} className="rounded-xl border border-slate-200 bg-slate-50 p-4 space-y-3 flex flex-col justify-between hover:shadow-md transition">
+                        <div className="space-y-3">
+                          <div className="aspect-[3/4] overflow-hidden rounded-lg bg-slate-200 border border-slate-300 relative group">
+                            <img
+                              src={poster.image || '/images/proceeding-poster.png'}
+                              alt={poster.title}
+                              className="h-full w-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2">
+                              <button
+                                onClick={() => handleStartEditPoster(index, poster)}
+                                className="p-2 rounded-lg bg-white text-indigo-600 hover:bg-slate-100 transition text-xs font-bold flex items-center gap-1"
+                              >
+                                <Edit3 className="h-3.5 w-3.5" /> Edit
+                              </button>
                             </div>
                           </div>
 
-                          {/* Action Buttons */}
-                          <div className="flex flex-wrap gap-3 border-t border-white/5 pt-4">
+                          <div>
+                            <h4 className="font-bold text-slate-900 text-sm line-clamp-2">{poster.title}</h4>
+                            <p className="text-xs text-indigo-600 font-semibold mt-1 truncate">{poster.author}</p>
+                            <p className="text-xs text-slate-500 mt-2 line-clamp-3 leading-relaxed">{poster.desc}</p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center justify-between border-t border-slate-200 pt-3">
+                          <div className="flex gap-1">
                             <button
-                              type="submit"
-                              className="rounded-xl bg-iite-cyan px-5 py-2.5 text-xs font-bold text-iite-dark hover:bg-iite-cyan/90 transition shadow-lg shadow-iite-cyan/20"
+                              onClick={() => moveArrayItem('proceeding', 'posters', index, 'up')}
+                              disabled={index === 0}
+                              className="p-1.5 rounded bg-white border border-slate-200 text-slate-500 hover:text-slate-800 disabled:opacity-30"
+                              title="Geser Kiri/Atas"
                             >
-                              {editingArticleIndex !== null ? 'Simpan Perubahan' : 'Buat Artikel'}
+                              <ArrowUp className="h-3.5 w-3.5" />
                             </button>
                             <button
-                              type="button"
-                              onClick={() => {
-                                setEditingArticleIndex(null)
-                                setIsArticleFormOpen(false)
-                                setArticleForm({
-                                  title: '',
-                                  date: '',
-                                  category: '',
-                                  summary: '',
-                                  image: '',
-                                  slug: '',
-                                  content: '',
-                                  additionalImages: [],
-                                  isPublished: true,
-                                  metaTitle: '',
-                                  metaDescription: '',
-                                  metaKeywords: '',
-                                  tags: ''
-                                })
+                              onClick={() => moveArrayItem('proceeding', 'posters', index, 'down')}
+                              disabled={index === currentPosters.length - 1}
+                              className="p-1.5 rounded bg-white border border-slate-200 text-slate-500 hover:text-slate-800 disabled:opacity-30"
+                              title="Geser Kanan/Bawah"
+                            >
+                              <ArrowDown className="h-3.5 w-3.5" />
+                            </button>
+                          </div>
+
+                          <div className="flex gap-2">
+                            <button
+                              onClick={() => handleStartEditPoster(index, poster)}
+                              className="px-2.5 py-1 rounded-lg bg-indigo-50 text-indigo-600 font-semibold text-xs hover:bg-indigo-100 transition"
+                            >
+                              Edit
+                            </button>
+                            <button
+                              onClick={() => handleDeletePoster(index)}
+                              className="p-1.5 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100 transition"
+                              title="Hapus Poster"
+                            >
+                              <Trash2 className="h-3.5 w-3.5" />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Poster Form Modal */}
+              {isPosterFormOpen && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-sm p-4">
+                  <div className="w-full max-w-lg rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl space-y-4">
+                    <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+                      <h3 className="font-bold text-slate-900 text-base">
+                        {editingPosterIndex !== null ? 'Edit Poster Penelitian' : 'Tambah Poster Baru'}
+                      </h3>
+                      <button
+                        onClick={() => setIsPosterFormOpen(false)}
+                        className="p-1 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100"
+                      >
+                        <X className="h-5 w-5" />
+                      </button>
+                    </div>
+
+                    <form onSubmit={handleSavePoster} className="space-y-4">
+                      <div>
+                        <label className="text-xs font-bold uppercase tracking-wider text-slate-600 block mb-1">Judul Poster / Penelitian</label>
+                        <input
+                          type="text"
+                          required
+                          value={posterForm.title}
+                          onChange={(e) => setPosterForm({ ...posterForm, title: e.target.value })}
+                          className="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm text-slate-800 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                          placeholder="misal: Optimalisasi Panel Surya Pada Industri Hijau"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="text-xs font-bold uppercase tracking-wider text-slate-600 block mb-1">Penulis / Presenter & Institusi</label>
+                        <input
+                          type="text"
+                          required
+                          value={posterForm.author}
+                          onChange={(e) => setPosterForm({ ...posterForm, author: e.target.value })}
+                          className="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm text-slate-800 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                          placeholder="misal: Dr. Ahmad Fauzi - Universitas Indonesia"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="text-xs font-bold uppercase tracking-wider text-slate-600 block mb-1">Abstrak / Deskripsi Ringkas</label>
+                        <textarea
+                          rows={4}
+                          required
+                          value={posterForm.desc}
+                          onChange={(e) => setPosterForm({ ...posterForm, desc: e.target.value })}
+                          className="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm text-slate-800 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                          placeholder="Ringkasan abstrak atau deskripsi karya poster..."
+                        />
+                      </div>
+
+                      <div>
+                        <label className="text-xs font-bold uppercase tracking-wider text-slate-600 block mb-1">Gambar Poster</label>
+                        <div className="flex gap-3 items-center rounded-xl border border-slate-200 bg-slate-50 p-3">
+                          <div className="h-16 w-12 rounded bg-slate-200 overflow-hidden shrink-0 border border-slate-300">
+                            {posterForm.image ? (
+                              <img src={posterForm.image} alt="Preview" className="h-full w-full object-cover" />
+                            ) : (
+                              <ImageIcon className="h-5 w-5 text-slate-400 m-auto mt-5" />
+                            )}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <input
+                              type="text"
+                              value={posterForm.image}
+                              onChange={(e) => setPosterForm({ ...posterForm, image: e.target.value })}
+                              className="w-full rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-800"
+                              placeholder="/images/proceeding-poster.png atau URL"
+                            />
+                          </div>
+                          <label className="inline-flex items-center gap-1 bg-indigo-600 text-white rounded-lg px-3 py-2 cursor-pointer text-xs font-bold hover:bg-indigo-700 transition shrink-0">
+                            <Upload className="h-3.5 w-3.5" />
+                            Upload
+                            <input
+                              type="file"
+                              accept="image/*"
+                              className="hidden"
+                              onChange={async (e) => {
+                                const file = e.target.files[0]
+                                if (!file) return
+                                const formData = new FormData()
+                                formData.append('image', file)
+                                try {
+                                  const res = await fetch(import.meta.env.DEV ? '/api/upload-image' : '/api/upload-image.php', {
+                                    method: 'POST',
+                                    body: formData
+                                  })
+                                  const data = await res.json()
+                                  if (data.success) {
+                                    setPosterForm(prev => ({ ...prev, image: data.url }))
+                                    showToast('Gambar poster berhasil diunggah!')
+                                  }
+                                } catch (err) {
+                                  showToast('Gagal upload gambar', 'danger')
+                                }
                               }}
-                              className="rounded-xl bg-white/5 border border-white/10 px-5 py-2.5 text-xs font-bold text-slate-400 hover:text-white hover:bg-white/10 transition"
-                            >
-                              Batal
-                            </button>
-                          </div>
-                        </form>
-                      ) : (
-                        <button
-                          onClick={() => {
-                            setArticleForm({
-                              title: '',
-                              date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' }) + ', ' + String(new Date().getHours()).padStart(2, '0') + ':' + String(new Date().getMinutes()).padStart(2, '0'),
-                              category: 'Pengumuman',
-                              summary: '',
-                              image: '',
-                              slug: '',
-                              content: '',
-                              additionalImages: [],
-                              isPublished: true,
-                              metaTitle: '',
-                              metaDescription: '',
-                              metaKeywords: '',
-                              tags: ''
-                            })
-                            setEditingArticleIndex(null)
-                            setIsArticleFormOpen(true)
-                          }}
-                          className="flex items-center gap-2 rounded-xl border border-dashed border-white/20 hover:border-iite-cyan/50 hover:bg-white/5 py-4 px-6 w-full justify-center transition text-sm text-slate-400 hover:text-white"
-                        >
-                          <PlusCircle className="h-5 w-5 text-iite-cyan" />
-                          Tulis Berita Baru
-                        </button>
-                      )}
+                            />
+                          </label>
+                        </div>
+                      </div>
 
-                      <div className="space-y-4">
-                        <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400">Daftar Berita Aktif ({sectionData.length})</h4>
-                        <div className="grid grid-cols-1 gap-4">
-                          {sectionData.map((art, idx) => (
-                            <div key={idx} className="flex gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 items-start hover:border-white/20 transition">
-                              <img
-                                src={art.image || '/images/conference-poster.png'}
-                                alt={art.title}
-                                className="h-20 w-28 rounded-lg object-cover bg-slate-800 shrink-0"
-                              />
-                              <div className="flex-1 min-w-0">
-                                <div className="flex gap-2 items-center text-xs mb-1">
-                                  <span className="px-2 py-0.5 rounded bg-iite-cyan/10 text-iite-cyan font-semibold flex items-center gap-1">
-                                    <Tag className="h-3 w-3" />
-                                    {art.category}
-                                  </span>
-                                  <span className="text-slate-500 flex items-center gap-1">
-                                    <Calendar className="h-3 w-3" />
-                                    {art.date}
-                                  </span>
+                      <div className="flex justify-end gap-2 border-t border-slate-200 pt-3">
+                        <button
+                          type="button"
+                          onClick={() => setIsPosterFormOpen(false)}
+                          className="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-600 hover:bg-slate-100"
+                        >
+                          Batal
+                        </button>
+                        <button
+                          type="submit"
+                          className="px-5 py-2 rounded-xl bg-indigo-600 text-xs font-bold text-white hover:bg-indigo-700 shadow-md shadow-indigo-200"
+                        >
+                          {editingPosterIndex !== null ? 'Simpan Perubahan' : 'Tambah Poster'}
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* SECTION 3: MANAJER BERITA & CMS (Dedicated News CMS Section) */}
+          {activeItem.id === 'news' && (
+            <div className="space-y-6">
+              {/* News Articles List */}
+              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
+                <div className="flex items-center justify-between border-b border-slate-200 pb-4">
+                  <div>
+                    <h3 className="text-base font-bold text-slate-900">Daftar Artikel Berita ({currentArticles.length})</h3>
+                    <p className="text-xs text-slate-500">Kelola artikel publikasi untuk Portal Berita & Informasi IITE 2026.</p>
+                  </div>
+                  <button
+                    onClick={() => {
+                      setEditingArticleIndex(null)
+                      setArticleForm({
+                        title: '',
+                        date: '',
+                        category: '',
+                        summary: '',
+                        image: '',
+                        slug: '',
+                        content: '',
+                        additionalImages: [],
+                        isPublished: true,
+                        metaTitle: '',
+                        metaDescription: '',
+                        metaKeywords: '',
+                        tags: ''
+                      })
+                      setIsArticleFormOpen(true)
+                    }}
+                    className="inline-flex items-center gap-1.5 rounded-xl bg-indigo-600 px-3.5 py-2 text-xs font-bold text-white shadow-sm hover:bg-indigo-700 transition"
+                  >
+                    <Plus className="h-4 w-4" />
+                    Tambah Artikel
+                  </button>
+                </div>
+
+                {currentArticles.length === 0 ? (
+                  <div className="rounded-xl border border-dashed border-slate-300 p-8 text-center text-slate-500 space-y-3">
+                    <Newspaper className="h-10 w-10 text-slate-400 mx-auto" />
+                    <p className="text-sm font-medium">Belum ada artikel berita.</p>
+                  </div>
+                ) : (
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left text-xs">
+                      <thead>
+                        <tr className="border-b border-slate-200 text-slate-500 font-bold uppercase">
+                          <th className="py-3 px-3">Artikel</th>
+                          <th className="py-3 px-3">Kategori</th>
+                          <th className="py-3 px-3">Tanggal</th>
+                          <th className="py-3 px-3">Status</th>
+                          <th className="py-3 px-3 text-right">Aksi</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-100">
+                        {currentArticles.map((article, idx) => (
+                          <tr key={idx} className="hover:bg-slate-50 transition">
+                            <td className="py-3 px-3">
+                              <div className="flex items-center gap-3">
+                                <div className="h-10 w-14 rounded bg-slate-200 overflow-hidden shrink-0 border border-slate-200">
+                                  <img src={article.image || '/images/conference-poster.png'} alt={article.title} className="h-full w-full object-cover" />
                                 </div>
-                                <h4 className="font-semibold text-white truncate text-sm">{art.title}</h4>
-                                <p className="text-slate-400 text-xs mt-1 line-clamp-2 leading-relaxed">{art.summary}</p>
+                                <div>
+                                  <p className="font-bold text-slate-900 line-clamp-1">{article.title}</p>
+                                  <p className="text-[11px] text-slate-400 line-clamp-1">{article.summary}</p>
+                                </div>
                               </div>
-                              <div className="flex flex-col gap-1 text-slate-400 shrink-0">
+                            </td>
+                            <td className="py-3 px-3 font-semibold text-indigo-600">{article.category || 'Umum'}</td>
+                            <td className="py-3 px-3 text-slate-500">{article.date}</td>
+                            <td className="py-3 px-3">
+                              <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                                article.isPublished !== false ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-slate-100 text-slate-500'
+                              }`}>
+                                {article.isPublished !== false ? 'Terbit' : 'Draft'}
+                              </span>
+                            </td>
+                            <td className="py-3 px-3 text-right">
+                              <div className="flex items-center justify-end gap-2">
                                 <button
-                                  onClick={() => handleStartEditArticle(idx, art)}
-                                  className="p-2 hover:text-iite-cyan transition rounded hover:bg-white/5"
-                                  title="Edit berita"
+                                  onClick={() => handleStartEditArticle(idx, article)}
+                                  className="px-2.5 py-1 rounded-lg bg-indigo-50 text-indigo-600 font-bold hover:bg-indigo-100 transition"
                                 >
-                                  <Settings className="h-4 w-4" />
+                                  Edit
                                 </button>
                                 <button
                                   onClick={() => handleDeleteArticle(idx)}
-                                  className="p-2 hover:text-rose-400 transition rounded hover:bg-rose-500/10"
-                                  title="Hapus berita"
+                                  className="p-1.5 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100 transition"
                                 >
-                                  <Trash2 className="h-4 w-4" />
+                                  <Trash2 className="h-3.5 w-3.5" />
                                 </button>
                               </div>
-                            </div>
-                          ))}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </div>
+
+              {/* News Article Modal */}
+              {isArticleFormOpen && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-sm p-4 overflow-y-auto">
+                  <div className="w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl space-y-4">
+                    <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+                      <h3 className="font-bold text-slate-900 text-base">
+                        {editingArticleIndex !== null ? 'Edit Artikel Berita' : 'Tulis Artikel Berita Baru'}
+                      </h3>
+                      <button
+                        onClick={() => setIsArticleFormOpen(false)}
+                        className="p-1 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100"
+                      >
+                        <X className="h-5 w-5" />
+                      </button>
+                    </div>
+
+                    <form onSubmit={handleSaveArticle} className="space-y-4">
+                      <div>
+                        <label className="text-xs font-bold uppercase tracking-wider text-slate-600 block mb-1">Judul Artikel Berita</label>
+                        <input
+                          type="text"
+                          required
+                          value={articleForm.title}
+                          onChange={handleTitleChange}
+                          className="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm text-slate-800 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                          placeholder="Judul artikel berita..."
+                        />
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                          <label className="text-xs font-bold uppercase tracking-wider text-slate-600 block mb-1">Kategori</label>
+                          <input
+                            type="text"
+                            required
+                            value={articleForm.category}
+                            onChange={(e) => setArticleForm({ ...articleForm, category: e.target.value })}
+                            className="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm text-slate-800"
+                            placeholder="Pengumuman, Pembicara, Panduan..."
+                          />
+                        </div>
+
+                        <div>
+                          <label className="text-xs font-bold uppercase tracking-wider text-slate-600 block mb-1">Tanggal Rilis</label>
+                          <input
+                            type="text"
+                            required
+                            value={articleForm.date}
+                            onChange={(e) => setArticleForm({ ...articleForm, date: e.target.value })}
+                            className="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm text-slate-800"
+                            placeholder="20 Maret 2026"
+                          />
                         </div>
                       </div>
-                    </div>
-                  ) : (
-                    /* General Fields inside sections */
-                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                      {Object.keys(sectionData).sort((a, b) => {
-                        if (a === 'posterImage') return -1
-                        if (b === 'posterImage') return 1
-                        return 0
-                      }).map((key) => {
-                        const val = sectionData[key]
-                        
-                        // Proceeding page posters gallery list manager
-                        if (sectionId === 'proceeding' && key === 'posters') {
-                          const posterList = val || []
+
+                      <div>
+                        <label className="text-xs font-bold uppercase tracking-wider text-slate-600 block mb-1">Ringkasan Singkat</label>
+                        <textarea
+                          rows={2}
+                          required
+                          value={articleForm.summary}
+                          onChange={(e) => setArticleForm({ ...articleForm, summary: e.target.value })}
+                          className="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm text-slate-800"
+                          placeholder="Ringkasan singkat untuk kartu berita..."
+                        />
+                      </div>
+
+                      <div>
+                        <label className="text-xs font-bold uppercase tracking-wider text-slate-600 block mb-1">Isi Lengkap Artikel (Rich Text Editor)</label>
+                        <RichTextEditor
+                          value={articleForm.content}
+                          onChange={(content) => setArticleForm(prev => ({ ...prev, content }))}
+                          placeholder="Tuliskan berita secara lengkap di sini..."
+                        />
+                      </div>
+
+                      <div className="flex justify-end gap-2 border-t border-slate-200 pt-3">
+                        <button
+                          type="button"
+                          onClick={() => setIsArticleFormOpen(false)}
+                          className="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-600 hover:bg-slate-100"
+                        >
+                          Batal
+                        </button>
+                        <button
+                          type="submit"
+                          className="px-5 py-2 rounded-xl bg-indigo-600 text-xs font-bold text-white hover:bg-indigo-700 shadow-md shadow-indigo-200"
+                        >
+                          {editingArticleIndex !== null ? 'Simpan Artikel' : 'Terbitkan Artikel'}
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* SECTION 4: GENERIC FORM FOR ALL OTHER PAGES (Competition, Seminar, Greenyouth, MSME, Home, Nav/Footer) */}
+          {activeItem.sections && activeItem.id !== 'proceeding' && activeItem.id !== 'news' && (
+            <div className="space-y-6">
+              {activeItem.sections.map((secId) => {
+                const secPath = SECTION_PATH_MAP[secId]
+                const sectionData = getNestedValue(editableTranslations[selectedLang], secPath)
+                if (!sectionData) return null
+
+                return (
+                  <div key={secId} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
+                    <h3 className="text-base font-bold text-slate-900 border-b border-slate-200 pb-3 uppercase tracking-wider text-xs">
+                      Form Pengaturan: {formatFieldName(secId)}
+                    </h3>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {Object.keys(sectionData).map((fieldKey) => {
+                        const fieldValue = sectionData[fieldKey]
+
+                        // Skip posters or news articles array if handled elsewhere
+                        if (fieldKey === 'posters' || fieldKey === 'articles') return null
+
+                        // String inputs / images
+                        if (typeof fieldValue === 'string') {
+                          const isImg = fieldKey.toLowerCase().includes('image') || fieldKey.toLowerCase().includes('poster') || fieldValue.startsWith('/') || fieldValue.startsWith('http')
+                          const isLong = fieldValue.length > 50
+
                           return (
-                            <div key={key} className="col-span-1 sm:col-span-2 space-y-6 pt-4 border-t border-white/5">
-                              <h3 className="text-sm font-bold text-iite-cyan uppercase tracking-wider">
-                                Galeri Poster Expo (Halaman Proceeding)
-                              </h3>
+                            <div key={fieldKey} className={isImg || isLong ? 'sm:col-span-2 space-y-1.5' : 'space-y-1.5'}>
+                              <label className="text-xs font-bold text-slate-700 block">{formatFieldName(fieldKey)}</label>
 
-                              {isPosterFormOpen ? (
-                                <form onSubmit={handleSavePoster} className="space-y-4 rounded-2xl border border-white/10 bg-white/5 p-5">
-                                  <h4 className="font-bold text-white text-sm">
-                                    {editingPosterIndex !== null ? '✏️ Edit Poster Penelitian' : '➕ Tambah Poster Baru'}
-                                  </h4>
-                                  
-                                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                                    <div>
-                                      <label className="text-xs font-semibold text-slate-400 block mb-1">Judul Poster</label>
-                                      <input
-                                        type="text"
-                                        required
-                                        value={posterForm.title}
-                                        onChange={(e) => setPosterForm({ ...posterForm, title: e.target.value })}
-                                        className="w-full rounded-xl border border-white/10 bg-iite-dark/60 px-4 py-2.5 text-sm text-white focus:outline-none focus:border-iite-cyan/40"
-                                        placeholder="Ketik judul poster..."
-                                      />
-                                    </div>
-                                    
-                                    <div>
-                                      <label className="text-xs font-semibold text-slate-400 block mb-1">Penulis & Institusi</label>
-                                      <input
-                                        type="text"
-                                        required
-                                        value={posterForm.author}
-                                        onChange={(e) => setPosterForm({ ...posterForm, author: e.target.value })}
-                                        className="w-full rounded-xl border border-white/10 bg-iite-dark/60 px-4 py-2.5 text-sm text-white focus:outline-none focus:border-iite-cyan/40"
-                                        placeholder="Contoh: John Doe (Universitas Indonesia)"
-                                      />
-                                    </div>
-
-                                    <div className="col-span-1 sm:col-span-2">
-                                      <label className="text-xs font-semibold text-slate-400 block mb-1">Abstrak / Deskripsi Poster</label>
-                                      <textarea
-                                        required
-                                        rows={4}
-                                        value={posterForm.desc}
-                                        onChange={(e) => setPosterForm({ ...posterForm, desc: e.target.value })}
-                                        className="w-full rounded-xl border border-white/10 bg-iite-dark/60 px-4 py-2.5 text-sm text-white focus:outline-none focus:border-iite-cyan/40"
-                                        placeholder="Ketik abstrak poster..."
-                                      />
-                                    </div>
-
-                                    <div className="col-span-1 sm:col-span-2">
-                                      <label className="text-xs font-semibold text-slate-400 block mb-1">Upload Gambar/Thumbnail Poster</label>
-                                      <div className="flex gap-2">
-                                        <input
-                                          type="text"
-                                          value={posterForm.image}
-                                          onChange={(e) => setPosterForm({ ...posterForm, image: e.target.value })}
-                                          placeholder="/images/proceeding-poster.png"
-                                          className="flex-1 rounded-xl border border-white/10 bg-iite-dark/60 px-4 py-2.5 text-xs text-white"
-                                        />
-                                        <label className="flex items-center gap-1 bg-white/5 border border-white/10 hover:bg-white/10 text-white rounded-xl px-3 py-2 cursor-pointer text-xs transition">
-                                          <Upload className="h-4 w-4" /> Unggah File
-                                          <input
-                                            type="file"
-                                            accept="image/*"
-                                            className="hidden"
-                                            onChange={async (e) => {
-                                              const file = e.target.files[0]
-                                              if (file) {
-                                                const url = await uploadFile(file)
-                                                if (url) {
-                                                  setPosterForm(prev => ({ ...prev, image: url }))
-                                                  showToast('Poster penelitian diunggah!')
-                                                }
-                                              }
-                                            }}
-                                          />
-                                        </label>
-                                      </div>
-                                    </div>
+                              {isImg ? (
+                                <div className="flex gap-4 items-center rounded-xl border border-slate-200 bg-slate-50 p-3">
+                                  <div className="h-16 w-20 rounded bg-slate-200 overflow-hidden shrink-0 border border-slate-300">
+                                    {fieldValue ? (
+                                      <img src={fieldValue} alt="Preview" className="h-full w-full object-cover" />
+                                    ) : (
+                                      <ImageIcon className="h-5 w-5 text-slate-400 m-auto mt-5" />
+                                    )}
                                   </div>
-
-                                  <div className="flex gap-3 pt-2">
-                                    <button
-                                      type="submit"
-                                      className="rounded-xl bg-iite-cyan px-4 py-2 text-xs font-semibold text-iite-dark hover:bg-iite-cyan/90 transition"
-                                    >
-                                      Simpan Poster
-                                    </button>
-                                    <button
-                                      type="button"
-                                      onClick={() => {
-                                        setEditingPosterIndex(null)
-                                        setIsPosterFormOpen(false)
-                                        setPosterForm({ title: '', author: '', desc: '', image: '' })
-                                      }}
-                                      className="rounded-xl bg-white/5 border border-white/10 px-4 py-2 text-xs font-semibold text-slate-400 hover:text-white transition"
-                                    >
-                                      Batal
-                                    </button>
+                                  <div className="flex-1 min-w-0">
+                                    <input
+                                      type="text"
+                                      value={fieldValue}
+                                      onChange={(e) => updateSectionValue(secId, fieldKey, e.target.value)}
+                                      className="w-full rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-800 truncate"
+                                    />
                                   </div>
-                                </form>
-                              ) : (
-                                <button
-                                  type="button"
-                                  onClick={() => {
-                                    setPosterForm({ title: '', author: '', desc: '', image: '' })
-                                    setEditingPosterIndex(null)
-                                    setIsPosterFormOpen(true)
-                                  }}
-                                  className="flex items-center gap-2 rounded-xl border border-dashed border-white/20 hover:border-iite-cyan/50 hover:bg-white/5 py-4 px-6 w-full justify-center transition text-sm text-slate-400 hover:text-white"
-                                >
-                                  <PlusCircle className="h-5 w-5 text-iite-cyan" />
-                                  Tambah Poster Baru
-                                </button>
-                              )}
-
-                              <div className="space-y-3">
-                                <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400">
-                                  Daftar Poster Aktif ({posterList.length})
-                                </h4>
-                                <div className="grid grid-cols-1 gap-4">
-                                  {posterList.map((poster, idx) => (
-                                    <div key={idx} className="flex gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 items-start hover:border-white/20 transition">
-                                      <img
-                                        src={poster.image || '/images/proceeding-poster.png'}
-                                        alt={poster.title}
-                                        className="h-20 w-16 rounded-lg object-cover bg-slate-800 shrink-0 border border-white/10"
-                                      />
-                                      <div className="flex-1 min-w-0">
-                                        <h5 className="font-semibold text-sm text-white truncate">{poster.title}</h5>
-                                        <p className="text-xs text-rose-400 font-medium truncate mt-0.5">{poster.author}</p>
-                                        <p className="text-xs text-slate-400 line-clamp-2 mt-1 leading-normal">{poster.desc}</p>
-                                      </div>
-                                      <div className="flex gap-1 shrink-0 ml-2">
-                                        <button
-                                          type="button"
-                                          onClick={() => handleStartEditPoster(idx, poster)}
-                                          className="rounded-xl border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-slate-300 hover:text-white hover:bg-white/10 transition"
-                                        >
-                                          Edit
-                                        </button>
-                                        <button
-                                          type="button"
-                                          onClick={() => handleDeletePoster(idx)}
-                                          className="p-1.5 hover:text-rose-400 transition rounded hover:bg-rose-500/10"
-                                          title="Hapus poster"
-                                        >
-                                          <Trash2 className="h-4 w-4" />
-                                        </button>
-                                      </div>
-                                    </div>
-                                  ))}
+                                  <label className="inline-flex items-center gap-1 bg-indigo-600 text-white rounded-lg px-3 py-2 cursor-pointer text-xs font-bold hover:bg-indigo-700 transition shrink-0">
+                                    <Upload className="h-3.5 w-3.5" />
+                                    Pilih Gambar
+                                    <input
+                                      type="file"
+                                      accept="image/*"
+                                      className="hidden"
+                                      onChange={(e) => handleImageUpload(e, secPath, null, fieldKey)}
+                                    />
+                                  </label>
                                 </div>
-                              </div>
-                            </div>
-                          )
-                        }
-
-                        // Card detail navigation lists (Scenario: Home.cards)
-                        if (sectionId === 'home' && key === 'cards') {
-                          return (
-                            <div key={key} className="col-span-1 sm:col-span-2 space-y-4 pt-4 border-t border-white/5">
-                              <h3 className="text-sm font-bold text-iite-cyan uppercase tracking-wider">Navigasi Kartu Halaman Utama</h3>
-                              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                                {Object.keys(val).map((cardKey) => (
-                                  <div key={cardKey} className="rounded-2xl border border-white/10 bg-white/5 p-4 space-y-2">
-                                    <h4 className="text-xs font-semibold text-white uppercase tracking-wide pb-1 border-b border-white/5">
-                                      Kartu: {formatFieldName(cardKey)}
-                                    </h4>
-                                    <div>
-                                      <label className="text-[10px] text-slate-500 font-bold block mb-1">Judul Kartu</label>
-                                      <input
-                                        type="text"
-                                        value={val[cardKey].title}
-                                        onChange={(e) => {
-                                          const updatedCards = { ...val, [cardKey]: { ...val[cardKey], title: e.target.value } }
-                                          updateSectionValue(sectionId, 'cards', updatedCards)
-                                        }}
-                                        className="w-full rounded-lg border border-white/10 bg-iite-dark/60 px-3 py-2 text-xs text-white"
-                                      />
-                                    </div>
-                                    <div>
-                                      <label className="text-[10px] text-slate-500 font-bold block mb-1">Deskripsi Singkat</label>
-                                      <textarea
-                                        rows={3}
-                                        value={val[cardKey].desc}
-                                        onChange={(e) => {
-                                          const updatedCards = { ...val, [cardKey]: { ...val[cardKey], desc: e.target.value } }
-                                          updateSectionValue(sectionId, 'cards', updatedCards)
-                                        }}
-                                        className="w-full rounded-lg border border-white/10 bg-iite-dark/60 px-3 py-2 text-xs text-white"
-                                      />
-                                    </div>
-                                    <div>
-                                      <label className="text-[10px] text-slate-500 font-bold block mb-1">Teks Tombol Detail</label>
-                                      <input
-                                        type="text"
-                                        value={val[cardKey].cta}
-                                        onChange={(e) => {
-                                          const updatedCards = { ...val, [cardKey]: { ...val[cardKey], cta: e.target.value } }
-                                          updateSectionValue(sectionId, 'cards', updatedCards)
-                                        }}
-                                        className="w-full rounded-lg border border-white/10 bg-iite-dark/60 px-3 py-2 text-xs text-white"
-                                      />
-                                    </div>
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-                          )
-                        }
-
-                        // A. Input String (Teks biasa)
-                        if (typeof val === 'string') {
-                          const isImage = key.toLowerCase().includes('image') || 
-                                          key.toLowerCase().includes('logo') || 
-                                          val.startsWith('/') || 
-                                          val.startsWith('http')
-                          
-                          const isLongText = val.length > 50
-
-                          return (
-                            <div key={key} className={isLongText || isImage ? "col-span-1 sm:col-span-2 space-y-2" : "space-y-2"}>
-                              <label className="text-xs font-semibold text-slate-300 block">{formatFieldName(key)}</label>
-                              
-                              {isImage ? (
-                                <div className="space-y-3 rounded-2xl border border-white/5 bg-white/[0.02] p-4">
-                                  <div className="flex gap-4 items-center">
-                                    <div className="h-16 w-24 shrink-0 rounded-lg border border-white/10 bg-slate-900 overflow-hidden flex items-center justify-center">
-                                      {val ? (
-                                        <img src={val} alt="Preview" className="h-full w-full object-cover" />
-                                      ) : (
-                                        <ImageIcon className="h-5 w-5 text-slate-600" />
-                                      )}
-                                    </div>
-                                    <div className="flex-1 min-w-0">
-                                      <span className="text-[10px] font-bold text-slate-400 block mb-1">Path Gambar Saat Ini:</span>
-                                      <input
-                                        type="text"
-                                        value={val}
-                                        onChange={(e) => updateSectionValue(sectionId, key, e.target.value)}
-                                        className="w-full rounded-xl border border-white/10 bg-iite-dark/60 px-3 py-2 text-xs text-white truncate"
-                                      />
-                                    </div>
-                                  </div>
-                                  <div className="flex justify-end">
-                                    <label className="inline-flex items-center gap-1.5 rounded-xl bg-iite-cyan px-4 py-2 text-xs font-semibold text-iite-dark hover:bg-iite-cyan/95 transition cursor-pointer">
-                                      <Upload className="h-3.5 w-3.5" />
-                                      {uploadingImageKey === `${sectionId}.${key}` ? 'Mengunggah...' : 'Upload Poster Baru'}
-                                      <input
-                                        type="file"
-                                        accept="image/*"
-                                        className="hidden"
-                                        disabled={uploadingImageKey !== null}
-                                        onChange={(e) => handleImageUpload(e, path, null, key)}
-                                      />
-                                    </label>
-                                  </div>
-                                </div>
-                              ) : isLongText ? (
+                              ) : isLong ? (
                                 <textarea
-                                  rows={4}
-                                  value={val}
-                                  onChange={(e) => updateSectionValue(sectionId, key, e.target.value)}
-                                  className="w-full rounded-xl border border-white/10 bg-iite-dark/60 px-4 py-2.5 text-sm text-white"
+                                  rows={3}
+                                  value={fieldValue}
+                                  onChange={(e) => updateSectionValue(secId, fieldKey, e.target.value)}
+                                  className="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-xs text-slate-800 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
                                 />
                               ) : (
                                 <input
                                   type="text"
-                                  value={val}
-                                  onChange={(e) => updateSectionValue(sectionId, key, e.target.value)}
-                                  className="w-full rounded-xl border border-white/10 bg-iite-dark/60 px-4 py-2.5 text-sm text-white"
+                                  value={fieldValue}
+                                  onChange={(e) => updateSectionValue(secId, fieldKey, e.target.value)}
+                                  className="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-xs text-slate-800 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
                                 />
                               )}
                             </div>
                           )
                         }
 
-                        // B. List Array Teks (Persyaratan, Kategori Lomba, dll.)
-                        if (Array.isArray(val) && val.length > 0 && typeof val[0] === 'string') {
+                        // Array of strings (e.g. Requirements, Fees list, etc.)
+                        if (Array.isArray(fieldValue) && fieldValue.length > 0 && typeof fieldValue[0] === 'string') {
                           return (
-                            <div key={key} className="col-span-1 sm:col-span-2 space-y-3 pt-2">
+                            <div key={fieldKey} className="sm:col-span-2 space-y-2 pt-2 border-t border-slate-100">
                               <div className="flex items-center justify-between">
-                                <label className="text-xs font-semibold text-slate-300 block">{formatFieldName(key)}</label>
+                                <label className="text-xs font-bold text-slate-700">{formatFieldName(fieldKey)}</label>
                                 <button
                                   type="button"
-                                  onClick={() => addArrayItem(sectionId, key, "Item Baru")}
-                                  className="flex items-center gap-1 text-[11px] font-semibold text-iite-cyan hover:text-white transition"
+                                  onClick={() => addArrayItem(secId, fieldKey, 'Item Baru')}
+                                  className="text-xs font-bold text-indigo-600 hover:underline flex items-center gap-1"
                                 >
                                   <Plus className="h-3.5 w-3.5" /> Tambah Baris
                                 </button>
                               </div>
                               <div className="space-y-2">
-                                {val.map((itemVal, idx) => (
+                                {fieldValue.map((itemStr, idx) => (
                                   <div key={idx} className="flex gap-2 items-center">
                                     <input
                                       type="text"
-                                      value={itemVal}
+                                      value={itemStr}
                                       onChange={(e) => {
-                                        const updatedArr = [...val]
+                                        const updatedArr = [...fieldValue]
                                         updatedArr[idx] = e.target.value
-                                        updateSectionValue(sectionId, key, updatedArr)
+                                        updateSectionValue(secId, fieldKey, updatedArr)
                                       }}
-                                      className="flex-1 rounded-xl border border-white/10 bg-iite-dark/60 px-4 py-2.5 text-sm text-white"
+                                      className="flex-1 rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs text-slate-800"
                                     />
                                     <button
                                       type="button"
-                                      onClick={() => removeArrayItem(sectionId, key, idx)}
-                                      className="h-9 w-9 rounded-lg border border-rose-500/20 bg-rose-500/10 text-rose-400 hover:bg-rose-500/20 flex items-center justify-center shrink-0"
+                                      onClick={() => removeArrayItem(secId, fieldKey, idx)}
+                                      className="p-2 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100"
                                     >
-                                      <Trash2 className="h-4 w-4" />
+                                      <Trash2 className="h-3.5 w-3.5" />
                                     </button>
                                   </div>
                                 ))}
@@ -1869,131 +1631,74 @@ export default function AdminPage({ theme }) {
                           )
                         }
 
-                        // C. List Array Objek (Speakers, Milestones, Payments, dll.)
-                        if (Array.isArray(val) && val.length > 0 && typeof val[0] === 'object') {
-                          const objectTemplate = Object.keys(val[0]).reduce((acc, objKey) => {
-                            acc[objKey] = ""
+                        // Array of objects (e.g. Speakers, Timeline, Payments, Categories)
+                        if (Array.isArray(fieldValue) && fieldValue.length > 0 && typeof fieldValue[0] === 'object') {
+                          const templateObj = Object.keys(fieldValue[0]).reduce((acc, k) => {
+                            acc[k] = ''
                             return acc
                           }, {})
 
                           return (
-                            <div key={key} className="col-span-1 sm:col-span-2 space-y-4 pt-4 border-t border-white/5">
-                              <div className="flex items-center justify-between mb-2">
-                                <label className="text-xs font-semibold uppercase tracking-wider text-slate-400">Daftar {formatFieldName(key)}</label>
+                            <div key={fieldKey} className="sm:col-span-2 space-y-3 pt-3 border-t border-slate-100">
+                              <div className="flex items-center justify-between">
+                                <label className="text-xs font-bold uppercase tracking-wider text-slate-700">Daftar {formatFieldName(fieldKey)}</label>
                                 <button
                                   type="button"
-                                  onClick={() => addArrayItem(sectionId, key, objectTemplate)}
-                                  className="flex items-center gap-1 text-[11px] font-semibold text-iite-cyan hover:text-white transition"
+                                  onClick={() => addArrayItem(secId, fieldKey, templateObj)}
+                                  className="text-xs font-bold text-indigo-600 hover:underline flex items-center gap-1"
                                 >
-                                  <Plus className="h-4 w-4" /> Tambah Data Baru
+                                  <Plus className="h-3.5 w-3.5" /> Tambah Data Baru
                                 </button>
                               </div>
-                              <div className="space-y-4">
-                                {val.map((item, idx) => (
-                                  <div key={idx} className="rounded-2xl border border-white/10 bg-white/5 p-4 space-y-3 relative">
-                                    <div className="flex justify-between items-center border-b border-white/5 pb-2">
-                                      <span className="text-xs font-bold text-slate-400">Data #{idx + 1}</span>
-                                      <div className="flex gap-1">
+
+                              <div className="space-y-3">
+                                {fieldValue.map((objItem, idx) => (
+                                  <div key={idx} className="rounded-xl border border-slate-200 bg-slate-50 p-4 space-y-3">
+                                    <div className="flex items-center justify-between border-b border-slate-200 pb-2">
+                                      <span className="text-xs font-bold text-slate-600">Item #{idx + 1}</span>
+                                      <div className="flex items-center gap-1">
                                         <button
                                           type="button"
-                                          onClick={() => moveArrayItem(sectionId, key, idx, 'up')}
+                                          onClick={() => moveArrayItem(secId, fieldKey, idx, 'up')}
                                           disabled={idx === 0}
-                                          className="h-7 w-7 rounded border border-white/10 bg-white/5 text-slate-400 hover:text-white flex items-center justify-center disabled:opacity-20"
+                                          className="p-1 rounded bg-white border border-slate-200 text-slate-500 disabled:opacity-30"
                                         >
                                           <ArrowUp className="h-3 w-3" />
                                         </button>
                                         <button
                                           type="button"
-                                          onClick={() => moveArrayItem(sectionId, key, idx, 'down')}
-                                          disabled={idx === val.length - 1}
-                                          className="h-7 w-7 rounded border border-white/10 bg-white/5 text-slate-400 hover:text-white flex items-center justify-center disabled:opacity-20"
+                                          onClick={() => moveArrayItem(secId, fieldKey, idx, 'down')}
+                                          disabled={idx === fieldValue.length - 1}
+                                          className="p-1 rounded bg-white border border-slate-200 text-slate-500 disabled:opacity-30"
                                         >
                                           <ArrowDown className="h-3 w-3" />
                                         </button>
                                         <button
                                           type="button"
-                                          onClick={() => removeArrayItem(sectionId, key, idx)}
-                                          className="h-7 w-7 rounded border border-rose-500/20 bg-rose-500/10 text-rose-400 hover:bg-rose-500/20 flex items-center justify-center"
+                                          onClick={() => removeArrayItem(secId, fieldKey, idx)}
+                                          className="p-1 rounded bg-rose-50 text-rose-600 hover:bg-rose-100"
                                         >
                                           <Trash2 className="h-3 w-3" />
                                         </button>
                                       </div>
                                     </div>
 
-                                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                                      {Object.keys(item).map((itemKey) => {
-                                        const fieldLabel = formatFieldName(itemKey)
-                                        const isTextArea = itemKey === 'detail' || itemKey === 'desc' || itemKey === 'subtitle' || itemKey === 'summary'
-                                        const isObjImage = itemKey === 'image' || itemKey === 'photo'
-
-                                        if (isObjImage) {
-                                          return (
-                                            <div key={itemKey} className="sm:col-span-2 space-y-2">
-                                              <label className="text-[10px] uppercase font-bold text-slate-500 block">{fieldLabel}</label>
-                                              <div className="flex gap-4 items-center rounded-xl bg-slate-900/50 border border-white/5 p-3">
-                                                <div className="h-12 w-12 shrink-0 rounded-lg overflow-hidden border border-white/10 bg-slate-950 flex items-center justify-center">
-                                                  {item[itemKey] ? (
-                                                    <img src={item[itemKey]} alt="Preview" className="h-full w-full object-cover" />
-                                                  ) : (
-                                                    <ImageIcon className="h-4 w-4 text-slate-600" />
-                                                  )}
-                                                </div>
-                                                <div className="flex-1 min-w-0">
-                                                  <input
-                                                    type="text"
-                                                    value={item[itemKey] || ''}
-                                                    onChange={(e) => {
-                                                      const updated = [...val]
-                                                      updated[idx] = { ...item, [itemKey]: e.target.value }
-                                                      updateSectionValue(sectionId, key, updated)
-                                                    }}
-                                                    className="w-full rounded-lg border border-white/10 bg-iite-dark/60 px-3 py-1.5 text-xs text-white truncate"
-                                                  />
-                                                </div>
-                                                <label className="inline-flex items-center gap-1 bg-white/5 border border-white/10 hover:bg-white/10 text-white rounded-lg px-2.5 py-1.5 cursor-pointer text-[10px] font-bold transition">
-                                                  <Upload className="h-3 w-3" />
-                                                  {uploadingImageKey === `${path.join('.')}.${idx}.${itemKey}` ? 'Uploading...' : 'Pilih File'}
-                                                  <input
-                                                    type="file"
-                                                    accept="image/*"
-                                                    className="hidden"
-                                                    onChange={(e) => handleImageUpload(e, path, idx, itemKey)}
-                                                  />
-                                                </label>
-                                              </div>
-                                            </div>
-                                          )
-                                        }
-
-                                        return (
-                                          <div key={itemKey} className={isTextArea ? "sm:col-span-2" : ""}>
-                                            <label className="text-[10px] uppercase font-bold text-slate-400 block mb-1">{fieldLabel}</label>
-                                            {isTextArea ? (
-                                              <textarea
-                                                rows={2}
-                                                value={item[itemKey] || ''}
-                                                onChange={(e) => {
-                                                  const updated = [...val]
-                                                  updated[idx] = { ...item, [itemKey]: e.target.value }
-                                                  updateSectionValue(sectionId, key, updated)
-                                                }}
-                                                className="w-full rounded-lg border border-white/10 bg-iite-dark/60 px-3 py-1.5 text-xs text-white"
-                                              />
-                                            ) : (
-                                              <input
-                                                type="text"
-                                                value={item[itemKey] || ''}
-                                                onChange={(e) => {
-                                                  const updated = [...val]
-                                                  updated[idx] = { ...item, [itemKey]: e.target.value }
-                                                  updateSectionValue(sectionId, key, updated)
-                                                }}
-                                                className="w-full rounded-lg border border-white/10 bg-iite-dark/60 px-3 py-1.5 text-xs text-white"
-                                              />
-                                            )}
-                                          </div>
-                                        )
-                                      })}
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                      {Object.keys(objItem).map((itemProp) => (
+                                        <div key={itemProp}>
+                                          <label className="text-[10px] font-bold uppercase text-slate-500 block mb-1">{formatFieldName(itemProp)}</label>
+                                          <input
+                                            type="text"
+                                            value={objItem[itemProp] || ''}
+                                            onChange={(e) => {
+                                              const updated = [...fieldValue]
+                                              updated[idx] = { ...objItem, [itemProp]: e.target.value }
+                                              updateSectionValue(secId, fieldKey, updated)
+                                            }}
+                                            className="w-full rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-800"
+                                          />
+                                        </div>
+                                      ))}
                                     </div>
                                   </div>
                                 ))}
@@ -2005,42 +1710,41 @@ export default function AdminPage({ theme }) {
                         return null
                       })}
                     </div>
-                  )}
-                </div>
-              )
-            })}
-          </div>
-        )}
-      </main>
+                  </div>
+                )
+              })}
+            </div>
+          )}
+        </main>
+      </div>
 
-      {/* Confirmation Reset Modal */}
+      {/* CONFIRM RESET MODAL */}
       {showConfirmReset && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-          <div className="max-w-md w-full rounded-3xl border border-white/10 bg-iite-dark/95 p-6 shadow-2xl backdrop-blur-xl">
-            <h2 className="text-lg font-bold text-white flex items-center gap-2">
-              <RotateCcw className="h-5 w-5 text-rose-500" />
-              Reset Konten ke Bawaan?
-            </h2>
-            <p className="mt-3 text-sm text-slate-300">
-              Apakah Anda yakin ingin membatalkan semua perubahan dan mengembalikan seluruh isi website ke teks bawaan pabrik? Tindakan ini tidak bisa dibatalkan.
-            </p>
-            <div className="mt-6 flex justify-end gap-3">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-sm p-4">
+          <div className="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl space-y-4">
+            <h3 className="font-bold text-slate-900 text-base flex items-center gap-2 text-rose-600">
+              <AlertCircle className="h-5 w-5" />
+              Reset Database ke Bawaan Pabrik?
+            </h3>
+            <p className="text-xs text-slate-600 leading-relaxed">
+              Tindakan ini akan mengembalikan seluruh teks, informasi acara, dan daftar poster ke data bawaan awal. Seluruh perubahan yang belum disimpan akan terhapus.
+            </p>            <div className="flex justify-end gap-2 pt-2">
               <button
                 onClick={() => setShowConfirmReset(false)}
-                className="rounded-xl border border-white/10 px-4 py-2 text-xs font-semibold text-slate-400 hover:text-white"
+                className="px-4 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-600 hover:bg-slate-100"
               >
                 Batal
               </button>
               <button
                 onClick={handleReset}
-                className="rounded-xl bg-rose-500 px-4 py-2 text-xs font-semibold text-white hover:bg-rose-600"
+                className="px-4 py-2 rounded-xl bg-rose-600 text-xs font-bold text-white hover:bg-rose-700 shadow-md shadow-rose-200"
               >
-                Reset Sekarang
+                Ya, Reset Sekarang
               </button>
             </div>
           </div>
         </div>
       )}
     </div>
-  );
+  )
 }
