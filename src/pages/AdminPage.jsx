@@ -244,6 +244,14 @@ const SIDEBAR_GROUPS = [
         sections: ['competition']
       },
       {
+        id: 'proceeding',
+        title: 'Poster & Proceeding',
+        desc: 'Kelola galeri poster, deskripsi expo, biaya pendaftaran, dan narahubung.',
+        icon: ImageIcon,
+        badge: 'Expo',
+        sections: ['proceeding']
+      },
+      {
         id: 'seminar',
         title: 'Seminar Internasional',
         desc: 'Atur keynote speakers, sub-tema, biaya, dan rekening pembayaran.',
@@ -1531,12 +1539,12 @@ export default function AdminPage() {
             </div>
           )}
 
-          {/* SECTION 4: GENERIC FORM FOR ALL OTHER PAGES (Competition, Seminar, Greenyouth, MSME, Home, Nav/Footer) */}
-          {activeItem.sections && activeItem.id !== 'proceeding' && activeItem.id !== 'news' && (
+          {/* SECTION 4: GENERIC FORM FOR ALL OTHER PAGES (Competition, Proceeding, Seminar, Greenyouth, MSME, Home, Nav/Footer) */}
+          {activeItem.sections && activeItem.id !== 'news' && (
             <div className="space-y-6">
               {activeItem.sections.map((secId) => {
                 const secPath = SECTION_PATH_MAP[secId]
-                const sectionData = getNestedValue(editableTranslations[selectedLang], secPath)
+                const sectionData = getNestedValue(editableTranslations?.[selectedLang], secPath) || getNestedValue(editableTranslations?.en, secPath) || getNestedValue(editableTranslations?.id, secPath)
                 if (!sectionData) return null
 
                 return (
