@@ -1,9 +1,21 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Newspaper, Search, Calendar, Tag, ArrowRight, X } from 'lucide-react'
 import { useTranslation } from '../i18n'
 import PageLayout from '../components/PageLayout'
 
+function generateSlug(text) {
+  return (text || '')
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w\-]+/g, '')
+    .replace(/\-\-+/g, '-')
+}
+
 export default function NewsPage({ theme }) {
+  const navigate = useNavigate()
   const t = useTranslation()
   const p = t.pages.news
   const [selectedCategory, setSelectedCategory] = useState(null)
@@ -147,7 +159,7 @@ export default function NewsPage({ theme }) {
                     <article
                       key={i}
                       className="group cursor-pointer rounded-[24px] border border-white/10 bg-white/[0.04] overflow-hidden backdrop-blur-sm transition duration-500 hover:-translate-y-1 hover:border-iite-cyan/30 hover:bg-white/[0.08]"
-                      onClick={() => setSelectedArticle(article)}
+                      onClick={() => navigate(`/news/${article.slug || generateSlug(article.title)}`)}
                     >
                       {/* Thumbnail */}
                       <div className="relative h-48 overflow-hidden">

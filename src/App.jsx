@@ -10,6 +10,7 @@ import InternationalSeminarPage from './pages/InternationalSeminarPage'
 import GreenYouthPage from './pages/GreenYouthPage'
 import MSMEPage from './pages/MSMEPage'
 import NewsPage from './pages/NewsPage'
+import NewsDetailPage from './pages/NewsDetailPage'
 import AdminPage from './pages/AdminPage'
 import VantaNetBackground from './components/VantaNetBackground'
 
@@ -82,6 +83,7 @@ function App() {
           <Route path="/greenyouth" element={<GreenYouthPage theme={theme} />} />
           <Route path="/msme" element={<MSMEPage theme={theme} />} />
           <Route path="/news" element={<NewsPage theme={theme} />} />
+          <Route path="/news/:slug" element={<NewsDetailPage theme={theme} />} />
           <Route path="/admin" element={<AdminPage theme={theme} />} />
         </Routes>
         {location.pathname !== '/admin' && <Footer theme={theme} />}
