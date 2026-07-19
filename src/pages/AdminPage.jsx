@@ -388,7 +388,7 @@ export default function AdminPage() {
 
   const { translations, updateTranslations, resetTranslations } = useLanguage()
 
-  const [selectedLang, setSelectedLang] = useState('id')
+  const [selectedLang, setSelectedLang] = useState('en')
   const [activeItem, setActiveItem] = useState(SIDEBAR_GROUPS[0].items[0]) // default: overview
   const [editableTranslations, setEditableTranslations] = useState(null)
   
@@ -564,14 +564,14 @@ export default function AdminPage() {
 
   const updateSectionValue = (sectionId, key, value) => {
     const path = SECTION_PATH_MAP[sectionId]
-    const fullPath = [selectedLang, ...path, key]
-    const updated = setNestedValue(editableTranslations, fullPath, value)
+    let updated = setNestedValue(editableTranslations, ['en', ...path, key], value)
+    updated = setNestedValue(updated, ['id', ...path, key], value)
     setEditableTranslations(updated)
   }
 
   const addArrayItem = (sectionId, key, template) => {
     const path = SECTION_PATH_MAP[sectionId]
-    const arr = getNestedValue(editableTranslations[selectedLang], [...path, key]) || []
+    const arr = getNestedValue(editableTranslations.en || editableTranslations.id, [...path, key]) || []
     const updatedArr = [...arr, JSON.parse(JSON.stringify(template))]
     updateSectionValue(sectionId, key, updatedArr)
     showToast('Data baru berhasil ditambahkan')
@@ -579,7 +579,7 @@ export default function AdminPage() {
 
   const removeArrayItem = (sectionId, key, index) => {
     const path = SECTION_PATH_MAP[sectionId]
-    const arr = getNestedValue(editableTranslations[selectedLang], [...path, key]) || []
+    const arr = getNestedValue(editableTranslations.en || editableTranslations.id, [...path, key]) || []
     const updatedArr = arr.filter((_, i) => i !== index)
     updateSectionValue(sectionId, key, updatedArr)
     showToast('Item berhasil dihapus', 'warning')
@@ -587,7 +587,7 @@ export default function AdminPage() {
 
   const moveArrayItem = (sectionId, key, index, direction) => {
     const path = SECTION_PATH_MAP[sectionId]
-    const arr = [...(getNestedValue(editableTranslations[selectedLang], [...path, key]) || [])]
+    const arr = [...(getNestedValue(editableTranslations.en || editableTranslations.id, [...path, key]) || [])]
     if (direction === 'up' && index > 0) {
       const temp = arr[index]
       arr[index] = arr[index - 1]

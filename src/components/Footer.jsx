@@ -13,8 +13,8 @@ export default function Footer({ theme }) {
       }`}
     >
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-center text-center gap-2">
-        <p>{t.footer.copy1}</p>
-        {t.footer.copy2 && <p>{t.footer.copy2}</p>}
+        <p>{t?.footer?.copy1 || '© 2026 IITE 2026.'}</p>
+        {t?.footer?.copy2 && <p>{t.footer.copy2}</p>}
       </div>
     </footer>
   )
