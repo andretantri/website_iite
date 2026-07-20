@@ -543,8 +543,16 @@ export default function AdminPage() {
         method: 'POST',
         body: formData
       })
-      const data = await response.json()
-      if (data.success) {
+      
+      const responseText = await response.text()
+      let data
+      try {
+        data = JSON.parse(responseText)
+      } catch (pErr) {
+        throw new Error(`Server error HTTP ${response.status}: ${responseText.substring(0, 150)}`)
+      }
+
+      if (response.ok && data.success) {
         const targetPathEn = ['en', ...pathArray]
         const targetPathId = ['id', ...pathArray]
 
@@ -572,11 +580,14 @@ export default function AdminPage() {
         await persistChanges(updated)
         showToast('File gambar berhasil diunggah & disimpan permanen!')
       } else {
-        showToast('Gagal upload gambar: ' + data.error, 'danger')
+        const errMsg = data.error || `Server HTTP Status ${response.status}`
+        showToast('Gagal upload gambar: ' + errMsg, 'danger')
+        alert('Gagal Upload: ' + errMsg)
       }
     } catch (err) {
       console.error(err)
-      showToast('Gagal mengunggah file. Pastikan server aktif.', 'danger')
+      showToast('Gagal mengunggah file: ' + err.message, 'danger')
+      alert('Gagal Upload Gambar: ' + err.message)
     } finally {
       setUploadingImageKey(null)
     }
