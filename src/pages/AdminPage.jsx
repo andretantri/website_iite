@@ -1322,9 +1322,11 @@ export default function AdminPage() {
                                   if (data.success) {
                                     setPosterForm(prev => ({ ...prev, image: data.url }))
                                     showToast('Gambar poster berhasil diunggah!')
+                                  } else {
+                                    showToast('Gagal upload gambar: ' + (data.error || 'Terjadi kesalahan pada server'), 'danger')
                                   }
                                 } catch (err) {
-                                  showToast('Gagal upload gambar', 'danger')
+                                  showToast('Gagal upload gambar. Pastikan server aktif.', 'danger')
                                 }
                               }}
                             />
@@ -1522,9 +1524,11 @@ export default function AdminPage() {
                                         if (data.success) {
                                           setArticleForm(prev => ({ ...prev, image: data.url }))
                                           showToast('Gambar utama berhasil diunggah!')
+                                        } else {
+                                          showToast('Gagal upload gambar utama: ' + (data.error || 'Terjadi kesalahan pada server'), 'danger')
                                         }
                                       } catch (err) {
-                                        showToast('Gagal upload gambar', 'danger')
+                                        showToast('Gagal upload gambar utama. Pastikan server aktif.', 'danger')
                                       }
                                     }}
                                   />
@@ -1636,9 +1640,11 @@ export default function AdminPage() {
                                           additionalImages: [...(prev.additionalImages || []), data.url]
                                         }))
                                         showToast('Gambar tambahan berhasil ditambahkan!')
+                                      } else {
+                                        showToast('Gagal upload gambar tambahan: ' + (data.error || 'Terjadi kesalahan pada server'), 'danger')
                                       }
                                     } catch (err) {
-                                      showToast('Gagal upload gambar tambahan', 'danger')
+                                      showToast('Gagal upload gambar tambahan. Pastikan server aktif.', 'danger')
                                     }
                                   }}
                                 />
