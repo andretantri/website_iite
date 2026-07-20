@@ -29,10 +29,39 @@ if ($file['error'] !== UPLOAD_ERR_OK) {
     exit;
 }
 
-// Create uploads directory if not exists (moves up one directory from 'api' to root dist/public folder)
-$uploadsDir = dirname(__DIR__) . '/uploads';
-if (!file_exists($uploadsDir)) {
-    @mkdir($uploadsDir, 0755, true);
+// Target locations for uploads
+$primaryUploadsDir = dirname(__DIR__) . '/uploads';
+$fallbackUploadsDir = __DIR__ . '/uploads';
+
+$uploadsDir = null;
+$webPathPrefix = '/uploads/';
+
+if (!file_exists($primaryUploadsDir)) {
+    if (@mkdir($primaryUploadsDir, 0777, true)) {
+        $uploadsDir = $primaryUploadsDir;
+    }
+} else if (is_writable($primaryUploadsDir)) {
+    $uploadsDir = $primaryUploadsDir;
+}
+
+if (!$uploadsDir) {
+    if (!file_exists($fallbackUploadsDir)) {
+        @mkdir($fallbackUploadsDir, 0777, true);
+    }
+    if (file_exists($fallbackUploadsDir) && is_writable($fallbackUploadsDir)) {
+        $uploadsDir = $fallbackUploadsDir;
+        $webPathPrefix = '/api/uploads/';
+    }
+}
+
+if (!$uploadsDir || !is_writable($uploadsDir)) {
+    http_response_code(500);
+    header('Content-Type: application/json');
+    echo json_encode([
+        'success' => false,
+        'error' => 'Folder uploads gagal dibuat / ditulisi. Mohon berikan izin chmod 777 atau 755 pada folder public / dist di server hosting Anda.'
+    ]);
+    exit;
 }
 
 // Generate unique clean name
@@ -44,7 +73,7 @@ if (@move_uploaded_file($file['tmp_name'], $targetPath)) {
     header('Content-Type: application/json');
     echo json_encode([
         'success' => true,
-        'url' => '/uploads/' . $cleanName,
+        'url' => $webPathPrefix . $cleanName,
         'message' => 'Image uploaded successfully!'
     ]);
 } else {
@@ -52,6 +81,6 @@ if (@move_uploaded_file($file['tmp_name'], $targetPath)) {
     header('Content-Type: application/json');
     echo json_encode([
         'success' => false, 
-        'error' => 'Failed to move uploaded file. Check folder write permissions on server.'
+        'error' => 'Gagal memindahkan file ke ' . $uploadsDir . '. Mohon periksa izin penulisan (write permission) folder di hosting.'
     ]);
 }
