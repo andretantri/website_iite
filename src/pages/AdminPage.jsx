@@ -399,7 +399,7 @@ export default function AdminPage() {
   const [selectedLang, setSelectedLang] = useState('en')
   const [activeItem, setActiveItem] = useState(SIDEBAR_GROUPS[0].items[0]) // default: overview
   const [editableTranslations, setEditableTranslations] = useState(null)
-  
+
   const [toast, setToast] = useState(null)
   const [showConfirmReset, setShowConfirmReset] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
@@ -491,7 +491,7 @@ export default function AdminPage() {
         body: JSON.stringify(editableTranslations)
       })
       const result = await res.json()
-      
+
       if (result.success) {
         showToast('Perubahan berhasil disimpan permanen ke database!')
       } else {
@@ -510,7 +510,7 @@ export default function AdminPage() {
       resetTranslations()
       setEditableTranslations(JSON.parse(JSON.stringify(defaultTranslations)))
       setShowConfirmReset(false)
-      
+
       const endpoint = import.meta.env.DEV ? '/api/save-translations' : '/api/save-translations.php'
       await fetch(endpoint, {
         method: 'POST',
@@ -543,7 +543,7 @@ export default function AdminPage() {
         method: 'POST',
         body: formData
       })
-      
+
       const responseText = await response.text()
       let data
       try {
@@ -575,7 +575,7 @@ export default function AdminPage() {
 
         let updated = setNestedValue(editableTranslations, targetPathEn, currentValEn)
         updated = setNestedValue(updated, targetPathId, currentValId)
-        
+
         setEditableTranslations(updated)
         await persistChanges(updated)
         showToast('File gambar berhasil diunggah & disimpan permanen!')
@@ -640,7 +640,7 @@ export default function AdminPage() {
     const idArticles = getNestedValue(editableTranslations, ['id', ...path]) || []
     const enArticles = getNestedValue(editableTranslations, ['en', ...path]) || []
     const currentList = getNestedValue(editableTranslations[selectedLang], path) || (idArticles.length > 0 ? idArticles : enArticles)
-    
+
     let updatedArticles = [...currentList]
     if (editingArticleIndex !== null) {
       updatedArticles[editingArticleIndex] = articleForm
@@ -699,7 +699,7 @@ export default function AdminPage() {
     const path = SECTION_PATH_MAP['news_articles']
     const idArticles = getNestedValue(editableTranslations, ['id', ...path]) || []
     const updatedArticles = idArticles.filter((_, i) => i !== index)
-    
+
     let updated = setNestedValue(editableTranslations, ['id', ...path], updatedArticles)
     updated = setNestedValue(updated, ['en', ...path], updatedArticles)
 
@@ -783,7 +783,7 @@ export default function AdminPage() {
     const path = ['pages', 'proceeding', 'posters']
     const idPosters = getNestedValue(editableTranslations, ['id', ...path]) || []
     const updatedPosters = idPosters.filter((_, i) => i !== index)
-    
+
     let updated = setNestedValue(editableTranslations, ['id', ...path], updatedPosters)
     updated = setNestedValue(updated, ['en', ...path], updatedPosters)
 
@@ -865,12 +865,11 @@ export default function AdminPage() {
     <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col">
       {/* Toast Alert */}
       {toast && (
-        <div className={`fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl px-5 py-4 text-sm font-semibold shadow-2xl transition-all duration-300 ${
-          toast.type === 'success' ? 'bg-emerald-600 text-white' :
+        <div className={`fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl px-5 py-4 text-sm font-semibold shadow-2xl transition-all duration-300 ${toast.type === 'success' ? 'bg-emerald-600 text-white' :
           toast.type === 'warning' ? 'bg-amber-500 text-white' :
-          toast.type === 'info' ? 'bg-indigo-600 text-white' :
-          'bg-rose-600 text-white'
-        }`}>
+            toast.type === 'info' ? 'bg-indigo-600 text-white' :
+              'bg-rose-600 text-white'
+          }`}>
           {toast.type === 'success' && <CheckCircle className="h-5 w-5" />}
           {toast.type === 'warning' && <AlertCircle className="h-5 w-5" />}
           {toast.type === 'info' && <Settings className="h-5 w-5" />}
@@ -953,20 +952,18 @@ export default function AdminPage() {
                       <button
                         key={item.id}
                         onClick={() => setActiveItem(item)}
-                        className={`w-full flex items-center justify-between rounded-xl px-3.5 py-2.5 text-left text-xs font-semibold transition ${
-                          isActive
-                            ? 'bg-indigo-50 text-indigo-600 border border-indigo-100 shadow-sm'
-                            : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
-                        }`}
+                        className={`w-full flex items-center justify-between rounded-xl px-3.5 py-2.5 text-left text-xs font-semibold transition ${isActive
+                          ? 'bg-indigo-50 text-indigo-600 border border-indigo-100 shadow-sm'
+                          : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                          }`}
                       >
                         <div className="flex items-center gap-3 truncate">
                           <ItemIcon className={`h-4 w-4 shrink-0 ${isActive ? 'text-indigo-600' : 'text-slate-400'}`} />
                           <span className="truncate">{item.title}</span>
                         </div>
                         {item.badge && (
-                          <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold uppercase ${
-                            isActive ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-500'
-                          }`}>
+                          <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold uppercase ${isActive ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-500'
+                            }`}>
                             {item.badge}
                           </span>
                         )}
@@ -1438,9 +1435,8 @@ export default function AdminPage() {
                             <td className="py-3 px-3 font-semibold text-indigo-600">{article.category || 'Umum'}</td>
                             <td className="py-3 px-3 text-slate-500">{article.date}</td>
                             <td className="py-3 px-3">
-                              <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold ${
-                                article.isPublished !== false ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-slate-100 text-slate-500'
-                              }`}>
+                              <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold ${article.isPublished !== false ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-slate-100 text-slate-500'
+                                }`}>
                                 {article.isPublished !== false ? 'Terbit' : 'Draft'}
                               </span>
                             </td>
@@ -1557,14 +1553,12 @@ export default function AdminPage() {
                             <button
                               type="button"
                               onClick={() => setArticleForm(prev => ({ ...prev, isPublished: !prev.isPublished }))}
-                              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                                articleForm.isPublished ? 'bg-indigo-600' : 'bg-slate-300'
-                              }`}
+                              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${articleForm.isPublished ? 'bg-indigo-600' : 'bg-slate-300'
+                                }`}
                             >
                               <span
-                                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                                  articleForm.isPublished ? 'translate-x-6' : 'translate-x-1'
-                                }`}
+                                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${articleForm.isPublished ? 'translate-x-6' : 'translate-x-1'
+                                  }`}
                               />
                             </button>
                           </div>

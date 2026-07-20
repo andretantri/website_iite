@@ -28,7 +28,7 @@ defined('DB_PASS') || define('DB_PASS', getenv('DB_PASSWORD') ?: getenv('DB_PASS
 // Database Name
 defined('DB_NAME') || define('DB_NAME', getenv('DB_DATABASE') ?: getenv('DB_NAME') ?: 'u601210817_iite_website');
 
-// Enable MySQL automatically if database credentials are present
-$hasDbConfig = (DB_USER !== '' && DB_NAME !== '');
+// Enable MySQL automatically ONLY if database password or explicit DB_PASS is provided
+$hasDbConfig = (!empty(getenv('DB_PASSWORD')) || !empty(getenv('DB_PASS')) || (defined('DB_PASS') && DB_PASS !== ''));
 defined('USE_MYSQL') || define('USE_MYSQL', $hasDbConfig);
 
