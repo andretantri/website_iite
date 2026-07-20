@@ -156,7 +156,7 @@ export default function HeroSection() {
               <Sparkles className="h-6 w-6 text-iite-cyan" />
               <div>
                 <p className="text-sm uppercase tracking-[0.2em] text-slate-400">{t.hero.organizer}</p>
-                <p className="mt-1 font-semibold text-white">Politeknik Indonusa Surakarta</p>
+                <p className="mt-1 font-semibold text-white">{t.hero.organizerName || 'Politeknik Indonusa Surakarta'}</p>
               </div>
             </div>
           </div>
