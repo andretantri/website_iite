@@ -142,14 +142,14 @@ export default function HeroSection() {
               <CalendarDays className="h-6 w-6 text-iite-cyan" />
               <div>
                 <p className="text-sm uppercase tracking-[0.2em] text-slate-400">{t.hero.time}</p>
-                <p className="mt-1 font-semibold text-white">22 - 23 Juli 2026</p>
+                <p className="mt-1 font-semibold text-white">{t.hero.timeValue || '22 - 23 Juli 2026'}</p>
               </div>
             </div>
             <div className="flex items-start gap-4 rounded-3xl border border-white/10 bg-white/5 p-4">
               <Globe2 className="h-6 w-6 text-iite-green" />
               <div>
                 <p className="text-sm uppercase tracking-[0.2em] text-slate-400">{t.hero.location}</p>
-                <p className="mt-1 font-semibold text-white">Online (Zoom Hybrid)</p>
+                <p className="mt-1 font-semibold text-white">{t.hero.locationValue || 'Online (Zoom Hybrid)'}</p>
               </div>
             </div>
             <div className="flex items-start gap-4 rounded-3xl border border-white/10 bg-white/5 p-4">
