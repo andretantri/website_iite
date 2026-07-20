@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
-import { Newspaper, Calendar, Tag, ArrowLeft, Share2, Eye, User, Image as ImageIcon } from 'lucide-react'
+import { Newspaper, Calendar, Tag, ArrowLeft, Share2, Eye, User, Image as ImageIcon, X, Maximize2 } from 'lucide-react'
 import { useTranslation } from '../i18n'
 import PageLayout from '../components/PageLayout'
 
@@ -19,7 +19,7 @@ export default function NewsDetailPage({ theme }) {
   const navigate = useNavigate()
   const t = useTranslation()
   const p = t.pages.news
-  const [selectedGalleryImg, setSelectedGalleryImg] = useState(null)
+  const [previewImage, setPreviewImage] = useState(null)
 
   // Find article by slug or index
   const article = p.articles.find(a => (a.slug || generateSlug(a.title)) === slug || a.title === slug) || p.articles[0]
@@ -55,14 +55,33 @@ export default function NewsDetailPage({ theme }) {
     <PageLayout theme={theme} accentColor="cyan">
       {(accent) => (
         <>
-          {/* Lightbox for Gallery Image */}
-          {selectedGalleryImg && (
+          {/* Lightbox for Full-screen Image Preview */}
+          {previewImage && (
             <div
-              className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 cursor-pointer backdrop-blur-md"
-              onClick={() => setSelectedGalleryImg(null)}
+              className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/90 p-4 sm:p-8 backdrop-blur-md animate-fade-in cursor-zoom-out"
+              onClick={() => setPreviewImage(null)}
             >
-              <div className="relative max-w-4xl max-h-[90vh] overflow-hidden rounded-2xl">
-                <img src={selectedGalleryImg} alt="Gallery view" className="max-h-[85vh] w-auto object-contain rounded-2xl" />
+              <button
+                className="absolute top-6 right-6 inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20 hover:scale-110 z-50"
+                onClick={() => setPreviewImage(null)}
+                aria-label="Tutup Preview"
+              >
+                <X className="h-6 w-6" />
+              </button>
+              <div
+                className="relative max-w-5xl max-h-[85vh] overflow-hidden rounded-2xl border border-white/20 shadow-2xl bg-iite-dark/90 p-2 cursor-default"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <img
+                  src={typeof previewImage === 'string' ? previewImage : previewImage.src}
+                  alt={typeof previewImage === 'string' ? 'Preview Gambar' : previewImage.alt || 'Preview Gambar'}
+                  className="max-h-[80vh] w-auto max-w-full object-contain rounded-xl"
+                />
+                {typeof previewImage === 'object' && previewImage.alt && (
+                  <p className="text-center text-xs text-slate-300 py-2 font-medium px-4">
+                    {previewImage.alt}
+                  </p>
+                )}
               </div>
             </div>
           )}
@@ -127,15 +146,23 @@ export default function NewsDetailPage({ theme }) {
             </div>
           </section>
 
-          {/* Main Featured Image */}
+          {/* Main Featured Image - Clickable for Fullscreen Preview */}
           <section className="fade-up px-4 py-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-5xl">
-              <div className="overflow-hidden rounded-[28px] border border-white/10 shadow-2xl bg-iite-dark">
+              <div
+                className="overflow-hidden rounded-[28px] border border-white/10 shadow-2xl bg-iite-dark cursor-pointer group relative"
+                onClick={() => setPreviewImage({ src: article.image || '/images/conference-poster.png', alt: article.title })}
+                title="Klik untuk memperbesar gambar"
+              >
                 <img
                   src={article.image || '/images/conference-poster.png'}
                   alt={article.title}
-                  className="w-full max-h-[520px] object-cover"
+                  className="w-full max-h-[520px] object-cover transition duration-500 group-hover:scale-105"
                 />
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-2 text-white font-bold text-sm bg-gradient-to-t from-black/70 via-transparent to-transparent">
+                  <Maximize2 className="h-6 w-6 text-iite-cyan" />
+                  <span>Klik untuk Memperbesar Preview Gambar</span>
+                </div>
               </div>
             </div>
           </section>
@@ -151,7 +178,7 @@ export default function NewsDetailPage({ theme }) {
                   {article.additionalImages.map((imgUrl, i) => (
                     <div
                       key={i}
-                      onClick={() => setSelectedGalleryImg(imgUrl)}
+                      onClick={() => setPreviewImage({ src: imgUrl, alt: `${article.title} - Foto ${i + 1}` })}
                       className="group cursor-pointer aspect-video overflow-hidden rounded-xl border border-white/10 bg-white/5 hover:border-iite-cyan/50 transition relative shadow"
                     >
                       <img src={imgUrl} alt={`Galeri ${i + 1}`} className="h-full w-full object-cover transition duration-300 group-hover:scale-105" />
@@ -165,13 +192,18 @@ export default function NewsDetailPage({ theme }) {
             </section>
           )}
 
-          {/* Full Article Content */}
+          {/* Full Article Content - Clickable HTML embedded images */}
           <section className="fade-up px-4 py-8 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-5xl">
               <div className="rounded-[32px] border border-white/10 bg-iite-dark/80 p-8 sm:p-12 shadow-xl backdrop-blur-xl">
                 <div
-                  className="prose prose-invert max-w-none text-slate-200 leading-relaxed text-base sm:text-lg space-y-6 news-content-html"
+                  className="prose prose-invert max-w-none text-slate-200 leading-relaxed text-base sm:text-lg space-y-6 news-content-html [&_img]:cursor-pointer [&_img]:rounded-2xl [&_img]:border [&_img]:border-white/10 [&_img]:transition [&_img]:duration-300 hover:[&_img]:opacity-95 hover:[&_img]:scale-[1.01]"
                   dangerouslySetInnerHTML={{ __html: article.content || article.summary }}
+                  onClick={(e) => {
+                    if (e.target.tagName === 'IMG') {
+                      setPreviewImage({ src: e.target.src, alt: e.target.alt || article.title })
+                    }
+                  }}
                 />
               </div>
             </div>
