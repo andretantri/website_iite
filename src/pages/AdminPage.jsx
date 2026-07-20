@@ -545,20 +545,32 @@ export default function AdminPage() {
       })
       const data = await response.json()
       if (data.success) {
-        const targetPath = [selectedLang, ...pathArray]
-        let currentSectionVal = getNestedValue(editableTranslations, targetPath)
-        
+        const targetPathEn = ['en', ...pathArray]
+        const targetPathId = ['id', ...pathArray]
+
+        let currentValEn = getNestedValue(editableTranslations, targetPathEn) || {}
+        let currentValId = getNestedValue(editableTranslations, targetPathId) || {}
+
+        currentValEn = JSON.parse(JSON.stringify(currentValEn))
+        currentValId = JSON.parse(JSON.stringify(currentValId))
+
         if (typeof indexOrKey === 'number') {
-          currentSectionVal[indexOrKey][fieldName] = data.url
+          if (currentValEn[indexOrKey]) currentValEn[indexOrKey][fieldName] = data.url
+          if (currentValId[indexOrKey]) currentValId[indexOrKey][fieldName] = data.url
         } else if (indexOrKey) {
-          currentSectionVal[indexOrKey] = data.url
+          currentValEn[indexOrKey] = data.url
+          currentValId[indexOrKey] = data.url
         } else {
-          currentSectionVal[fieldName] = data.url
+          currentValEn[fieldName] = data.url
+          currentValId[fieldName] = data.url
         }
 
-        const updated = setNestedValue(editableTranslations, targetPath, currentSectionVal)
+        let updated = setNestedValue(editableTranslations, targetPathEn, currentValEn)
+        updated = setNestedValue(updated, targetPathId, currentValId)
+        
         setEditableTranslations(updated)
-        showToast('File gambar berhasil diunggah!')
+        await persistChanges(updated)
+        showToast('File gambar berhasil diunggah & disimpan permanen!')
       } else {
         showToast('Gagal upload gambar: ' + data.error, 'danger')
       }
