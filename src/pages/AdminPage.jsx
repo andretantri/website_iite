@@ -587,6 +587,8 @@ export default function AdminPage() {
     let updated = setNestedValue(editableTranslations, ['en', ...path, key], value)
     updated = setNestedValue(updated, ['id', ...path, key], value)
     setEditableTranslations(updated)
+    updateTranslations(updated)
+    persistChanges(updated)
   }
 
   const addArrayItem = (sectionId, key, template) => {
