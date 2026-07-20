@@ -1,1419 +1,1347 @@
 {
-  "version": "2026-07-20-v1",
-  "id": {
-    "nav": {
-      "home": "Home",
-      "about": "Tentang",
-      "activities": "Kegiatan",
-      "timeline": "Timeline",
-      "contact": "Kontak",
-      "competition": "Kompetisi",
-      "proceeding": "Poster",
-      "seminar": "Prosiding",
-      "greenyouth": "Pemuda Hijau",
-      "msme": "UMKM",
-      "news": "Berita",
-      "adminLoginBtn": "Login Admin",
-      "languageLabel": "EN",
-      "contactBtn": "Hubungi Kami"
-    },
-    "hero": {
-      "badge": "Pameran Inovasi Teknologi Internasional",
-      "description": "\"Innovative products from the green industry to address future skills, social, and demographic challenges.\" Bergabung dalam acara hibrida yang menghubungkan ide teknologi hijau global.",
-      "time": "Waktu",
-      "timeValue": "22 - 23 Juli 2026",
-      "location": "Lokasi",
-      "locationValue": "Online (Zoom Hybrid)",
-      "organizer": "Penyelenggara",
-      "organizerName": "Politeknik Indonusa Surakarta",
-      "summary": "Aksi inovasi hijau, seminar internasional, kompetisi produk, poster akademik, dan penghargaan MSMEs di satu platform digital futuristik.",
-      "cta": "Daftar Sekarang",
-      "countdown": "Countdown menuju IITE 2026",
-      "speakersTag": "Pembicara Konferensi",
-      "speakersTitle": "Pembicara konferensi internasional",
-      "clickToEnlarge": "Klik untuk memperbesar",
-      "registrationFeeTag": "Biaya Pendaftaran",
-      "registrationFeeTitle": "Biaya Pendaftaran Call Paper",
-      "registrationFees": [
-        {
-          "label": "Biaya Pendaftaran",
-          "price": "40$ USD (IDR 800.000)"
+    "version": "2026-07-20-v1",
+    "id": {
+        "nav": {
+            "home": "Home",
+            "about": "Tentang",
+            "activities": "Kegiatan",
+            "timeline": "Timeline",
+            "contact": "Kontak",
+            "competition": "Kompetisi",
+            "proceeding": "Poster",
+            "seminar": "Prosiding",
+            "greenyouth": "Pemuda Hijau",
+            "msme": "UMKM",
+            "news": "Berita",
+            "adminLoginBtn": "Login Admin",
+            "languageLabel": "EN",
+            "contactBtn": "Hubungi Kami"
+        },
+        "hero": {
+            "badge": "Pameran Inovasi Teknologi Internasional",
+            "description": "\"Innovative products from the green industry to address future skills, social, and demographic challenges.\" Bergabung dalam acara hibrida yang menghubungkan ide teknologi hijau global.",
+            "time": "Waktu",
+            "location": "Lokasi",
+            "organizer": "Penyelenggara",
+            "summary": "Aksi inovasi hijau, seminar internasional, kompetisi produk, poster akademik, dan penghargaan MSMEs di satu platform digital futuristik.",
+            "cta": "Daftar Sekarang",
+            "countdown": "Countdown menuju IITE 2026",
+            "speakersTag": "Pembicara Konferensi",
+            "speakersTitle": "Pembicara konferensi internasional",
+            "clickToEnlarge": "Klik untuk memperbesar",
+            "registrationFeeTag": "Biaya Pendaftaran",
+            "registrationFeeTitle": "Biaya Pendaftaran Call Paper",
+            "registrationFees": [
+                {
+                    "label": "Biaya Pendaftaran",
+                    "price": "40$ USD (IDR 800.000)"
+                }
+            ],
+            "paymentTitle": "Pembayaran",
+            "payments": [
+                {
+                    "bank": "Mandiri",
+                    "acc": "1380018655162",
+                    "name": "a.n Yulita M"
+                },
+                {
+                    "bank": "Gopay",
+                    "acc": "0896-6726-0189",
+                    "name": "a.n Yulita M"
+                }
+            ],
+            "contactPerson": "Narahubung",
+            "contacts": [
+                {
+                    "name": "Resi",
+                    "phone": "0857-2771-3177"
+                }
+            ],
+            "sliderLabel": "Sorotan",
+            "sliderHeading": "Sampul acara dan agenda unggulan",
+            "slides": [
+                {
+                    "title": "Sorotan 1",
+                    "subtitle": "Seminar internasional dan panel diskusi teknologi hijau"
+                },
+                {
+                    "title": "Sorotan 2",
+                    "subtitle": "Kompetisi inovasi untuk generasi ready-for-future"
+                },
+                {
+                    "title": "Sorotan 3",
+                    "subtitle": "Pameran poster dan proceeding dari riset berkelanjutan"
+                }
+            ],
+            "posterImage": "/uploads/1784534232_WhatsApp_Image_2026-07-20_at_14.49.16__1_.jpeg"
+        },
+        "about": {
+            "tag": "Tentang Acara",
+            "heading": "Inovasi industri hijau untuk kompetensi dan tantangan masa depan",
+            "description": "IITE 2026 menghadirkan platform bagi inovator, akademisi, dan pelaku industri untuk memperlihatkan solusi ramah lingkungan yang relevan terhadap perubahan sosial, demografi, dan kebutuhan keterampilan masa depan.",
+            "programTitle": "Fokus Program",
+            "programText": "Menyatukan kegiatan kompetisi, seminar internasional, ekspose proceeding, dan penghargaan IKM untuk memperkuat ekosistem teknologi hijau yang inklusif dan berkelanjutan.",
+            "benefitTitle": "Manfaat Peserta",
+            "benefitText": "Peserta mendapatkan wawasan global, jaringan internasional, dan pengalaman digital hybrid untuk mempersiapkan diri dalam menghadapi tantangan demografis dan sosial di era industri hijau."
+        },
+        "activities": {
+            "tag": "Kegiatan Utama",
+            "heading": "Empat kategori acara yang mendukung ekosistem hijau",
+            "description": "Setiap kategori dirancang untuk menampilkan inovasi teknologi, hasil penelitian, dan pemberdayaan UMKM dengan semangat keberlanjutan.",
+            "cards": [
+                {
+                    "title": "Kompetisi Inovasi",
+                    "description": "Kompetisi produk inovatif berbasis industri hijau untuk solusi keterampilan masa depan dan tantangan sosial.",
+                    "accent": "cyan"
+                },
+                {
+                    "title": "Prosiding & Poster",
+                    "description": "Publikasi akademik dan poster penelitian yang memvisualisasikan strategi teknologi ramah lingkungan.",
+                    "accent": "emerald"
+                },
+                {
+                    "title": "Seminar Internasional",
+                    "description": "Sesi internasional dengan pembicara ahli untuk membahas tren teknologi hijau dan transformasi demografi.",
+                    "accent": "cyan"
+                },
+                {
+                    "title": "Penghargaan UMKM",
+                    "description": "Penghargaan untuk pelaku UMKM yang menunjukkan inovasi bisnis hijau dan dampak sosial di komunitas.",
+                    "accent": "emerald"
+                }
+            ]
+        },
+        "timeline": {
+            "tag": "Timeline",
+            "heading": "Fase pendaftaran dan acara",
+            "description": "Kalender kegiatan IITE 2026 yang membantu peserta merencanakan pendaftaran, persiapan, dan keikutsertaan pada acara utama.",
+            "milestones": [
+                {
+                    "label": "Pendaftaran dibuka",
+                    "date": "20 Maret 2026",
+                    "detail": "Registrasi peserta dan pengumpulan abstrak untuk seluruh kategori acara."
+                },
+                {
+                    "label": "Review proposal",
+                    "date": "April - Mei 2026",
+                    "detail": "Tim juri menilai inovasi, proposal poster, dan hasil proceeding secara objektif."
+                },
+                {
+                    "label": "Pengumuman finalis",
+                    "date": "Awal Juli 2026",
+                    "detail": "Peserta yang lolos akan dipersiapkan untuk presentasi dan seminar internasional."
+                },
+                {
+                    "label": "Acara utama",
+                    "date": "22 - 23 Juli 2026",
+                    "detail": "Sesi seminar, kompetisi, presentasi poster, dan pengumuman pemenang MSMEs Award."
+                }
+            ]
+        },
+        "contact": {
+            "tag": "Kontak",
+            "heading": "Hubungi Panitia IITE 2026",
+            "description": "Dapatkan informasi pendaftaran, panduan teknis, dan bantuan langsung dari tim penyelenggara acara.",
+            "address": "Alamat",
+            "phone": "Telepon",
+            "socialTitle": "Sosial Media",
+            "instagram": "Instagram: @iite2026",
+            "linkedin": "LinkedIn: Politeknik Indonusa Surakarta",
+            "zoom": "Zoom Hybrid Event Link akan diumumkan via email"
+        },
+        "footer": {
+            "copy1": "\u00a9 IITE 2026.",
+            "copy2": ""
+        },
+        "countdown": {
+            "title": "Hitung Mundur menuju IITE 2026",
+            "labels": [
+                "Hari",
+                "Jam",
+                "Menit",
+                "Detik"
+            ]
+        },
+        "home": {
+            "activitiesTag": "Kegiatan Utama",
+            "activitiesTitle": "Lima kegiatan unggulan IITE 2026",
+            "activitiesDesc": "Setiap kegiatan dirancang untuk menampilkan inovasi teknologi, hasil penelitian, dan pemberdayaan masyarakat dengan semangat keberlanjutan.",
+            "cards": {
+                "competition": {
+                    "title": "Kompetisi Inovasi",
+                    "desc": "Kompetisi produk inovatif berbasis industri hijau untuk solusi keterampilan masa depan dan tantangan sosial.",
+                    "cta": "Lihat Detail"
+                },
+                "proceeding": {
+                    "title": "Poster",
+                    "desc": "Publikasi akademik dan poster penelitian yang memvisualisasikan strategi teknologi ramah lingkungan.",
+                    "cta": "Lihat Detail"
+                },
+                "seminar": {
+                    "title": "Prosiding",
+                    "desc": "Prosiding internasional dengan pembicara ahli untuk membahas tren teknologi hijau dan transformasi demografi.",
+                    "cta": "Lihat Detail"
+                },
+                "greenyouth": {
+                    "title": "Program Pemuda Hijau",
+                    "desc": "Program pemberdayaan generasi muda dalam aksi nyata teknologi hijau dan keberlanjutan lingkungan.",
+                    "cta": "Lihat Detail"
+                },
+                "msme": {
+                    "title": "Penghargaan UMKM",
+                    "desc": "Penghargaan untuk pelaku UMKM yang menunjukkan inovasi bisnis hijau dan dampak sosial di komunitas.",
+                    "cta": "Lihat Detail"
+                },
+                "news": {
+                    "title": "Berita & Informasi",
+                    "desc": "Ikuti perkembangan terbaru seputar International Innovation Technology Expo 2026.",
+                    "cta": "Lihat Detail"
+                }
+            }
+        },
+        "pages": {
+            "backHome": "Kembali ke Beranda",
+            "competition": {
+                "badge": "Kompetisi Inovasi",
+                "title": "Kompetisi Inovasi",
+                "description": "Kompetisi produk inovatif berbasis industri hijau untuk solusi keterampilan masa depan dan tantangan sosial. Tunjukkan ide terbaik Anda di panggung internasional IITE 2026.",
+                "registerBtn": "Daftar Sekarang",
+                "categoriesTag": "Kategori",
+                "categoriesTitle": "Kategori kompetisi yang tersedia",
+                "categories": [
+                    {
+                        "title": "Farmasi, Kesehatan & Kedokteran",
+                        "desc": "Farmasi, Kesehatan, Kedokteran, dan Terapi Humanistik."
+                    },
+                    {
+                        "title": "Hospitality & Pariwisata",
+                        "desc": "Hospitality & Pariwisata, Kuliner & Makanan (Khusus Mahasiswa)."
+                    },
+                    {
+                        "title": "Teknik & TIK",
+                        "desc": "Teknik, Informasi, Komunikasi dan Teknologi (ICT)."
+                    },
+                    {
+                        "title": "Kewirausahaan",
+                        "desc": "Ekonomi, Bisnis, Manajemen, Pendidikan, Media, Desain, Periklanan, Seni, Penerbitan."
+                    }
+                ],
+                "feeTag": "Biaya Pendaftaran",
+                "feeTitle": "Biaya pendaftaran kompetisi",
+                "fees": [
+                    {
+                        "label": "Mahasiswa Indonesia",
+                        "price": "IDR 200.000,-"
+                    },
+                    {
+                        "label": "Siswa SMA/SMK",
+                        "price": "IDR 150.000,-"
+                    },
+                    {
+                        "label": "Mahasiswa Internasional",
+                        "price": "$ 15"
+                    }
+                ],
+                "paymentTitle": "Informasi Pembayaran",
+                "requirementsTag": "Persyaratan",
+                "requirementsTitle": "Syarat dan ketentuan peserta",
+                "requirements": [
+                    "Terbuka untuk mahasiswa dan profesional dari seluruh dunia",
+                    "Tim terdiri dari 2-4 anggota dengan satu pembimbing",
+                    "Proposal ditulis dalam Bahasa Inggris",
+                    "Produk harus berbasis industri hijau dan berkelanjutan",
+                    "Menyertakan video presentasi berdurasi maksimal 5 menit",
+                    "Belum pernah memenangkan kompetisi sejenis di tingkat internasional"
+                ],
+                "timelineTag": "Timeline",
+                "timelineTitle": "Jadwal penting kompetisi",
+                "timeline": [
+                    {
+                        "date": "July 26, 2026",
+                        "label": "Registration & Submission",
+                        "detail": "Participant registration and competition proposal submission."
+                    },
+                    {
+                        "date": "July 27, 2026",
+                        "label": "Selection Process",
+                        "detail": "Judges evaluate proposals and innovations objectively."
+                    },
+                    {
+                        "date": "July 27, 2026",
+                        "label": "Finalist Announcement",
+                        "detail": "Announcement of participants who advance to the final stage."
+                    },
+                    {
+                        "date": "July 28 - 29, 2026",
+                        "label": "PPT Presentation Submission",
+                        "detail": "Finalists submit their PPT presentation materials."
+                    },
+                    {
+                        "date": "July 30, 2026",
+                        "label": "Online Presentation",
+                        "detail": "Online presentation session for all finalists."
+                    },
+                    {
+                        "date": "July 30, 2026",
+                        "label": "Winner Announcement",
+                        "detail": "Announcement and awards ceremony for winners."
+                    }
+                ],
+                "cohostTag": "Co-Host",
+                "cohostTitle": "Informasi Co-Host",
+                "cohosts": [
+                    {
+                        "name": "A. Anditha",
+                        "phone": "+62 856-4703-9229"
+                    },
+                    {
+                        "name": "Diyan Sakti",
+                        "phone": "+62 856-4731-2008"
+                    }
+                ],
+                "posterImage": "/uploads/1784534198_WhatsApp_Image_2026-07-20_at_14.49.16.jpeg"
+            },
+            "proceeding": {
+                "badge": "Poster Prosiding",
+                "title": "Poster Prosiding",
+                "description": "Produk inovatif dari industri hijau untuk mengatasi tantangan keterampilan, sosial, dan demografi masa depan.",
+                "registerBtn": "Link Registrasi",
+                "categoriesTag": "Sub Tema",
+                "categoriesTitle": "Sub tema yang tersedia",
+                "categories": [
+                    {
+                        "title": "Farmasi, Kesehatan & Kedokteran",
+                        "desc": "Farmasi, Kesehatan, Kedokteran, dan Terapi Humanistik"
+                    },
+                    {
+                        "title": "Hospitality & Pariwisata",
+                        "desc": "Hospitality & Pariwisata, Kuliner & Makanan"
+                    },
+                    {
+                        "title": "Teknik & TIK",
+                        "desc": "Teknik, Informasi, Komunikasi dan Teknologi (ICT)"
+                    },
+                    {
+                        "title": "Kewirausahaan",
+                        "desc": "Ekonomi, Bisnis, Manajemen, Pendidikan, Media, Desain, Periklanan, Seni, Penerbitan"
+                    }
+                ],
+                "feeTag": "Biaya Pendaftaran",
+                "feeTitle": "Biaya pendaftaran proceeding poster",
+                "fees": [
+                    {
+                        "label": "Biaya pendaftaran per tim",
+                        "price": "IDR 100.000"
+                    }
+                ],
+                "paymentTitle": "Informasi Pembayaran",
+                "paymentDesc": "Pembayaran dapat dilakukan melalui nomor rekening yang tertera di Buku Panduan Poster Exp.",
+                "requirementsTag": "Persyaratan & Fasilitas",
+                "requirementsTitle": "Persyaratan peserta dan fasilitas",
+                "requirements": [
+                    "Terbuka untuk mahasiswa aktif dan dosen di program studi pendidikan tinggi",
+                    "Peserta dapat berupa individu atau tim hingga tiga orang",
+                    "Fasilitas: E-Sertifikat untuk Expo Terbaik",
+                    "Fasilitas: E-Sertifikat untuk seluruh Peserta Expo"
+                ],
+                "timelineTag": "Timeline",
+                "timelineTitle": "Jadwal penting",
+                "timeline": [
+                    {
+                        "date": "20 Maret - 10 Juli 2026",
+                        "label": "Registrasi",
+                        "detail": "Pendaftaran peserta"
+                    },
+                    {
+                        "date": "20 Maret - 10 Juli 2026",
+                        "label": "Pembayaran",
+                        "detail": "Periode pembayaran"
+                    },
+                    {
+                        "date": "20 Maret - 11 Juli 2026",
+                        "label": "Pengumpulan",
+                        "detail": "Pengumpulan poster"
+                    },
+                    {
+                        "date": "20 Maret - 20 Juli 2026",
+                        "label": "Koleksi Desain Poster",
+                        "detail": "Pengumpulan desain poster"
+                    },
+                    {
+                        "date": "22 - 23 Juli 2026",
+                        "label": "Poster Expo",
+                        "detail": "Pameran poster"
+                    }
+                ],
+                "contactsTag": "Narahubung",
+                "contactsTitle": "Informasi Lebih Lanjut",
+                "contacts": [
+                    {
+                        "name": "Dewandono Bayu Seto",
+                        "phone": "0895-3609-01699"
+                    },
+                    {
+                        "name": "Yulita Maulani",
+                        "phone": "0896-6726-0189"
+                    }
+                ],
+                "posterImage": "/uploads/1784534212_WhatsApp_Image_2026-07-20_at_14.49.15.jpeg",
+                "posters": [
+                    {
+                        "title": "Optimalisasi Panel Surya Pada Industri Hijau",
+                        "author": "Dr. Ahmad Fauzi - Universitas Indonesia",
+                        "desc": "Penelitian ini membahas mengenai sistem pelacakan otomatis panel surya guna mengoptimalkan konversi energi matahari di sektor manufaktur industri hijau.",
+                        "image": "/images/proceeding-poster.png"
+                    },
+                    {
+                        "title": "Sistem Informasi Geografis Pemetaan Sampah Plastik",
+                        "author": "Budi Setiawan, M.T. - Politeknik Indonusa Surakarta",
+                        "desc": "Prototipe sistem informasi pemetaan penumpukan sampah plastik berbasis mobile GIS untuk mempercepat respons penanganan kebersihan lingkungan.",
+                        "image": "/images/competition-poster.png"
+                    },
+                    {
+                        "title": "Analisis Efektivitas IoT Pada Greenhouse Hidroponik",
+                        "author": "Siti Aminah - Institut Teknologi Bandung",
+                        "desc": "Studi kasus penghematan air dan nutrisi dengan otomatisasi sensor kelembaban dan pH berbasis IoT pada perkebunan perkotaan modern.",
+                        "image": "/images/conference-poster.png"
+                    }
+                ]
+            },
+            "seminar": {
+                "badge": "Konferensi Internasional",
+                "title": "Konferensi Internasional",
+                "description": "Produk inovatif dari industri hijau untuk mengatasi tantangan keterampilan, sosial, dan demografi masa depan.",
+                "joinBtn": "Register Now",
+                "speakersTag": "Our Speaker",
+                "speakersTitle": "Pembicara konferensi",
+                "speakers": [
+                    {
+                        "name": "Indri Sri Endarwati, SS., MM",
+                        "role": "Politeknik Indonusa Surakarta",
+                        "country": "Indonesia",
+                        "image": "/images/indonesia.png"
+                    },
+                    {
+                        "name": "Dr. Felisse Mariane Z. San Juan",
+                        "role": "Gullas College of Medicine",
+                        "country": "Philippines",
+                        "image": "/images/philipin.png"
+                    },
+                    {
+                        "name": "Larry Chua",
+                        "role": "Blink ID",
+                        "country": "Singapore",
+                        "image": "/images/singapur.png"
+                    }
+                ],
+                "categoriesTag": "Sub Theme",
+                "categoriesTitle": "Sub tema yang tersedia",
+                "categories": [
+                    {
+                        "title": "Pharmacy, Health & Medicine",
+                        "desc": "Pharmacy, Health, Medicine, and Humanistic Therapy"
+                    },
+                    {
+                        "title": "Hospitality & Tourism",
+                        "desc": "Hospitality & Tourism, Culinary & Food"
+                    },
+                    {
+                        "title": "Engineering & ICT",
+                        "desc": "Engineering, Information, Communication and Technology (ICT)"
+                    },
+                    {
+                        "title": "Entrepreneurship",
+                        "desc": "Economic, Business, Management, Education, Media, Design, Advertising, Arts, Publishing"
+                    }
+                ],
+                "feeTag": "Registration Information",
+                "feeTitle": "Registration Fee for Call Paper",
+                "fees": [
+                    {
+                        "label": "Registration Fee",
+                        "price": "40$ USD (IDR 800.000)"
+                    }
+                ],
+                "paymentTitle": "Payment",
+                "payments": [
+                    {
+                        "bank": "Mandiri",
+                        "acc": "1380018655162",
+                        "name": "a.n Yulita M"
+                    },
+                    {
+                        "bank": "Gopay",
+                        "acc": "0896-6726-0189",
+                        "name": "a.n Yulita M"
+                    }
+                ],
+                "timelineTag": "Timeline",
+                "timelineTitle": "Jadwal penting konferensi",
+                "timeline": [
+                    {
+                        "date": "20 March - 10 July 2026",
+                        "label": "Registration",
+                        "detail": "Pendaftaran"
+                    },
+                    {
+                        "date": "20 March - 10 July 2026",
+                        "label": "Payment",
+                        "detail": "Pembayaran"
+                    },
+                    {
+                        "date": "11 July 2026",
+                        "label": "Abstract Submit",
+                        "detail": "Pengumpulan Abstrak"
+                    },
+                    {
+                        "date": "20 July 2026",
+                        "label": "Video Submit",
+                        "detail": "Pengumpulan Video"
+                    },
+                    {
+                        "date": "22 - 23 July 2026",
+                        "label": "Presentation IITE",
+                        "detail": "Presentasi"
+                    },
+                    {
+                        "date": "24 July - 25 Sept 2026",
+                        "label": "Full Paper Submission",
+                        "detail": "Pengumpulan Full Paper"
+                    },
+                    {
+                        "date": "Oktober 2026",
+                        "label": "Publication",
+                        "detail": "Publikasi"
+                    }
+                ],
+                "contactsTag": "Contact Person",
+                "contactsTitle": "Informasi Lebih Lanjut",
+                "contacts": [
+                    {
+                        "name": "Resi",
+                        "phone": "0857-2771-3177"
+                    }
+                ],
+                "scheduleTag": "Schedule & Location",
+                "scheduleTitle": "Waktu dan tempat",
+                "schedule": [
+                    {
+                        "date": "23 July 2026",
+                        "time": "08.00 AM - 12.00 PM (GMT+7)",
+                        "platform": "Zoom and YouTube"
+                    }
+                ],
+                "posterImage": "/uploads/1784534222_WhatsApp_Image_2026-07-20_at_14.49.16__1_.jpeg"
+            },
+            "greenyouth": {
+                "badge": "Green Youth",
+                "title": "Greenpreneur Youth-2026 Kompetisi",
+                "description": "Kompetisi ide usaha bermuatan teknologi hijau untuk mahasiswa Politeknik Indonusa Surakarta.",
+                "joinBtn": "Daftar Sekarang",
+                "requirementsTag": "Syarat & Ketentuan",
+                "requirementsTitle": "Syarat dan ketentuan peserta",
+                "requirements": [
+                    "Peserta bersifat tim atau kelompok (3-5 orang)",
+                    "Anggota tim berasal dari mahasiswa aktif kampus Politeknik Indonusa Surakarta dari seluruh program studi.",
+                    "Boleh masih sekedar ide usaha (Realistis, Inovatif dan Aplikatif)",
+                    "Ide usaha harus bermuatan teknologi dalam berbagai bidang seperti sosial, budaya, kuliner, tanaman, hewan, dll)",
+                    "Ide usaha dituangkan dalam proposal ide usaha Greenyouth-2026 (template disediakan panitia) dan diupload di link yang sudah disediakan",
+                    "Ide usaha dipersentasikan dalam bentuk Canvas model bisnis (kerangka model disediakan panitia) dan diupload di link yang sudah disediakan"
+                ],
+                "timelineTag": "Agenda Kegiatan",
+                "timelineTitle": "Agenda kegiatan kompetisi",
+                "timeline": [
+                    {
+                        "date": "20 Maret - 20 Juli 2026",
+                        "label": "Pendaftaran",
+                        "detail": "Registrasi peserta dan pengiriman proposal."
+                    },
+                    {
+                        "date": "21 Juli 2026",
+                        "label": "Teknikal Metting Finalis",
+                        "detail": "Pertemuan teknis untuk para finalis."
+                    },
+                    {
+                        "date": "22 Juli 2026",
+                        "label": "Persentasi Finalis",
+                        "detail": "Sesi presentasi ide usaha oleh finalis."
+                    }
+                ],
+                "contactsTag": "Kontak & Pendaftaran",
+                "contactsTitle": "Informasi Pendaftaran",
+                "contacts": [
+                    {
+                        "name": "WhatsApp",
+                        "phone": "0812-1515-2828"
+                    },
+                    {
+                        "name": "Instagram",
+                        "phone": "POLITEKNIK INDONUSA SURAKARTA"
+                    },
+                    {
+                        "name": "Website",
+                        "phone": "HTTPS://POLTEKINDONUSA.AC.ID/"
+                    }
+                ],
+                "posterImage": "/uploads/1784532157_WhatsApp_Image_2026-07-11_at_14.48.08.jpeg"
+            },
+            "msme": {
+                "badge": "UMKM Award 2026",
+                "title": "UMKM Award 2026",
+                "description": "Penghargaan untuk pelaku UMKM yang menunjukkan inovasi bisnis hijau dan dampak sosial di komunitas. Apresiasi untuk usaha kecil berdampak besar.",
+                "registerBtn": "Daftar Sekarang",
+                "requirementsTag": "Ketentuan",
+                "requirementsTitle": "Ketentuan Lomba",
+                "requirements": [
+                    "Terbuka untuk UMKM segala usia dan sektor di Solo Raya",
+                    "Peserta individu atau tim",
+                    "Registrasi melalui form online dengan data UMKM lengkap",
+                    "Submit dokumen registrasi sesuai ketentuan",
+                    "Peserta yang lolos administrasi akan presentasi online",
+                    "Dilarang menggunakan materi berhak cipta (diskualifikasi)",
+                    "Wajib hadir saat presentasi sesuai jadwal"
+                ],
+                "criteriaTag": "Aspek Penilaian",
+                "criteriaTitle": "Kriteria penilaian UMKM",
+                "criteria": [
+                    "25% Inovasi Produk",
+                    "25% Implementasi Teknologi Digital",
+                    "20% Kelayakan Bisnis",
+                    "15% Dampak Sosial",
+                    "15% Kemampuan Presentasi"
+                ],
+                "timelineTag": "Agenda Kegiatan",
+                "timelineTitle": "Jadwal penting penghargaan",
+                "timeline": [
+                    {
+                        "date": "26 April - 20 Juni 2026",
+                        "label": "Pendaftaran",
+                        "detail": "Registrasi peserta."
+                    },
+                    {
+                        "date": "21 Juni - 11 Juli 2026",
+                        "label": "Seleksi Administrasi & Dokumen",
+                        "detail": "Proses seleksi tahap awal."
+                    },
+                    {
+                        "date": "12 Juli 2026",
+                        "label": "Pengumuman Hasil Administrasi",
+                        "detail": "Pengumuman peserta yang lolos tahap administrasi."
+                    },
+                    {
+                        "date": "22 Juli 2026",
+                        "label": "Presentasi Online",
+                        "detail": "Sesi presentasi online."
+                    },
+                    {
+                        "date": "23 Juli 2026",
+                        "label": "Pengumuman Pemenang",
+                        "detail": "Pengumuman pemenang UMKM Award 2026."
+                    }
+                ],
+                "registrationLink": "https://forms.gle/6SmzHNpBP63deKGc7",
+                "posterImage": "/uploads/1784532173_WhatsApp_Image_2026-07-11_at_14.48.10.jpeg"
+            },
+            "news": {
+                "badge": "Portal Berita",
+                "title": "Berita & Informasi IITE 2026",
+                "description": "Ikuti perkembangan terbaru seputar International Innovation Technology Expo 2026.",
+                "latestNews": "Berita Terbaru",
+                "readMore": "Baca Selengkapnya",
+                "publishedAt": "Dipublikasikan",
+                "category": "Kategori",
+                "allCategories": "Semua",
+                "searchPlaceholder": "Cari berita...",
+                "articles": [
+                    {
+                        "title": "Top 10 Finalists Selected for the 2026 MSME (UMKM) Award Category",
+                        "date": "20 July 2026",
+                        "category": "MSME",
+                        "summary": "The following are the top ten finalists selected for the 2026 MSME (UMKM) Award category.\n",
+                        "image": "/uploads/1784533050_WhatsApp_Image_2026-07-20_at_14.31.33.jpeg",
+                        "slug": "top-10-finalists-selected-for-the-2026-msme-umkm-award-category",
+                        "content": "<div>Congratulations..!!!! \ud83e\udd73\ud83e\udd73\ud83e\udd73</div><div>The following are the top ten finalists selected for the 2026 MSME (UMKM) Award category.</div><div><br></div><div>Finalists are asked to:</div><div>* Join the 2026 MSME Award Finalists WhatsApp Group via the link that will be sent by the committee.</div><div>* Monitor official information regarding the presentation schedule and technical details.</div><div>* Prepare presentation materials according to the established requirements.</div><div><br></div><div>Next Stage</div><div>Finalist Presentations and Interviews</div><div>Day/Date: Wednesday, July 22, 2026</div><div>Method: Online via Zoom Meeting (link will be shared via the Finalists' WhatsApp Group).</div>",
+                        "additionalImages": [],
+                        "isPublished": true,
+                        "metaTitle": "The following are the top ten finalists selected for the 2026 MSME (UMKM) Award category.",
+                        "metaDescription": "The following are the top ten finalists selected for the 2026 MSME (UMKM) Award category.",
+                        "metaKeywords": "",
+                        "tags": ""
+                    }
+                ]
+            }
         }
-      ],
-      "paymentTitle": "Pembayaran",
-      "payments": [
-        {
-          "bank": "Mandiri",
-          "acc": "1380018655162",
-          "name": "a.n Yulita M"
+    },
+    "en": {
+        "nav": {
+            "home": "Home",
+            "about": "About",
+            "activities": "Activities",
+            "timeline": "Timeline",
+            "contact": "Contact",
+            "competition": "Competition",
+            "proceeding": "Poster",
+            "seminar": "Proceeding",
+            "greenyouth": "Green Youth",
+            "msme": "MSMEs",
+            "news": "News",
+            "adminLoginBtn": "Admin Login",
+            "languageLabel": "ID",
+            "contactBtn": "Contact Us"
         },
-        {
-          "bank": "Gopay",
-          "acc": "0896-6726-0189",
-          "name": "a.n Yulita M"
+        "hero": {
+            "badge": "International Innovation Technology Expo",
+            "description": "\"Innovative products from the green industry to address future skills, social, and demographic challenges.\" Join a hybrid event that connects global green technology ideas.",
+            "time": "Time",
+            "location": "Location",
+            "organizer": "Organizer",
+            "summary": "Green innovation action, international seminars, product competitions, academic posters, and MSMEs awards in one futuristic digital platform.",
+            "cta": "Register Now",
+            "countdown": "Countdown to IITE 2026",
+            "speakersTag": "INTERNASIONAL CONDERENCE",
+            "speakersTitle": "Our Keynote Speaker",
+            "clickToEnlarge": "Click to enlarge",
+            "registrationFeeTag": "Registration Fee",
+            "registrationFeeTitle": "Registration Fee for Call Paper",
+            "registrationFees": [
+                {
+                    "label": "Registration Fee",
+                    "price": "40$ USD (IDR 800,000)"
+                }
+            ],
+            "paymentTitle": "Payment",
+            "payments": [
+                {
+                    "bank": "Mandiri",
+                    "acc": "1380018655162",
+                    "name": "Yulita M"
+                },
+                {
+                    "bank": "Gopay",
+                    "acc": "0896-6726-0189",
+                    "name": "Yulita M"
+                }
+            ],
+            "contactPerson": "Contact Person",
+            "contacts": [
+                {
+                    "name": "Resi",
+                    "phone": "0857-2771-3177"
+                }
+            ],
+            "sliderLabel": "Spotlight",
+            "sliderHeading": "Event cover and featured agenda",
+            "slides": [
+                {
+                    "title": "Highlight 1",
+                    "subtitle": "International seminar and green technology discussion panels"
+                },
+                {
+                    "title": "Highlight 2",
+                    "subtitle": "Innovation competition for future-ready generations"
+                },
+                {
+                    "title": "Highlight 3",
+                    "subtitle": "Poster exhibition and proceedings from sustainable research"
+                }
+            ],
+            "posterImage": "/uploads/1784534232_WhatsApp_Image_2026-07-20_at_14.49.16__1_.jpeg"
+        },
+        "about": {
+            "tag": "About Event",
+            "heading": "Green industry innovation for future skills and challenges",
+            "description": "IITE 2026 provides a platform for innovators, academics, and industry players to showcase eco-friendly solutions relevant to social, demographic, and future skills changes.",
+            "programTitle": "Program Focus",
+            "programText": "Bringing together competitions, international seminars, proceeding showcases, and MSMEs awards to strengthen an inclusive green technology ecosystem.",
+            "benefitTitle": "Participant Benefits",
+            "benefitText": "Participants gain global insights, international networks, and hybrid digital experience to prepare for demographic and social challenges in the green industry era."
+        },
+        "activities": {
+            "tag": "Main Activities",
+            "heading": "Four event categories supporting the green ecosystem",
+            "description": "Each category is designed to showcase technology innovation, research outcomes, and MSMEs empowerment with sustainability spirit.",
+            "cards": [
+                {
+                    "title": "Innovation Competition",
+                    "description": "Innovative product competition based on the green industry for future skills and social challenge solutions.",
+                    "accent": "cyan"
+                },
+                {
+                    "title": "Proceeding & Poster",
+                    "description": "Academic publication and poster research visualizing environmentally friendly strategies.",
+                    "accent": "emerald"
+                },
+                {
+                    "title": "International Seminar",
+                    "description": "International sessions with expert speakers to discuss green technology trends and demographic transformation.",
+                    "accent": "cyan"
+                },
+                {
+                    "title": "MSMEs Award",
+                    "description": "Award for MSMEs that demonstrate green business innovation and social impact in the community.",
+                    "accent": "emerald"
+                }
+            ]
+        },
+        "timeline": {
+            "tag": "Timeline",
+            "heading": "Registration and event phases",
+            "description": "The IITE 2026 activity calendar helps participants plan registration, preparation, and attendance at the main event.",
+            "milestones": [
+                {
+                    "label": "Registration opens",
+                    "date": "March 20, 2026",
+                    "detail": "Participant registration and abstract submission for all event categories."
+                },
+                {
+                    "label": "Proposal review",
+                    "date": "April - May 2026",
+                    "detail": "Judges review innovation, poster proposals, and proceeding work objectively."
+                },
+                {
+                    "label": "Finalist announcement",
+                    "date": "Early July 2026",
+                    "detail": "Participants who pass will be prepared for presentations and international seminar sessions."
+                },
+                {
+                    "label": "Main event",
+                    "date": "July 22 - 23, 2026",
+                    "detail": "Seminar sessions, competitions, poster presentations, and MSMEs Award winners announcement."
+                }
+            ]
+        },
+        "contact": {
+            "tag": "Contact",
+            "heading": "Contact the IITE 2026 Committee",
+            "description": "Get registration information, technical guidance, and direct support from the event organizing team.",
+            "address": "Address",
+            "phone": "Phone",
+            "socialTitle": "Social Media",
+            "instagram": "Instagram: @iite2026",
+            "linkedin": "LinkedIn: Politeknik Indonusa Surakarta",
+            "zoom": "Zoom Hybrid Event Link will be announced via email"
+        },
+        "footer": {
+            "copy1": "\u00a9 IITE 2026.",
+            "copy2": ""
+        },
+        "countdown": {
+            "title": "Countdown to IITE 2026",
+            "labels": [
+                "Days",
+                "Hours",
+                "Minutes",
+                "Seconds"
+            ]
+        },
+        "home": {
+            "activitiesTag": "Main Activities",
+            "activitiesTitle": "Five featured activities of IITE 2026",
+            "activitiesDesc": "Each activity is designed to showcase technology innovation, research outcomes, and community empowerment with sustainability spirit.",
+            "cards": {
+                "competition": {
+                    "title": "Innovation Competition",
+                    "desc": "Innovative product competition based on the green industry for future skills and social challenge solutions.",
+                    "cta": "View Details"
+                },
+                "proceeding": {
+                    "title": "Poster",
+                    "desc": "Academic publications and research posters visualizing environmentally friendly strategies.",
+                    "cta": "View Details"
+                },
+                "seminar": {
+                    "title": "Proceeding",
+                    "desc": "International proceeding with expert speakers to discuss green technology trends and demographic transformation.",
+                    "cta": "View Details"
+                },
+                "greenyouth": {
+                    "title": "Green Youth Program",
+                    "desc": "Youth empowerment program in real green technology actions and environmental sustainability.",
+                    "cta": "View Details"
+                },
+                "msme": {
+                    "title": "MSMEs Award",
+                    "desc": "Award for MSMEs that demonstrate green business innovation and social impact in the community.",
+                    "cta": "View Details"
+                },
+                "news": {
+                    "title": "News & Information",
+                    "desc": "Follow the latest updates regarding the International Innovation Technology Expo 2026.",
+                    "cta": "View Details"
+                }
+            }
+        },
+        "pages": {
+            "backHome": "Back to Home",
+            "competition": {
+                "badge": "Innovation Competition",
+                "title": "Innovation Competition",
+                "description": "Innovative product competition based on the green industry for future skills and social challenge solutions. Showcase your best ideas on the international stage of IITE 2026.",
+                "registerBtn": "Register Now",
+                "categoriesTag": "Categories",
+                "categoriesTitle": "Available competition categories",
+                "categories": [
+                    {
+                        "title": "Pharmacy, Health & Medicine",
+                        "desc": "Pharmacy, Health, Medicine, and Humanistic Therapy."
+                    },
+                    {
+                        "title": "Hospitality & Tourism",
+                        "desc": "Hospitality & Tourism, Culinary & Food (University Students Only)."
+                    },
+                    {
+                        "title": "Engineering & ICT",
+                        "desc": "Engineering, Information, Communication and Technology (ICT)."
+                    },
+                    {
+                        "title": "Entrepreneurship",
+                        "desc": "Economic, Business, Management, Education, Media, Design, Advertising, Arts, Publishing."
+                    }
+                ],
+                "feeTag": "Registration Fee",
+                "feeTitle": "Competition registration fees",
+                "fees": [
+                    {
+                        "label": "Indonesian College Students",
+                        "price": "IDR 200.000,-"
+                    },
+                    {
+                        "label": "High School Students",
+                        "price": "IDR 150.000,-"
+                    },
+                    {
+                        "label": "International College Students",
+                        "price": "$ 15"
+                    }
+                ],
+                "paymentTitle": "Payment Information",
+                "requirementsTag": "Requirements",
+                "requirementsTitle": "Participant terms and conditions",
+                "requirements": [
+                    "Open to students and professionals worldwide",
+                    "Team consists of 2-4 members with one advisor",
+                    "Proposal written in English",
+                    "Product must be based on green and sustainable industry",
+                    "Include a presentation video of maximum 5 minutes",
+                    "Has not won a similar international competition"
+                ],
+                "timelineTag": "Timeline",
+                "timelineTitle": "Competition important dates",
+                "timeline": [
+                    {
+                        "date": "July 26, 2026",
+                        "label": "Registration & Submission",
+                        "detail": "Participant registration and competition proposal submission."
+                    },
+                    {
+                        "date": "July 27, 2026",
+                        "label": "Selection Process",
+                        "detail": "Judges evaluate proposals and innovations objectively."
+                    },
+                    {
+                        "date": "July 27, 2026",
+                        "label": "Finalist Announcement",
+                        "detail": "Announcement of participants who advance to the final stage."
+                    },
+                    {
+                        "date": "July 28 - 29, 2026",
+                        "label": "PPT Presentation Submission",
+                        "detail": "Finalists submit their PPT presentation materials."
+                    },
+                    {
+                        "date": "July 30, 2026",
+                        "label": "Online Presentation",
+                        "detail": "Online presentation session for all finalists."
+                    },
+                    {
+                        "date": "July 30, 2026",
+                        "label": "Winner Announcement",
+                        "detail": "Announcement and awards ceremony for winners."
+                    }
+                ],
+                "cohostTag": "Co-Host",
+                "cohostTitle": "Co-Host Information",
+                "cohosts": [
+                    {
+                        "name": "A. Anditha",
+                        "phone": "+62 856-4703-9229"
+                    },
+                    {
+                        "name": "Diyan Sakti",
+                        "phone": "+62 856-4731-2008"
+                    }
+                ],
+                "posterImage": "/uploads/1784534198_WhatsApp_Image_2026-07-20_at_14.49.16.jpeg"
+            },
+            "proceeding": {
+                "badge": "Proceeding Poster",
+                "title": "Proceeding Poster",
+                "description": "Innovative products from the green industry to address future skills, social, and demographic challenges.",
+                "registerBtn": "Registration Link",
+                "categoriesTag": "Sub Theme",
+                "categoriesTitle": "Available sub themes",
+                "categories": [
+                    {
+                        "title": "Pharmacy, Health & Medicine",
+                        "desc": "Pharmacy, Health, Medicine, and Humanistic Therapy"
+                    },
+                    {
+                        "title": "Hospitality & Tourism",
+                        "desc": "Hospitality & Tourism, Culinary & Food"
+                    },
+                    {
+                        "title": "Engineering & ICT",
+                        "desc": "Engineering, Information, Communication and Technology (ICT)"
+                    },
+                    {
+                        "title": "Entrepreneurship",
+                        "desc": "Economic, Business, Management, Education, Media, Design, Advertising, Arts, Publishing"
+                    }
+                ],
+                "feeTag": "Registration Fee",
+                "feeTitle": "Proceeding poster registration fee",
+                "fees": [
+                    {
+                        "label": "Registration fee per team",
+                        "price": "IDR 100,000"
+                    }
+                ],
+                "paymentTitle": "Payment Information",
+                "paymentDesc": "Payment can be made via the account number specified in the Poster Exp Guidebook.",
+                "requirementsTag": "Requirements & Facilities",
+                "requirementsTitle": "Participant requirements and facilities",
+                "requirements": [
+                    "Open to active students and lecturers in higher education study programs",
+                    "Participants can be individuals or teams of up to three people",
+                    "Facility: E-Certificate for the Best Expo",
+                    "Facility: E-Certificate for all Expo Participants"
+                ],
+                "timelineTag": "Timeline",
+                "timelineTitle": "Important dates",
+                "timeline": [
+                    {
+                        "date": "20 March - 10 July 2026",
+                        "label": "Registration",
+                        "detail": "Participant registration"
+                    },
+                    {
+                        "date": "20 March - 10 July 2026",
+                        "label": "Payment",
+                        "detail": "Payment period"
+                    },
+                    {
+                        "date": "20 March - 11 July 2026",
+                        "label": "Submission",
+                        "detail": "Poster submission"
+                    },
+                    {
+                        "date": "20 March - 20 July 2026",
+                        "label": "Poster Design Collection",
+                        "detail": "Poster design collection"
+                    },
+                    {
+                        "date": "22 - 23 July 2026",
+                        "label": "Poster Expo",
+                        "detail": "Poster exhibition event"
+                    }
+                ],
+                "contactsTag": "Contact Person",
+                "contactsTitle": "More Information",
+                "contacts": [
+                    {
+                        "name": "Dewandono Bayu Seto",
+                        "phone": "0895-3609-01699"
+                    },
+                    {
+                        "name": "Yulita Maulani",
+                        "phone": "0896-6726-0189"
+                    }
+                ],
+                "posterImage": "/uploads/1784534212_WhatsApp_Image_2026-07-20_at_14.49.15.jpeg",
+                "posters": [
+                    {
+                        "title": "Optimization of Solar Panels in Green Industries",
+                        "author": "Dr. Ahmad Fauzi - Universitas Indonesia",
+                        "desc": "This study discusses the automatic solar panel tracking system to optimize solar energy conversion in the green manufacturing industrial sector.",
+                        "image": "/images/proceeding-poster.png"
+                    },
+                    {
+                        "title": "Geographic Information System for Plastic Waste Mapping",
+                        "author": "Budi Setiawan, M.T. - Politeknik Indonusa Surakarta",
+                        "desc": "A mobile GIS-based prototype system for mapping plastic waste accumulation to accelerate clean environmental response and handling.",
+                        "image": "/images/competition-poster.png"
+                    },
+                    {
+                        "title": "Effectiveness Analysis of IoT in Hydroponic Greenhouse",
+                        "author": "Siti Aminah - ITB",
+                        "desc": "Case study of water and nutrition conservation using automated moisture and pH sensors based on IoT in modern urban farming.",
+                        "image": "/images/conference-poster.png"
+                    }
+                ]
+            },
+            "seminar": {
+                "badge": "International Conference",
+                "title": "International Conference",
+                "description": "Innovative products from the green industry to address future skills, social, and demographic challenges.",
+                "joinBtn": "Register Now",
+                "speakersTag": "Our Speaker",
+                "speakersTitle": "Conference speakers",
+                "speakers": [
+                    {
+                        "name": "Indri Sri Endarwati, SS., MM",
+                        "role": "Politeknik Indonusa Surakarta",
+                        "country": "Indonesia",
+                        "image": "/images/indonesia.png"
+                    },
+                    {
+                        "name": "Dr. Felisse Mariane Z. San Juan",
+                        "role": "Gullas College of Medicine",
+                        "country": "Philippines",
+                        "image": "/images/philipin.png"
+                    },
+                    {
+                        "name": "Larry Chua",
+                        "role": "Blink ID",
+                        "country": "Singapore",
+                        "image": "/images/singapur.png"
+                    }
+                ],
+                "categoriesTag": "Sub Theme",
+                "categoriesTitle": "Available sub themes",
+                "categories": [
+                    {
+                        "title": "Pharmacy, Health & Medicine",
+                        "desc": "Pharmacy, Health, Medicine, and Humanistic Therapy"
+                    },
+                    {
+                        "title": "Hospitality & Tourism",
+                        "desc": "Hospitality & Tourism, Culinary & Food"
+                    },
+                    {
+                        "title": "Engineering & ICT",
+                        "desc": "Engineering, Information, Communication and Technology (ICT)"
+                    },
+                    {
+                        "title": "Entrepreneurship",
+                        "desc": "Economic, Business, Management, Education, Media, Design, Advertising, Arts, Publishing"
+                    }
+                ],
+                "feeTag": "Registration Information",
+                "feeTitle": "Registration Fee for Call Paper",
+                "fees": [
+                    {
+                        "label": "Registration Fee",
+                        "price": "40$ USD (IDR 800.000)"
+                    }
+                ],
+                "paymentTitle": "Payment",
+                "payments": [
+                    {
+                        "bank": "Mandiri",
+                        "acc": "1380018655162",
+                        "name": "Yulita M"
+                    },
+                    {
+                        "bank": "Gopay",
+                        "acc": "0896-6726-0189",
+                        "name": "Yulita M"
+                    }
+                ],
+                "timelineTag": "Timeline",
+                "timelineTitle": "Important dates",
+                "timeline": [
+                    {
+                        "date": "20 March - 10 July 2026",
+                        "label": "Registration",
+                        "detail": "Registration"
+                    },
+                    {
+                        "date": "20 March - 10 July 2026",
+                        "label": "Payment",
+                        "detail": "Payment"
+                    },
+                    {
+                        "date": "11 July 2026",
+                        "label": "Abstract Submit",
+                        "detail": "Abstract Submission"
+                    },
+                    {
+                        "date": "20 July 2026",
+                        "label": "Video Submit",
+                        "detail": "Video Submission"
+                    },
+                    {
+                        "date": "22 - 23 July 2026",
+                        "label": "Presentation IITE",
+                        "detail": "Presentation"
+                    },
+                    {
+                        "date": "24 July - 25 Sept 2026",
+                        "label": "Full Paper Submission",
+                        "detail": "Full Paper Submission"
+                    },
+                    {
+                        "date": "October 2026",
+                        "label": "Publication",
+                        "detail": "Publication"
+                    }
+                ],
+                "contactsTag": "Contact Person",
+                "contactsTitle": "More Information",
+                "contacts": [
+                    {
+                        "name": "Resi",
+                        "phone": "0857-2771-3177"
+                    }
+                ],
+                "scheduleTag": "Schedule & Location",
+                "scheduleTitle": "Time and place",
+                "schedule": [
+                    {
+                        "date": "23 July 2026",
+                        "time": "08.00 AM - 12.00 PM (GMT+7)",
+                        "platform": "Zoom and YouTube"
+                    }
+                ],
+                "posterImage": "/uploads/1784534222_WhatsApp_Image_2026-07-20_at_14.49.16__1_.jpeg"
+            },
+            "greenyouth": {
+                "badge": "Green Youth",
+                "title": "Greenpreneur Youth-2026 Competition",
+                "description": "Green technology business idea competition for Politeknik Indonusa Surakarta students.",
+                "joinBtn": "Register Now",
+                "requirementsTag": "Terms & Conditions",
+                "requirementsTitle": "Participant terms and conditions",
+                "requirements": [
+                    "Participants are in teams or groups (3-5 people)",
+                    "Team members must be active students of Politeknik Indonusa Surakarta from any study program.",
+                    "Can still be just a business idea (Realistic, Innovative and Applicative)",
+                    "Business ideas must contain technology in various fields such as social, culture, culinary, plants, animals, etc.)",
+                    "Business ideas are outlined in the Greenyouth-2026 business idea proposal (template provided by the committee) and uploaded to the provided link",
+                    "Business ideas are presented in the form of a Business Model Canvas (model framework provided by the committee) and uploaded to the provided link"
+                ],
+                "timelineTag": "Activity Agenda",
+                "timelineTitle": "Competition activity agenda",
+                "timeline": [
+                    {
+                        "date": "March 20 - July 20, 2026",
+                        "label": "Registration",
+                        "detail": "Participant registration and proposal submission."
+                    },
+                    {
+                        "date": "July 21, 2026",
+                        "label": "Finalist Technical Meeting",
+                        "detail": "Technical meeting for finalists."
+                    },
+                    {
+                        "date": "July 22, 2026",
+                        "label": "Finalist Presentation",
+                        "detail": "Business idea presentation session by finalists."
+                    }
+                ],
+                "contactsTag": "Contact & Registration",
+                "contactsTitle": "Registration Information",
+                "contacts": [
+                    {
+                        "name": "WhatsApp",
+                        "phone": "0812-1515-2828"
+                    },
+                    {
+                        "name": "Instagram",
+                        "phone": "POLITEKNIK INDONUSA SURAKARTA"
+                    },
+                    {
+                        "name": "Website",
+                        "phone": "HTTPS://POLTEKINDONUSA.AC.ID/"
+                    }
+                ],
+                "posterImage": "/uploads/1784532157_WhatsApp_Image_2026-07-11_at_14.48.08.jpeg"
+            },
+            "msme": {
+                "badge": "UMKM Award 2026",
+                "title": "UMKM Award 2026",
+                "description": "Award for MSMEs that demonstrate green business innovation and social impact in the community. Appreciation for small businesses with big impact.",
+                "registerBtn": "Register Now",
+                "requirementsTag": "Requirements",
+                "requirementsTitle": "Contest Requirements",
+                "requirements": [
+                    "Open to MSMEs of all ages and sectors in Solo Raya",
+                    "Participants can be individuals or teams",
+                    "Registration via online form with complete MSME data",
+                    "Submit registration documents according to terms",
+                    "Shortlisted participants for administration will attend online presentations",
+                    "Use of copyrighted material is prohibited (disqualification)",
+                    "Attendance during scheduled presentation is mandatory"
+                ],
+                "criteriaTag": "Criteria",
+                "criteriaTitle": "MSMEs assessment criteria",
+                "criteria": [
+                    "25% Product Innovation",
+                    "25% Digital Technology Implementation",
+                    "20% Business Viability",
+                    "15% Social Impact",
+                    "15% Presentation Skills"
+                ],
+                "timelineTag": "Agenda",
+                "timelineTitle": "Award important dates",
+                "timeline": [
+                    {
+                        "date": "26 April - 20 June 2026",
+                        "label": "Registration",
+                        "detail": "Participant registration."
+                    },
+                    {
+                        "date": "21 June - 11 July 2026",
+                        "label": "Administrative & Document Selection",
+                        "detail": "Initial stage selection process."
+                    },
+                    {
+                        "date": "12 July 2026",
+                        "label": "Announcement of Administrative Results",
+                        "detail": "Announcement of shortlisted participants."
+                    },
+                    {
+                        "date": "22 July 2026",
+                        "label": "Online Presentation",
+                        "detail": "Online presentation session."
+                    },
+                    {
+                        "date": "23 July 2026",
+                        "label": "Winner Announcement",
+                        "detail": "Announcement of UMKM Award 2026 winners."
+                    }
+                ],
+                "registrationLink": "https://forms.gle/6SmzHNpBP63deKGc7",
+                "posterImage": "/uploads/1784532173_WhatsApp_Image_2026-07-11_at_14.48.10.jpeg"
+            },
+            "news": {
+                "badge": "News Portal",
+                "title": "IITE 2026 News & Updates",
+                "description": "Stay updated with the latest developments of the International Innovation Technology Expo 2026.",
+                "latestNews": "Latest News",
+                "readMore": "Read More",
+                "publishedAt": "Published",
+                "category": "Category",
+                "allCategories": "All",
+                "searchPlaceholder": "Search news...",
+                "articles": [
+                    {
+                        "title": "Top 10 Finalists Selected for the 2026 MSME (UMKM) Award Category",
+                        "date": "20 July 2026",
+                        "category": "MSME",
+                        "summary": "The following are the top ten finalists selected for the 2026 MSME (UMKM) Award category.\n",
+                        "image": "/uploads/1784533050_WhatsApp_Image_2026-07-20_at_14.31.33.jpeg",
+                        "slug": "top-10-finalists-selected-for-the-2026-msme-umkm-award-category",
+                        "content": "<div>Congratulations..!!!! \ud83e\udd73\ud83e\udd73\ud83e\udd73</div><div>The following are the top ten finalists selected for the 2026 MSME (UMKM) Award category.</div><div><br></div><div>Finalists are asked to:</div><div>* Join the 2026 MSME Award Finalists WhatsApp Group via the link that will be sent by the committee.</div><div>* Monitor official information regarding the presentation schedule and technical details.</div><div>* Prepare presentation materials according to the established requirements.</div><div><br></div><div>Next Stage</div><div>Finalist Presentations and Interviews</div><div>Day/Date: Wednesday, July 22, 2026</div><div>Method: Online via Zoom Meeting (link will be shared via the Finalists' WhatsApp Group).</div>",
+                        "additionalImages": [],
+                        "isPublished": true,
+                        "metaTitle": "The following are the top ten finalists selected for the 2026 MSME (UMKM) Award category.",
+                        "metaDescription": "The following are the top ten finalists selected for the 2026 MSME (UMKM) Award category.",
+                        "metaKeywords": "",
+                        "tags": ""
+                    }
+                ]
+            }
         }
-      ],
-      "contactPerson": "Narahubung",
-      "contacts": [
-        {
-          "name": "Resi",
-          "phone": "0857-2771-3177"
-        }
-      ],
-      "sliderLabel": "Sorotan",
-      "sliderHeading": "Sampul acara dan agenda unggulan",
-      "slides": [
-        {
-          "title": "Sorotan 1",
-          "subtitle": "Seminar internasional dan panel diskusi teknologi hijau"
-        },
-        {
-          "title": "Sorotan 2",
-          "subtitle": "Kompetisi inovasi untuk generasi ready-for-future"
-        },
-        {
-          "title": "Sorotan 3",
-          "subtitle": "Pameran poster dan proceeding dari riset berkelanjutan"
-        }
-      ],
-      "posterImage": "/uploads/1784524374129_WhatsApp_Image_2026-07-11_at_14.48.09.jpeg"
-    },
-    "about": {
-      "tag": "Tentang Acara",
-      "heading": "Inovasi industri hijau untuk kompetensi dan tantangan masa depan",
-      "description": "IITE 2026 menghadirkan platform bagi inovator, akademisi, dan pelaku industri untuk memperlihatkan solusi ramah lingkungan yang relevan terhadap perubahan sosial, demografi, dan kebutuhan keterampilan masa depan.",
-      "programTitle": "Fokus Program",
-      "programText": "Menyatukan kegiatan kompetisi, seminar internasional, ekspose proceeding, dan penghargaan IKM untuk memperkuat ekosistem teknologi hijau yang inklusif dan berkelanjutan.",
-      "benefitTitle": "Manfaat Peserta",
-      "benefitText": "Peserta mendapatkan wawasan global, jaringan internasional, dan pengalaman digital hybrid untuk mempersiapkan diri dalam menghadapi tantangan demografis dan sosial di era industri hijau."
-    },
-    "activities": {
-      "tag": "Kegiatan Utama",
-      "heading": "Empat kategori acara yang mendukung ekosistem hijau",
-      "description": "Setiap kategori dirancang untuk menampilkan inovasi teknologi, hasil penelitian, dan pemberdayaan UMKM dengan semangat keberlanjutan.",
-      "cards": [
-        {
-          "title": "Kompetisi Inovasi",
-          "description": "Kompetisi produk inovatif berbasis industri hijau untuk solusi keterampilan masa depan dan tantangan sosial.",
-          "accent": "cyan"
-        },
-        {
-          "title": "Prosiding & Poster",
-          "description": "Publikasi akademik dan poster penelitian yang memvisualisasikan strategi teknologi ramah lingkungan.",
-          "accent": "emerald"
-        },
-        {
-          "title": "Seminar Internasional",
-          "description": "Sesi internasional dengan pembicara ahli untuk membahas tren teknologi hijau dan transformasi demografi.",
-          "accent": "cyan"
-        },
-        {
-          "title": "Penghargaan UMKM",
-          "description": "Penghargaan untuk pelaku UMKM yang menunjukkan inovasi bisnis hijau dan dampak sosial di komunitas.",
-          "accent": "emerald"
-        }
-      ]
-    },
-    "timeline": {
-      "tag": "Timeline",
-      "heading": "Fase pendaftaran dan acara",
-      "description": "Kalender kegiatan IITE 2026 yang membantu peserta merencanakan pendaftaran, persiapan, dan keikutsertaan pada acara utama.",
-      "milestones": [
-        {
-          "label": "Pendaftaran dibuka",
-          "date": "20 Maret 2026",
-          "detail": "Registrasi peserta dan pengumpulan abstrak untuk seluruh kategori acara."
-        },
-        {
-          "label": "Review proposal",
-          "date": "April - Mei 2026",
-          "detail": "Tim juri menilai inovasi, proposal poster, dan hasil proceeding secara objektif."
-        },
-        {
-          "label": "Pengumuman finalis",
-          "date": "Awal Juli 2026",
-          "detail": "Peserta yang lolos akan dipersiapkan untuk presentasi dan seminar internasional."
-        },
-        {
-          "label": "Acara utama",
-          "date": "22 - 23 Juli 2026",
-          "detail": "Sesi seminar, kompetisi, presentasi poster, dan pengumuman pemenang MSMEs Award."
-        }
-      ]
-    },
-    "contact": {
-      "tag": "Kontak",
-      "heading": "Hubungi Panitia IITE 2026",
-      "description": "Dapatkan informasi pendaftaran, panduan teknis, dan bantuan langsung dari tim penyelenggara acara.",
-      "address": "Alamat",
-      "phone": "Telepon",
-      "socialTitle": "Sosial Media",
-      "instagram": "Instagram: @iite2026",
-      "linkedin": "LinkedIn: Politeknik Indonusa Surakarta",
-      "zoom": "Zoom Hybrid Event Link akan diumumkan via email"
-    },
-    "footer": {
-      "copy1": "© 2026 IITE 2026.",
-      "copy2": ""
-    },
-    "countdown": {
-      "title": "Hitung Mundur menuju IITE 2026",
-      "labels": [
-        "Hari",
-        "Jam",
-        "Menit",
-        "Detik"
-      ]
-    },
-    "home": {
-      "activitiesTag": "Kegiatan Utama",
-      "activitiesTitle": "Lima kegiatan unggulan IITE 2026",
-      "activitiesDesc": "Setiap kegiatan dirancang untuk menampilkan inovasi teknologi, hasil penelitian, dan pemberdayaan masyarakat dengan semangat keberlanjutan.",
-      "cards": {
-        "competition": {
-          "title": "Kompetisi Inovasi",
-          "desc": "Kompetisi produk inovatif berbasis industri hijau untuk solusi keterampilan masa depan dan tantangan sosial.",
-          "cta": "Lihat Detail"
-        },
-        "proceeding": {
-          "title": "Poster",
-          "desc": "Publikasi akademik dan poster penelitian yang memvisualisasikan strategi teknologi ramah lingkungan.",
-          "cta": "Lihat Detail"
-        },
-        "seminar": {
-          "title": "Prosiding",
-          "desc": "Prosiding internasional dengan pembicara ahli untuk membahas tren teknologi hijau dan transformasi demografi.",
-          "cta": "Lihat Detail"
-        },
-        "greenyouth": {
-          "title": "Program Pemuda Hijau",
-          "desc": "Program pemberdayaan generasi muda dalam aksi nyata teknologi hijau dan keberlanjutan lingkungan.",
-          "cta": "Lihat Detail"
-        },
-        "msme": {
-          "title": "Penghargaan UMKM",
-          "desc": "Penghargaan untuk pelaku UMKM yang menunjukkan inovasi bisnis hijau dan dampak sosial di komunitas.",
-          "cta": "Lihat Detail"
-        },
-        "news": {
-          "title": "Berita & Informasi",
-          "desc": "Ikuti perkembangan terbaru seputar International Innovation Technology Expo 2026.",
-          "cta": "Lihat Detail"
-        }
-      }
-    },
-    "pages": {
-      "backHome": "Kembali ke Beranda",
-      "competition": {
-        "badge": "Kompetisi Inovasi",
-        "title": "Kompetisi Inovasi",
-        "description": "Kompetisi produk inovatif berbasis industri hijau untuk solusi keterampilan masa depan dan tantangan sosial. Tunjukkan ide terbaik Anda di panggung internasional IITE 2026.",
-        "registerBtn": "Daftar Sekarang",
-        "categoriesTag": "Kategori",
-        "categoriesTitle": "Kategori kompetisi yang tersedia",
-        "categories": [
-          {
-            "title": "Farmasi, Kesehatan & Kedokteran",
-            "desc": "Farmasi, Kesehatan, Kedokteran, dan Terapi Humanistik."
-          },
-          {
-            "title": "Hospitality & Pariwisata",
-            "desc": "Hospitality & Pariwisata, Kuliner & Makanan (Khusus Mahasiswa)."
-          },
-          {
-            "title": "Teknik & TIK",
-            "desc": "Teknik, Informasi, Komunikasi dan Teknologi (ICT)."
-          },
-          {
-            "title": "Kewirausahaan",
-            "desc": "Ekonomi, Bisnis, Manajemen, Pendidikan, Media, Desain, Periklanan, Seni, Penerbitan."
-          }
-        ],
-        "feeTag": "Biaya Pendaftaran",
-        "feeTitle": "Biaya pendaftaran kompetisi",
-        "fees": [
-          {
-            "label": "Mahasiswa Indonesia",
-            "price": "IDR 200.000,-"
-          },
-          {
-            "label": "Siswa SMA/SMK",
-            "price": "IDR 150.000,-"
-          },
-          {
-            "label": "Mahasiswa Internasional",
-            "price": "$ 15"
-          }
-        ],
-        "paymentTitle": "Informasi Pembayaran",
-        "requirementsTag": "Persyaratan",
-        "requirementsTitle": "Syarat dan ketentuan peserta",
-        "requirements": [
-          "Terbuka untuk mahasiswa dan profesional dari seluruh dunia",
-          "Tim terdiri dari 2-4 anggota dengan satu pembimbing",
-          "Proposal ditulis dalam Bahasa Inggris",
-          "Produk harus berbasis industri hijau dan berkelanjutan",
-          "Menyertakan video presentasi berdurasi maksimal 5 menit",
-          "Belum pernah memenangkan kompetisi sejenis di tingkat internasional"
-        ],
-        "timelineTag": "Timeline",
-        "timelineTitle": "Jadwal penting kompetisi",
-        "timeline": [
-          {
-            "date": "20 Maret - 02 Juli 2026",
-            "label": "Pendaftaran & Pengiriman",
-            "detail": "Registrasi peserta dan pengiriman proposal kompetisi."
-          },
-          {
-            "date": "06 - 10 Juli 2026",
-            "label": "Proses Seleksi",
-            "detail": "Tim juri menilai proposal dan inovasi secara objektif."
-          },
-          {
-            "date": "11 Juli 2026",
-            "label": "Pengumuman Finalis",
-            "detail": "Pengumuman peserta yang lolos ke tahap final."
-          },
-          {
-            "date": "13 - 18 Juli 2026",
-            "label": "Pengiriman PPT Presentasi",
-            "detail": "Finalis mengirimkan materi presentasi PPT."
-          },
-          {
-            "date": "22 Juli 2026",
-            "label": "Presentasi Online",
-            "detail": "Sesi presentasi online untuk seluruh finalis."
-          },
-          {
-            "date": "23 Juli 2026",
-            "label": "Pengumuman Pemenang",
-            "detail": "Pengumuman dan pemberian penghargaan kepada pemenang."
-          }
-        ],
-        "cohostTag": "Co-Host",
-        "cohostTitle": "Informasi Co-Host",
-        "cohosts": [
-          {
-            "name": "A. Anditha",
-            "phone": "+62 856-4703-9229"
-          },
-          {
-            "name": "Diyan Sakti",
-            "phone": "+62 856-4731-2008"
-          }
-        ],
-        "posterImage": "/images/competition-poster.png"
-      },
-      "proceeding": {
-        "badge": "Poster Prosiding",
-        "title": "Poster Prosiding",
-        "description": "Produk inovatif dari industri hijau untuk mengatasi tantangan keterampilan, sosial, dan demografi masa depan.",
-        "registerBtn": "Link Registrasi",
-        "categoriesTag": "Sub Tema",
-        "categoriesTitle": "Sub tema yang tersedia",
-        "categories": [
-          {
-            "title": "Farmasi, Kesehatan & Kedokteran",
-            "desc": "Farmasi, Kesehatan, Kedokteran, dan Terapi Humanistik"
-          },
-          {
-            "title": "Hospitality & Pariwisata",
-            "desc": "Hospitality & Pariwisata, Kuliner & Makanan"
-          },
-          {
-            "title": "Teknik & TIK",
-            "desc": "Teknik, Informasi, Komunikasi dan Teknologi (ICT)"
-          },
-          {
-            "title": "Kewirausahaan",
-            "desc": "Ekonomi, Bisnis, Manajemen, Pendidikan, Media, Desain, Periklanan, Seni, Penerbitan"
-          }
-        ],
-        "feeTag": "Biaya Pendaftaran",
-        "feeTitle": "Biaya pendaftaran proceeding poster",
-        "fees": [
-          {
-            "label": "Biaya pendaftaran per tim",
-            "price": "IDR 100.000"
-          }
-        ],
-        "paymentTitle": "Informasi Pembayaran",
-        "paymentDesc": "Pembayaran dapat dilakukan melalui nomor rekening yang tertera di Buku Panduan Poster Exp.",
-        "requirementsTag": "Persyaratan & Fasilitas",
-        "requirementsTitle": "Persyaratan peserta dan fasilitas",
-        "requirements": [
-          "Terbuka untuk mahasiswa aktif dan dosen di program studi pendidikan tinggi",
-          "Peserta dapat berupa individu atau tim hingga tiga orang",
-          "Fasilitas: E-Sertifikat untuk Expo Terbaik",
-          "Fasilitas: E-Sertifikat untuk seluruh Peserta Expo"
-        ],
-        "timelineTag": "Timeline",
-        "timelineTitle": "Jadwal penting",
-        "timeline": [
-          {
-            "date": "20 Maret - 10 Juli 2026",
-            "label": "Registrasi",
-            "detail": "Pendaftaran peserta"
-          },
-          {
-            "date": "20 Maret - 10 Juli 2026",
-            "label": "Pembayaran",
-            "detail": "Periode pembayaran"
-          },
-          {
-            "date": "20 Maret - 11 Juli 2026",
-            "label": "Pengumpulan",
-            "detail": "Pengumpulan poster"
-          },
-          {
-            "date": "20 Maret - 20 Juli 2026",
-            "label": "Koleksi Desain Poster",
-            "detail": "Pengumpulan desain poster"
-          },
-          {
-            "date": "22 - 23 Juli 2026",
-            "label": "Poster Expo",
-            "detail": "Pameran poster"
-          }
-        ],
-        "contactsTag": "Narahubung",
-        "contactsTitle": "Informasi Lebih Lanjut",
-        "contacts": [
-          {
-            "name": "Dewandono Bayu Seto",
-            "phone": "0895-3609-01699"
-          },
-          {
-            "name": "Yulita Maulani",
-            "phone": "0896-6726-0189"
-          }
-        ],
-        "posterImage": "/images/proceeding-poster.png",
-        "posters": [
-          {
-            "title": "Optimalisasi Panel Surya Pada Industri Hijau",
-            "author": "Dr. Ahmad Fauzi - Universitas Indonesia",
-            "desc": "Penelitian ini membahas mengenai sistem pelacakan otomatis panel surya guna mengoptimalkan konversi energi matahari di sektor manufaktur industri hijau.",
-            "image": "/images/proceeding-poster.png"
-          },
-          {
-            "title": "Sistem Informasi Geografis Pemetaan Sampah Plastik",
-            "author": "Budi Setiawan, M.T. - Politeknik Indonusa Surakarta",
-            "desc": "Prototipe sistem informasi pemetaan penumpukan sampah plastik berbasis mobile GIS untuk mempercepat respons penanganan kebersihan lingkungan.",
-            "image": "/images/competition-poster.png"
-          },
-          {
-            "title": "Analisis Efektivitas IoT Pada Greenhouse Hidroponik",
-            "author": "Siti Aminah - Institut Teknologi Bandung",
-            "desc": "Studi kasus penghematan air dan nutrisi dengan otomatisasi sensor kelembaban dan pH berbasis IoT pada perkebunan perkotaan modern.",
-            "image": "/images/conference-poster.png"
-          }
-        ]
-      },
-      "seminar": {
-        "badge": "Konferensi Internasional",
-        "title": "Konferensi Internasional",
-        "description": "Produk inovatif dari industri hijau untuk mengatasi tantangan keterampilan, sosial, dan demografi masa depan.",
-        "joinBtn": "Register Now",
-        "speakersTag": "Our Speaker",
-        "speakersTitle": "Pembicara konferensi",
-        "speakers": [
-          {
-            "name": "Doddy Mulyanto, MM",
-            "role": "Politeknik Indonusa Surakarta",
-            "country": "Indonesia",
-            "image": "/images/indonesia.png"
-          },
-          {
-            "name": "Dr. Felisse Mariane Z. San Juan",
-            "role": "Gullas College of Medicine",
-            "country": "Filipina",
-            "image": "/images/philipin.png"
-          },
-          {
-            "name": "Dr. Ir. Rifqi Irzuan Abdul Djajal",
-            "role": "Taylor University, Malaysia",
-            "country": "Malaysia",
-            "image": "/images/malaysia.png"
-          },
-          {
-            "name": "Larry Chua",
-            "role": "Blink ID",
-            "country": "Singapura",
-            "image": "/images/singapur.png"
-          }
-        ],
-        "categoriesTag": "Sub Theme",
-        "categoriesTitle": "Sub tema yang tersedia",
-        "categories": [
-          {
-            "title": "Pharmacy, Health & Medicine",
-            "desc": "Pharmacy, Health, Medicine, and Humanistic Therapy"
-          },
-          {
-            "title": "Hospitality & Tourism",
-            "desc": "Hospitality & Tourism, Culinary & Food"
-          },
-          {
-            "title": "Engineering & ICT",
-            "desc": "Engineering, Information, Communication and Technology (ICT)"
-          },
-          {
-            "title": "Entrepreneurship",
-            "desc": "Economic, Business, Management, Education, Media, Design, Advertising, Arts, Publishing"
-          }
-        ],
-        "feeTag": "Registration Information",
-        "feeTitle": "Registration Fee for Call Paper",
-        "fees": [
-          {
-            "label": "Registration Fee",
-            "price": "40$ USD (IDR 800.000)"
-          }
-        ],
-        "paymentTitle": "Payment",
-        "payments": [
-          {
-            "bank": "Mandiri",
-            "acc": "1380018655162",
-            "name": "a.n Yulita M"
-          },
-          {
-            "bank": "Gopay",
-            "acc": "0896-6726-0189",
-            "name": "a.n Yulita M"
-          }
-        ],
-        "timelineTag": "Timeline",
-        "timelineTitle": "Jadwal penting konferensi",
-        "timeline": [
-          {
-            "date": "20 March - 10 July 2026",
-            "label": "Registration",
-            "detail": "Pendaftaran"
-          },
-          {
-            "date": "20 March - 10 July 2026",
-            "label": "Payment",
-            "detail": "Pembayaran"
-          },
-          {
-            "date": "11 July 2026",
-            "label": "Abstract Submit",
-            "detail": "Pengumpulan Abstrak"
-          },
-          {
-            "date": "20 July 2026",
-            "label": "Video Submit",
-            "detail": "Pengumpulan Video"
-          },
-          {
-            "date": "22 - 23 July 2026",
-            "label": "Presentation IITE",
-            "detail": "Presentasi"
-          },
-          {
-            "date": "24 July - 25 Sept 2026",
-            "label": "Full Paper Submission",
-            "detail": "Pengumpulan Full Paper"
-          },
-          {
-            "date": "Oktober 2026",
-            "label": "Publication",
-            "detail": "Publikasi"
-          }
-        ],
-        "contactsTag": "Contact Person",
-        "contactsTitle": "Informasi Lebih Lanjut",
-        "contacts": [
-          {
-            "name": "Resi",
-            "phone": "0857-2771-3177"
-          }
-        ],
-        "scheduleTag": "Schedule & Location",
-        "scheduleTitle": "Waktu dan tempat",
-        "schedule": [
-          {
-            "date": "23 July 2026",
-            "time": "08.00 AM - 12.00 PM (GMT+7)",
-            "platform": "Zoom and YouTube"
-          }
-        ],
-        "posterImage": "/images/conference-poster.png"
-      },
-      "greenyouth": {
-        "badge": "Green Youth",
-        "title": "Greenpreneur Youth-2026 Kompetisi",
-        "description": "Kompetisi ide usaha bermuatan teknologi hijau untuk mahasiswa Politeknik Indonusa Surakarta.",
-        "joinBtn": "Daftar Sekarang",
-        "requirementsTag": "Syarat & Ketentuan",
-        "requirementsTitle": "Syarat dan ketentuan peserta",
-        "requirements": [
-          "Peserta bersifat tim atau kelompok (3-5 orang)",
-          "Anggota tim berasal dari mahasiswa aktif kampus Politeknik Indonusa Surakarta dari seluruh program studi.",
-          "Boleh masih sekedar ide usaha (Realistis, Inovatif dan Aplikatif)",
-          "Ide usaha harus bermuatan teknologi dalam berbagai bidang seperti sosial, budaya, kuliner, tanaman, hewan, dll)",
-          "Ide usaha dituangkan dalam proposal ide usaha Greenyouth-2026 (template disediakan panitia) dan diupload di link yang sudah disediakan",
-          "Ide usaha dipersentasikan dalam bentuk Canvas model bisnis (kerangka model disediakan panitia) dan diupload di link yang sudah disediakan"
-        ],
-        "timelineTag": "Agenda Kegiatan",
-        "timelineTitle": "Agenda kegiatan kompetisi",
-        "timeline": [
-          {
-            "date": "20 Maret - 20 Juli 2026",
-            "label": "Pendaftaran",
-            "detail": "Registrasi peserta dan pengiriman proposal."
-          },
-          {
-            "date": "21 Juli 2026",
-            "label": "Teknikal Metting Finalis",
-            "detail": "Pertemuan teknis untuk para finalis."
-          },
-          {
-            "date": "22 Juli 2026",
-            "label": "Persentasi Finalis",
-            "detail": "Sesi presentasi ide usaha oleh finalis."
-          }
-        ],
-        "contactsTag": "Kontak & Pendaftaran",
-        "contactsTitle": "Informasi Pendaftaran",
-        "contacts": [
-          {
-            "name": "WhatsApp",
-            "phone": "0812-1515-2828"
-          },
-          {
-            "name": "Instagram",
-            "phone": "POLITEKNIK INDONUSA SURAKARTA"
-          },
-          {
-            "name": "Website",
-            "phone": "HTTPS://POLTEKINDONUSA.AC.ID/"
-          }
-        ],
-        "posterImage": "/images/greenyouth_poster.png"
-      },
-      "msme": {
-        "badge": "UMKM Award 2026",
-        "title": "UMKM Award 2026",
-        "description": "Penghargaan untuk pelaku UMKM yang menunjukkan inovasi bisnis hijau dan dampak sosial di komunitas. Apresiasi untuk usaha kecil berdampak besar.",
-        "registerBtn": "Daftar Sekarang",
-        "requirementsTag": "Ketentuan",
-        "requirementsTitle": "Ketentuan Lomba",
-        "requirements": [
-          "Terbuka untuk UMKM segala usia dan sektor di Solo Raya",
-          "Peserta individu atau tim",
-          "Registrasi melalui form online dengan data UMKM lengkap",
-          "Submit dokumen registrasi sesuai ketentuan",
-          "Peserta yang lolos administrasi akan presentasi online",
-          "Dilarang menggunakan materi berhak cipta (diskualifikasi)",
-          "Wajib hadir saat presentasi sesuai jadwal"
-        ],
-        "criteriaTag": "Aspek Penilaian",
-        "criteriaTitle": "Kriteria penilaian UMKM",
-        "criteria": [
-          "25% Inovasi Produk",
-          "25% Implementasi Teknologi Digital",
-          "20% Kelayakan Bisnis",
-          "15% Dampak Sosial",
-          "15% Kemampuan Presentasi"
-        ],
-        "timelineTag": "Agenda Kegiatan",
-        "timelineTitle": "Jadwal penting penghargaan",
-        "timeline": [
-          {
-            "date": "26 April - 20 Juni 2026",
-            "label": "Pendaftaran",
-            "detail": "Registrasi peserta."
-          },
-          {
-            "date": "21 Juni - 11 Juli 2026",
-            "label": "Seleksi Administrasi & Dokumen",
-            "detail": "Proses seleksi tahap awal."
-          },
-          {
-            "date": "12 Juli 2026",
-            "label": "Pengumuman Hasil Administrasi",
-            "detail": "Pengumuman peserta yang lolos tahap administrasi."
-          },
-          {
-            "date": "22 Juli 2026",
-            "label": "Presentasi Online",
-            "detail": "Sesi presentasi online."
-          },
-          {
-            "date": "23 Juli 2026",
-            "label": "Pengumuman Pemenang",
-            "detail": "Pengumuman pemenang UMKM Award 2026."
-          }
-        ],
-        "registrationLink": "https://forms.gle/6SmzHNpBP63deKGc7",
-        "posterImage": "/images/umkm-poster.png"
-      },
-      "news": {
-        "badge": "Portal Berita",
-        "title": "Berita & Informasi IITE 2026",
-        "description": "Ikuti perkembangan terbaru seputar International Innovation Technology Expo 2026.",
-        "latestNews": "Berita Terbaru",
-        "readMore": "Baca Selengkapnya",
-        "publishedAt": "Dipublikasikan",
-        "category": "Kategori",
-        "allCategories": "Semua",
-        "searchPlaceholder": "Cari berita...",
-        "articles": [
-          {
-            "title": "Pendaftaran IITE 2026 Resmi Dibuka",
-            "date": "20 Maret 2026",
-            "category": "Pengumuman",
-            "summary": "Pendaftaran untuk seluruh kategori kegiatan IITE 2026 telah resmi dibuka. Segera daftarkan diri Anda dan tim untuk berkompetisi di ajang inovasi teknologi hijau internasional.",
-            "image": "/images/conference-poster.png"
-          },
-          {
-            "title": "Keynote Speaker dari Taylor University Bergabung",
-            "date": "5 April 2026",
-            "category": "Pembicara",
-            "summary": "Dr. Ir. Rifqi Irzuan Abdul Djajal dari Taylor University, Malaysia akan menjadi salah satu keynote speaker di konferensi internasional IITE 2026.",
-            "image": "/images/conference-poster.png"
-          },
-          {
-            "title": "Workshop Greenpreneur Youth Segera Dimulai",
-            "date": "15 April 2026",
-            "category": "Kegiatan",
-            "summary": "Program Greenpreneur Youth 2026 membuka kesempatan bagi mahasiswa Politeknik Indonusa Surakarta untuk mengembangkan ide bisnis berteknologi hijau.",
-            "image": "/images/greenyouth_poster.png"
-          },
-          {
-            "title": "Panduan Pengiriman Poster Proceeding",
-            "date": "1 Mei 2026",
-            "category": "Panduan",
-            "summary": "Panitia telah merilis panduan lengkap untuk pengiriman poster proceeding. Pastikan poster Anda mengikuti template yang telah disediakan.",
-            "image": "/images/proceeding-poster.png"
-          },
-          {
-            "title": "Kategori Kompetisi Inovasi Diperluas",
-            "date": "10 Mei 2026",
-            "category": "Pengumuman",
-            "summary": "Kategori kompetisi inovasi IITE 2026 kini mencakup empat bidang utama termasuk Farmasi, Hospitality, Teknik & TIK, dan Kewirausahaan.",
-            "image": "/images/competition-poster.png"
-          },
-          {
-            "title": "Penghargaan UMKM Hijau: Kriteria dan Cara Daftar",
-            "date": "12 Mei 2026",
-            "category": "UMKM",
-            "summary": "Program penghargaan UMKM hijau memberikan apresiasi kepada pelaku usaha kecil yang menunjukkan inovasi bisnis berkelanjutan dan dampak sosial positif.",
-            "image": "/images/competition-poster.png"
-          }
-        ]
-      }
     }
-  },
-  "en": {
-    "nav": {
-      "home": "Home",
-      "about": "About",
-      "activities": "Activities",
-      "timeline": "Timeline",
-      "contact": "Contact",
-      "competition": "Competition",
-      "proceeding": "Poster",
-      "seminar": "Proceeding",
-      "greenyouth": "Green Youth",
-      "msme": "MSMEs",
-      "news": "News",
-      "adminLoginBtn": "Admin Login",
-      "languageLabel": "ID",
-      "contactBtn": "Contact Us"
-    },
-    "hero": {
-      "badge": "International Innovation Technology Expo",
-      "description": "\"Innovative products from the green industry to address future skills, social, and demographic challenges.\" Join a hybrid event that connects global green technology ideas.",
-      "time": "Time",
-      "timeValue": "July 22 - 23, 2026",
-      "location": "Location",
-      "locationValue": "Online (Zoom Hybrid)",
-      "organizer": "Organizer",
-      "organizerName": "Politeknik Indonusa Surakarta",
-      "summary": "Green innovation action, international seminars, product competitions, academic posters, and MSMEs awards in one futuristic digital platform.",
-      "cta": "Register Now",
-      "countdown": "Countdown to IITE 2026",
-      "speakersTag": "INTERNASIONAL CONDERENCE",
-      "speakersTitle": "Our Keynote Speaker",
-      "clickToEnlarge": "Click to enlarge",
-      "registrationFeeTag": "Registration Fee",
-      "registrationFeeTitle": "Registration Fee for Call Paper",
-      "registrationFees": [
-        {
-          "label": "Registration Fee",
-          "price": "40$ USD (IDR 800,000)"
-        }
-      ],
-      "paymentTitle": "Payment",
-      "payments": [
-        {
-          "bank": "Mandiri",
-          "acc": "1380018655162",
-          "name": "Yulita M"
-        },
-        {
-          "bank": "Gopay",
-          "acc": "0896-6726-0189",
-          "name": "Yulita M"
-        }
-      ],
-      "contactPerson": "Contact Person",
-      "contacts": [
-        {
-          "name": "Resi",
-          "phone": "0857-2771-3177"
-        }
-      ],
-      "sliderLabel": "Spotlight",
-      "sliderHeading": "Event cover and featured agenda",
-      "slides": [
-        {
-          "title": "Highlight 1",
-          "subtitle": "International seminar and green technology discussion panels"
-        },
-        {
-          "title": "Highlight 2",
-          "subtitle": "Innovation competition for future-ready generations"
-        },
-        {
-          "title": "Highlight 3",
-          "subtitle": "Poster exhibition and proceedings from sustainable research"
-        }
-      ],
-      "posterImage": "/uploads/1784524374129_WhatsApp_Image_2026-07-11_at_14.48.09.jpeg"
-    },
-    "about": {
-      "tag": "About Event",
-      "heading": "Green industry innovation for future skills and challenges",
-      "description": "IITE 2026 provides a platform for innovators, academics, and industry players to showcase eco-friendly solutions relevant to social, demographic, and future skills changes.",
-      "programTitle": "Program Focus",
-      "programText": "Bringing together competitions, international seminars, proceeding showcases, and MSMEs awards to strengthen an inclusive green technology ecosystem.",
-      "benefitTitle": "Participant Benefits",
-      "benefitText": "Participants gain global insights, international networks, and hybrid digital experience to prepare for demographic and social challenges in the green industry era."
-    },
-    "activities": {
-      "tag": "Main Activities",
-      "heading": "Four event categories supporting the green ecosystem",
-      "description": "Each category is designed to showcase technology innovation, research outcomes, and MSMEs empowerment with sustainability spirit.",
-      "cards": [
-        {
-          "title": "Innovation Competition",
-          "description": "Innovative product competition based on the green industry for future skills and social challenge solutions.",
-          "accent": "cyan"
-        },
-        {
-          "title": "Proceeding & Poster",
-          "description": "Academic publication and poster research visualizing environmentally friendly strategies.",
-          "accent": "emerald"
-        },
-        {
-          "title": "International Seminar",
-          "description": "International sessions with expert speakers to discuss green technology trends and demographic transformation.",
-          "accent": "cyan"
-        },
-        {
-          "title": "MSMEs Award",
-          "description": "Award for MSMEs that demonstrate green business innovation and social impact in the community.",
-          "accent": "emerald"
-        }
-      ]
-    },
-    "timeline": {
-      "tag": "Timeline",
-      "heading": "Registration and event phases",
-      "description": "The IITE 2026 activity calendar helps participants plan registration, preparation, and attendance at the main event.",
-      "milestones": [
-        {
-          "label": "Registration opens",
-          "date": "March 20, 2026",
-          "detail": "Participant registration and abstract submission for all event categories."
-        },
-        {
-          "label": "Proposal review",
-          "date": "April - May 2026",
-          "detail": "Judges review innovation, poster proposals, and proceeding work objectively."
-        },
-        {
-          "label": "Finalist announcement",
-          "date": "Early July 2026",
-          "detail": "Participants who pass will be prepared for presentations and international seminar sessions."
-        },
-        {
-          "label": "Main event",
-          "date": "July 22 - 23, 2026",
-          "detail": "Seminar sessions, competitions, poster presentations, and MSMEs Award winners announcement."
-        }
-      ]
-    },
-    "contact": {
-      "tag": "Contact",
-      "heading": "Contact the IITE 2026 Committee",
-      "description": "Get registration information, technical guidance, and direct support from the event organizing team.",
-      "address": "Address",
-      "phone": "Phone",
-      "socialTitle": "Social Media",
-      "instagram": "Instagram: @iite2026",
-      "linkedin": "LinkedIn: Politeknik Indonusa Surakarta",
-      "zoom": "Zoom Hybrid Event Link will be announced via email"
-    },
-    "footer": {
-      "copy1": "© 2026 IITE 2026.",
-      "copy2": ""
-    },
-    "countdown": {
-      "title": "Countdown to IITE 2026",
-      "labels": [
-        "Days",
-        "Hours",
-        "Minutes",
-        "Seconds"
-      ]
-    },
-    "home": {
-      "activitiesTag": "Main Activities",
-      "activitiesTitle": "Five featured activities of IITE 2026",
-      "activitiesDesc": "Each activity is designed to showcase technology innovation, research outcomes, and community empowerment with sustainability spirit.",
-      "cards": {
-        "competition": {
-          "title": "Innovation Competition",
-          "desc": "Innovative product competition based on the green industry for future skills and social challenge solutions.",
-          "cta": "View Details"
-        },
-        "proceeding": {
-          "title": "Poster",
-          "desc": "Academic publications and research posters visualizing environmentally friendly strategies.",
-          "cta": "View Details"
-        },
-        "seminar": {
-          "title": "Proceeding",
-          "desc": "International proceeding with expert speakers to discuss green technology trends and demographic transformation.",
-          "cta": "View Details"
-        },
-        "greenyouth": {
-          "title": "Green Youth Program",
-          "desc": "Youth empowerment program in real green technology actions and environmental sustainability.",
-          "cta": "View Details"
-        },
-        "msme": {
-          "title": "MSMEs Award",
-          "desc": "Award for MSMEs that demonstrate green business innovation and social impact in the community.",
-          "cta": "View Details"
-        },
-        "news": {
-          "title": "News & Information",
-          "desc": "Follow the latest updates regarding the International Innovation Technology Expo 2026.",
-          "cta": "View Details"
-        }
-      }
-    },
-    "pages": {
-      "backHome": "Back to Home",
-      "competition": {
-        "badge": "Innovation Competition",
-        "title": "Innovation Competition",
-        "description": "Innovative product competition based on the green industry for future skills and social challenge solutions. Showcase your best ideas on the international stage of IITE 2026.",
-        "registerBtn": "Register Now",
-        "categoriesTag": "Categories",
-        "categoriesTitle": "Available competition categories",
-        "categories": [
-          {
-            "title": "Pharmacy, Health & Medicine",
-            "desc": "Pharmacy, Health, Medicine, and Humanistic Therapy."
-          },
-          {
-            "title": "Hospitality & Tourism",
-            "desc": "Hospitality & Tourism, Culinary & Food (University Students Only)."
-          },
-          {
-            "title": "Engineering & ICT",
-            "desc": "Engineering, Information, Communication and Technology (ICT)."
-          },
-          {
-            "title": "Entrepreneurship",
-            "desc": "Economic, Business, Management, Education, Media, Design, Advertising, Arts, Publishing."
-          }
-        ],
-        "feeTag": "Registration Fee",
-        "feeTitle": "Competition registration fees",
-        "fees": [
-          {
-            "label": "Indonesian College Students",
-            "price": "IDR 200.000,-"
-          },
-          {
-            "label": "High School Students",
-            "price": "IDR 150.000,-"
-          },
-          {
-            "label": "International College Students",
-            "price": "$ 15"
-          }
-        ],
-        "paymentTitle": "Payment Information",
-        "requirementsTag": "Requirements",
-        "requirementsTitle": "Participant terms and conditions",
-        "requirements": [
-          "Open to students and professionals worldwide",
-          "Team consists of 2-4 members with one advisor",
-          "Proposal written in English",
-          "Product must be based on green and sustainable industry",
-          "Include a presentation video of maximum 5 minutes",
-          "Has not won a similar international competition"
-        ],
-        "timelineTag": "Timeline",
-        "timelineTitle": "Competition important dates",
-        "timeline": [
-          {
-            "date": "March 20 - July 02, 2026",
-            "label": "Registration & Submission",
-            "detail": "Participant registration and competition proposal submission."
-          },
-          {
-            "date": "July 06 - 10, 2026",
-            "label": "Selection Process",
-            "detail": "Judges evaluate proposals and innovations objectively."
-          },
-          {
-            "date": "July 11, 2026",
-            "label": "Finalist Announcement",
-            "detail": "Announcement of participants who advance to the final stage."
-          },
-          {
-            "date": "July 13 - 18, 2026",
-            "label": "PPT Presentation Submission",
-            "detail": "Finalists submit their PPT presentation materials."
-          },
-          {
-            "date": "July 22, 2026",
-            "label": "Online Presentation",
-            "detail": "Online presentation session for all finalists."
-          },
-          {
-            "date": "July 23, 2026",
-            "label": "Winner Announcement",
-            "detail": "Announcement and awards ceremony for winners."
-          }
-        ],
-        "cohostTag": "Co-Host",
-        "cohostTitle": "Co-Host Information",
-        "cohosts": [
-          {
-            "name": "A. Anditha",
-            "phone": "+62 856-4703-9229"
-          },
-          {
-            "name": "Diyan Sakti",
-            "phone": "+62 856-4731-2008"
-          }
-        ],
-        "posterImage": "/images/competition-poster.png"
-      },
-      "proceeding": {
-        "badge": "Proceeding Poster",
-        "title": "Proceeding Poster",
-        "description": "Innovative products from the green industry to address future skills, social, and demographic challenges.",
-        "registerBtn": "Registration Link",
-        "categoriesTag": "Sub Theme",
-        "categoriesTitle": "Available sub themes",
-        "categories": [
-          {
-            "title": "Pharmacy, Health & Medicine",
-            "desc": "Pharmacy, Health, Medicine, and Humanistic Therapy"
-          },
-          {
-            "title": "Hospitality & Tourism",
-            "desc": "Hospitality & Tourism, Culinary & Food"
-          },
-          {
-            "title": "Engineering & ICT",
-            "desc": "Engineering, Information, Communication and Technology (ICT)"
-          },
-          {
-            "title": "Entrepreneurship",
-            "desc": "Economic, Business, Management, Education, Media, Design, Advertising, Arts, Publishing"
-          }
-        ],
-        "feeTag": "Registration Fee",
-        "feeTitle": "Proceeding poster registration fee",
-        "fees": [
-          {
-            "label": "Registration fee per team",
-            "price": "IDR 100,000"
-          }
-        ],
-        "paymentTitle": "Payment Information",
-        "paymentDesc": "Payment can be made via the account number specified in the Poster Exp Guidebook.",
-        "requirementsTag": "Requirements & Facilities",
-        "requirementsTitle": "Participant requirements and facilities",
-        "requirements": [
-          "Open to active students and lecturers in higher education study programs",
-          "Participants can be individuals or teams of up to three people",
-          "Facility: E-Certificate for the Best Expo",
-          "Facility: E-Certificate for all Expo Participants"
-        ],
-        "timelineTag": "Timeline",
-        "timelineTitle": "Important dates",
-        "timeline": [
-          {
-            "date": "20 March - 10 July 2026",
-            "label": "Registration",
-            "detail": "Participant registration"
-          },
-          {
-            "date": "20 March - 10 July 2026",
-            "label": "Payment",
-            "detail": "Payment period"
-          },
-          {
-            "date": "20 March - 11 July 2026",
-            "label": "Submission",
-            "detail": "Poster submission"
-          },
-          {
-            "date": "20 March - 20 July 2026",
-            "label": "Poster Design Collection",
-            "detail": "Poster design collection"
-          },
-          {
-            "date": "22 - 23 July 2026",
-            "label": "Poster Expo",
-            "detail": "Poster exhibition event"
-          }
-        ],
-        "contactsTag": "Contact Person",
-        "contactsTitle": "More Information",
-        "contacts": [
-          {
-            "name": "Dewandono Bayu Seto",
-            "phone": "0895-3609-01699"
-          },
-          {
-            "name": "Yulita Maulani",
-            "phone": "0896-6726-0189"
-          }
-        ],
-        "posterImage": "/images/proceeding-poster.png",
-        "posters": [
-          {
-            "title": "Optimization of Solar Panels in Green Industries",
-            "author": "Dr. Ahmad Fauzi - Universitas Indonesia",
-            "desc": "This study discusses the automatic solar panel tracking system to optimize solar energy conversion in the green manufacturing industrial sector.",
-            "image": "/images/proceeding-poster.png"
-          },
-          {
-            "title": "Geographic Information System for Plastic Waste Mapping",
-            "author": "Budi Setiawan, M.T. - Politeknik Indonusa Surakarta",
-            "desc": "A mobile GIS-based prototype system for mapping plastic waste accumulation to accelerate clean environmental response and handling.",
-            "image": "/images/competition-poster.png"
-          },
-          {
-            "title": "Effectiveness Analysis of IoT in Hydroponic Greenhouse",
-            "author": "Siti Aminah - ITB",
-            "desc": "Case study of water and nutrition conservation using automated moisture and pH sensors based on IoT in modern urban farming.",
-            "image": "/images/conference-poster.png"
-          }
-        ]
-      },
-      "seminar": {
-        "badge": "International Conference",
-        "title": "International Conference",
-        "description": "Innovative products from the green industry to address future skills, social, and demographic challenges.",
-        "joinBtn": "Register Now",
-        "speakersTag": "Our Speaker",
-        "speakersTitle": "Conference speakers",
-        "speakers": [
-          {
-            "name": "Doddy Mulyanto, MM",
-            "role": "Politeknik Indonusa Surakarta",
-            "country": "Indonesia",
-            "image": "/images/indonesia.png"
-          },
-          {
-            "name": "Dr. Felisse Mariane Z. San Juan",
-            "role": "Gullas College of Medicine",
-            "country": "Philippines",
-            "image": "/images/philipin.png"
-          },
-          {
-            "name": "Dr. Ir. Rifqi Irzuan Abdul Djajal",
-            "role": "Taylor University, Malaysia",
-            "country": "Malaysia",
-            "image": "/images/malaysia.png"
-          },
-          {
-            "name": "Larry Chua",
-            "role": "Blink ID",
-            "country": "Singapore",
-            "image": "/images/singapur.png"
-          }
-        ],
-        "categoriesTag": "Sub Theme",
-        "categoriesTitle": "Available sub themes",
-        "categories": [
-          {
-            "title": "Pharmacy, Health & Medicine",
-            "desc": "Pharmacy, Health, Medicine, and Humanistic Therapy"
-          },
-          {
-            "title": "Hospitality & Tourism",
-            "desc": "Hospitality & Tourism, Culinary & Food"
-          },
-          {
-            "title": "Engineering & ICT",
-            "desc": "Engineering, Information, Communication and Technology (ICT)"
-          },
-          {
-            "title": "Entrepreneurship",
-            "desc": "Economic, Business, Management, Education, Media, Design, Advertising, Arts, Publishing"
-          }
-        ],
-        "feeTag": "Registration Information",
-        "feeTitle": "Registration Fee for Call Paper",
-        "fees": [
-          {
-            "label": "Registration Fee",
-            "price": "40$ USD (IDR 800.000)"
-          }
-        ],
-        "paymentTitle": "Payment",
-        "payments": [
-          {
-            "bank": "Mandiri",
-            "acc": "1380018655162",
-            "name": "Yulita M"
-          },
-          {
-            "bank": "Gopay",
-            "acc": "0896-6726-0189",
-            "name": "Yulita M"
-          }
-        ],
-        "timelineTag": "Timeline",
-        "timelineTitle": "Important dates",
-        "timeline": [
-          {
-            "date": "20 March - 10 July 2026",
-            "label": "Registration",
-            "detail": "Registration"
-          },
-          {
-            "date": "20 March - 10 July 2026",
-            "label": "Payment",
-            "detail": "Payment"
-          },
-          {
-            "date": "11 July 2026",
-            "label": "Abstract Submit",
-            "detail": "Abstract Submission"
-          },
-          {
-            "date": "20 July 2026",
-            "label": "Video Submit",
-            "detail": "Video Submission"
-          },
-          {
-            "date": "22 - 23 July 2026",
-            "label": "Presentation IITE",
-            "detail": "Presentation"
-          },
-          {
-            "date": "24 July - 25 Sept 2026",
-            "label": "Full Paper Submission",
-            "detail": "Full Paper Submission"
-          },
-          {
-            "date": "October 2026",
-            "label": "Publication",
-            "detail": "Publication"
-          }
-        ],
-        "contactsTag": "Contact Person",
-        "contactsTitle": "More Information",
-        "contacts": [
-          {
-            "name": "Resi",
-            "phone": "0857-2771-3177"
-          }
-        ],
-        "scheduleTag": "Schedule & Location",
-        "scheduleTitle": "Time and place",
-        "schedule": [
-          {
-            "date": "23 July 2026",
-            "time": "08.00 AM - 12.00 PM (GMT+7)",
-            "platform": "Zoom and YouTube"
-          }
-        ],
-        "posterImage": "/images/conference-poster.png"
-      },
-      "greenyouth": {
-        "badge": "Green Youth",
-        "title": "Greenpreneur Youth-2026 Competition",
-        "description": "Green technology business idea competition for Politeknik Indonusa Surakarta students.",
-        "joinBtn": "Register Now",
-        "requirementsTag": "Terms & Conditions",
-        "requirementsTitle": "Participant terms and conditions",
-        "requirements": [
-          "Participants are in teams or groups (3-5 people)",
-          "Team members must be active students of Politeknik Indonusa Surakarta from any study program.",
-          "Can still be just a business idea (Realistic, Innovative and Applicative)",
-          "Business ideas must contain technology in various fields such as social, culture, culinary, plants, animals, etc.)",
-          "Business ideas are outlined in the Greenyouth-2026 business idea proposal (template provided by the committee) and uploaded to the provided link",
-          "Business ideas are presented in the form of a Business Model Canvas (model framework provided by the committee) and uploaded to the provided link"
-        ],
-        "timelineTag": "Activity Agenda",
-        "timelineTitle": "Competition activity agenda",
-        "timeline": [
-          {
-            "date": "March 20 - July 20, 2026",
-            "label": "Registration",
-            "detail": "Participant registration and proposal submission."
-          },
-          {
-            "date": "July 21, 2026",
-            "label": "Finalist Technical Meeting",
-            "detail": "Technical meeting for finalists."
-          },
-          {
-            "date": "July 22, 2026",
-            "label": "Finalist Presentation",
-            "detail": "Business idea presentation session by finalists."
-          }
-        ],
-        "contactsTag": "Contact & Registration",
-        "contactsTitle": "Registration Information",
-        "contacts": [
-          {
-            "name": "WhatsApp",
-            "phone": "0812-1515-2828"
-          },
-          {
-            "name": "Instagram",
-            "phone": "POLITEKNIK INDONUSA SURAKARTA"
-          },
-          {
-            "name": "Website",
-            "phone": "HTTPS://POLTEKINDONUSA.AC.ID/"
-          }
-        ],
-        "posterImage": "/images/greenyouth_poster.png"
-      },
-      "msme": {
-        "badge": "UMKM Award 2026",
-        "title": "UMKM Award 2026",
-        "description": "Award for MSMEs that demonstrate green business innovation and social impact in the community. Appreciation for small businesses with big impact.",
-        "registerBtn": "Register Now",
-        "requirementsTag": "Requirements",
-        "requirementsTitle": "Contest Requirements",
-        "requirements": [
-          "Open to MSMEs of all ages and sectors in Solo Raya",
-          "Participants can be individuals or teams",
-          "Registration via online form with complete MSME data",
-          "Submit registration documents according to terms",
-          "Shortlisted participants for administration will attend online presentations",
-          "Use of copyrighted material is prohibited (disqualification)",
-          "Attendance during scheduled presentation is mandatory"
-        ],
-        "criteriaTag": "Criteria",
-        "criteriaTitle": "MSMEs assessment criteria",
-        "criteria": [
-          "25% Product Innovation",
-          "25% Digital Technology Implementation",
-          "20% Business Viability",
-          "15% Social Impact",
-          "15% Presentation Skills"
-        ],
-        "timelineTag": "Agenda",
-        "timelineTitle": "Award important dates",
-        "timeline": [
-          {
-            "date": "26 April - 20 June 2026",
-            "label": "Registration",
-            "detail": "Participant registration."
-          },
-          {
-            "date": "21 June - 11 July 2026",
-            "label": "Administrative & Document Selection",
-            "detail": "Initial stage selection process."
-          },
-          {
-            "date": "12 July 2026",
-            "label": "Announcement of Administrative Results",
-            "detail": "Announcement of shortlisted participants."
-          },
-          {
-            "date": "22 July 2026",
-            "label": "Online Presentation",
-            "detail": "Online presentation session."
-          },
-          {
-            "date": "23 July 2026",
-            "label": "Winner Announcement",
-            "detail": "Announcement of UMKM Award 2026 winners."
-          }
-        ],
-        "registrationLink": "https://forms.gle/6SmzHNpBP63deKGc7",
-        "posterImage": "/images/umkm-poster.png"
-      },
-      "news": {
-        "badge": "News Portal",
-        "title": "IITE 2026 News & Updates",
-        "description": "Stay updated with the latest developments of the International Innovation Technology Expo 2026.",
-        "latestNews": "Latest News",
-        "readMore": "Read More",
-        "publishedAt": "Published",
-        "category": "Category",
-        "allCategories": "All",
-        "searchPlaceholder": "Search news...",
-        "articles": [
-          {
-            "title": "IITE 2026 Registration Officially Open",
-            "date": "March 20, 2026",
-            "category": "Announcement",
-            "summary": "Registration for all IITE 2026 activity categories is now officially open. Register yourself and your team to compete in the international green technology innovation event.",
-            "image": "/images/conference-poster.png"
-          },
-          {
-            "title": "Keynote Speaker from Taylor University Joins",
-            "date": "April 5, 2026",
-            "category": "Speaker",
-            "summary": "Dr. Ir. Rifqi Irzuan Abdul Djajal from Taylor University, Malaysia will be one of the keynote speakers at the IITE 2026 international conference.",
-            "image": "/images/conference-poster.png"
-          },
-          {
-            "title": "Greenpreneur Youth Workshop Coming Soon",
-            "date": "April 15, 2026",
-            "category": "Activities",
-            "summary": "The Greenpreneur Youth 2026 program opens opportunities for Politeknik Indonusa Surakarta students to develop green technology business ideas.",
-            "image": "/images/greenyouth_poster.png"
-          },
-          {
-            "title": "Proceeding Poster Submission Guide",
-            "date": "May 1, 2026",
-            "category": "Guide",
-            "summary": "The committee has released a complete guide for proceeding poster submission. Make sure your poster follows the provided template.",
-            "image": "/images/proceeding-poster.png"
-          },
-          {
-            "title": "Innovation Competition Categories Expanded",
-            "date": "May 10, 2026",
-            "category": "Announcement",
-            "summary": "IITE 2026 innovation competition categories now cover four main fields including Pharmacy, Hospitality, Engineering & ICT, and Entrepreneurship.",
-            "image": "/images/competition-poster.png"
-          },
-          {
-            "title": "Green MSMEs Award: Criteria and Registration",
-            "date": "May 12, 2026",
-            "category": "MSMEs",
-            "summary": "The green MSMEs award program appreciates small business owners who demonstrate sustainable business innovation and positive social impact.",
-            "image": "/images/competition-poster.png"
-          }
-        ]
-      }
-    }
-  }
 }
