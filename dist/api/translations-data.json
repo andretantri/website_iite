@@ -1,4 +1,5 @@
 {
+  "version": "2026-07-20-v1",
   "id": {
     "nav": {
       "home": "Home",
@@ -384,7 +385,27 @@
             "phone": "0896-6726-0189"
           }
         ],
-        "posterImage": "/images/proceeding-poster.png"
+        "posterImage": "/images/proceeding-poster.png",
+        "posters": [
+          {
+            "title": "Optimalisasi Panel Surya Pada Industri Hijau",
+            "author": "Dr. Ahmad Fauzi - Universitas Indonesia",
+            "desc": "Penelitian ini membahas mengenai sistem pelacakan otomatis panel surya guna mengoptimalkan konversi energi matahari di sektor manufaktur industri hijau.",
+            "image": "/images/proceeding-poster.png"
+          },
+          {
+            "title": "Sistem Informasi Geografis Pemetaan Sampah Plastik",
+            "author": "Budi Setiawan, M.T. - Politeknik Indonusa Surakarta",
+            "desc": "Prototipe sistem informasi pemetaan penumpukan sampah plastik berbasis mobile GIS untuk mempercepat respons penanganan kebersihan lingkungan.",
+            "image": "/images/competition-poster.png"
+          },
+          {
+            "title": "Analisis Efektivitas IoT Pada Greenhouse Hidroponik",
+            "author": "Siti Aminah - Institut Teknologi Bandung",
+            "desc": "Studi kasus penghematan air dan nutrisi dengan otomatisasi sensor kelembaban dan pH berbasis IoT pada perkebunan perkotaan modern.",
+            "image": "/images/conference-poster.png"
+          }
+        ]
       },
       "seminar": {
         "badge": "Konferensi Internasional",
@@ -1069,7 +1090,27 @@
             "phone": "0896-6726-0189"
           }
         ],
-        "posterImage": "/images/proceeding-poster.png"
+        "posterImage": "/images/proceeding-poster.png",
+        "posters": [
+          {
+            "title": "Optimization of Solar Panels in Green Industries",
+            "author": "Dr. Ahmad Fauzi - Universitas Indonesia",
+            "desc": "This study discusses the automatic solar panel tracking system to optimize solar energy conversion in the green manufacturing industrial sector.",
+            "image": "/images/proceeding-poster.png"
+          },
+          {
+            "title": "Geographic Information System for Plastic Waste Mapping",
+            "author": "Budi Setiawan, M.T. - Politeknik Indonusa Surakarta",
+            "desc": "A mobile GIS-based prototype system for mapping plastic waste accumulation to accelerate clean environmental response and handling.",
+            "image": "/images/competition-poster.png"
+          },
+          {
+            "title": "Effectiveness Analysis of IoT in Hydroponic Greenhouse",
+            "author": "Siti Aminah - ITB",
+            "desc": "Case study of water and nutrition conservation using automated moisture and pH sensors based on IoT in modern urban farming.",
+            "image": "/images/conference-poster.png"
+          }
+        ]
       },
       "seminar": {
         "badge": "International Conference",

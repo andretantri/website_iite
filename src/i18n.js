@@ -38,7 +38,13 @@ export function LanguageProvider({ language = 'en', toggleLanguage, children }) 
     try {
       const stored = localStorage.getItem('iite_translations')
       if (stored) {
-        return mergeDeep(defaultTranslations, JSON.parse(stored))
+        const parsed = JSON.parse(stored)
+        // Check version compatibility to invalidate old browser cache
+        if (parsed && parsed.version && parsed.version === defaultTranslations.version) {
+          return mergeDeep(defaultTranslations, parsed)
+        } else {
+          localStorage.removeItem('iite_translations')
+        }
       }
     } catch (e) {
       console.error('Error loading translations from local storage:', e)
@@ -50,7 +56,13 @@ export function LanguageProvider({ language = 'en', toggleLanguage, children }) 
     const fetchTranslations = async () => {
       try {
         const endpoint = import.meta.env.DEV ? '/api/get-translations' : '/api/get-translations.php'
-        const res = await fetch(endpoint)
+        let res = await fetch(endpoint)
+        
+        // Fallback if PHP endpoint returns 404 on static web hosting
+        if (!res.ok && !import.meta.env.DEV) {
+          res = await fetch('/api/translations-data.json?v=' + (defaultTranslations.version || Date.now()))
+        }
+
         if (res.ok) {
           const data = await res.json()
           if (data && (data.en || data.id)) {
@@ -58,7 +70,17 @@ export function LanguageProvider({ language = 'en', toggleLanguage, children }) 
           }
         }
       } catch (err) {
-        console.error('Failed to load translations from server database:', err)
+        try {
+          const staticRes = await fetch('/api/translations-data.json?v=' + (defaultTranslations.version || Date.now()))
+          if (staticRes.ok) {
+            const data = await staticRes.json()
+            if (data && (data.en || data.id)) {
+              setCurrentTranslations(data)
+            }
+          }
+        } catch (e) {
+          console.error('Failed to load translations from server database:', e)
+        }
       }
     }
     fetchTranslations()

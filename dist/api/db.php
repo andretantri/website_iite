@@ -27,10 +27,10 @@ function get_translations() {
     
     // Check persistent locations in order of priority
     $paths = [
-        '/tmp/iite_translations.json',
+        __DIR__ . '/translations-data.json',
         __DIR__ . '/../../public/api/translations-data.json',
         __DIR__ . '/storage/translations-data.json',
-        __DIR__ . '/translations-data.json'
+        '/tmp/iite_translations.json'
     ];
     
     if ($conn) {
