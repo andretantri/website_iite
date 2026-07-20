@@ -15,8 +15,12 @@ export default function localCmsPlugin() {
             const body = await getBodyData(req)
             const jsonData = JSON.parse(body)
             
-            const targetPath = path.resolve(__dirname, 'src/translations-data.json')
-            fs.writeFileSync(targetPath, JSON.stringify(jsonData, null, 2), 'utf8')
+            const targetPath1 = path.resolve(__dirname, 'src/translations-data.json')
+            const targetPath2 = path.resolve(__dirname, 'public/api/translations-data.json')
+            const formattedJson = JSON.stringify(jsonData, null, 2)
+            
+            fs.writeFileSync(targetPath1, formattedJson, 'utf8')
+            fs.writeFileSync(targetPath2, formattedJson, 'utf8')
             
             res.writeHead(200, { 'Content-Type': 'application/json' })
             res.end(JSON.stringify({ success: true, message: 'Translations written to disk successfully!' }))
