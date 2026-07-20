@@ -444,7 +444,16 @@ export default function AdminPage() {
 
   useEffect(() => {
     if (translations) {
-      setEditableTranslations(JSON.parse(JSON.stringify(translations)))
+      const cloned = JSON.parse(JSON.stringify(translations))
+      // Ensure hero default keys exist in editable translations
+      ;['id', 'en'].forEach((lang) => {
+        if (cloned[lang] && cloned[lang].hero) {
+          if (!cloned[lang].hero.timeValue) cloned[lang].hero.timeValue = lang === 'en' ? 'July 22 - 23, 2026' : '22 - 23 Juli 2026'
+          if (!cloned[lang].hero.locationValue) cloned[lang].hero.locationValue = 'Online (Zoom Hybrid)'
+          if (!cloned[lang].hero.organizerName) cloned[lang].hero.organizerName = 'Politeknik Indonusa Surakarta'
+        }
+      })
+      setEditableTranslations(cloned)
     }
   }, [translations])
 
@@ -1791,8 +1800,22 @@ export default function AdminPage() {
             <div className="space-y-6">
               {activeItem.sections.map((secId) => {
                 const secPath = SECTION_PATH_MAP[secId]
-                const sectionData = getNestedValue(editableTranslations?.[selectedLang], secPath) || getNestedValue(editableTranslations?.en, secPath) || getNestedValue(editableTranslations?.id, secPath)
+                let sectionData = getNestedValue(editableTranslations?.[selectedLang], secPath) || getNestedValue(editableTranslations?.en, secPath) || getNestedValue(editableTranslations?.id, secPath)
                 if (!sectionData) return null
+
+                if (secId === 'hero') {
+                  sectionData = {
+                    badge: '',
+                    description: '',
+                    time: 'Waktu',
+                    timeValue: '22 - 23 Juli 2026',
+                    location: 'Lokasi',
+                    locationValue: 'Online (Zoom Hybrid)',
+                    organizer: 'Penyelenggara',
+                    organizerName: 'Politeknik Indonusa Surakarta',
+                    ...sectionData
+                  }
+                }
 
                 return (
                   <div key={secId} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
