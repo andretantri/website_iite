@@ -29,17 +29,29 @@ if ($file['error'] !== UPLOAD_ERR_OK) {
     exit;
 }
 
-// Target candidate locations for uploads
+// Comprehensive list of target candidates for cPanel / VPS hosting structures
+$baseDir = __DIR__;
+$parentDir = dirname(__DIR__);
+$rootDir = dirname($parentDir);
+
 $candidates = [
-    ['dir' => dirname(__DIR__) . '/uploads', 'prefix' => '/uploads/'],
-    ['dir' => __DIR__ . '/uploads', 'prefix' => '/api/uploads/'],
+    ['dir' => $parentDir . '/uploads', 'prefix' => '/uploads/'],
+    ['dir' => $baseDir . '/uploads', 'prefix' => '/api/uploads/'],
+    ['dir' => $rootDir . '/public/uploads', 'prefix' => '/uploads/'],
+    ['dir' => $rootDir . '/dist/uploads', 'prefix' => '/uploads/'],
+    ['dir' => $rootDir . '/public/api/uploads', 'prefix' => '/api/uploads/'],
+    ['dir' => $rootDir . '/dist/api/uploads', 'prefix' => '/api/uploads/'],
+    ['dir' => $rootDir . '/uploads', 'prefix' => '/uploads/']
 ];
 
 $uploadsDir = null;
 $webPathPrefix = '/uploads/';
+$attemptedDirs = [];
 
 foreach ($candidates as $cand) {
     $dir = $cand['dir'];
+    $attemptedDirs[] = $dir;
+    
     if (!file_exists($dir)) {
         @mkdir($dir, 0777, true);
     }
@@ -58,7 +70,9 @@ if (!$uploadsDir) {
     header('Content-Type: application/json');
     echo json_encode([
         'success' => false,
-        'error' => 'Server hosting menolak pembuatan file di folder uploads. Silakan buka cPanel File Manager -> klik kanan folder public/uploads -> Change Permissions ke 777.'
+        'error' => 'Gagal membuat/menulisi folder uploads di server.',
+        'attempted_directories' => $attemptedDirs,
+        'help' => 'Jalankan `chmod 777 public/uploads public/api/uploads dist/uploads` di terminal server.'
     ]);
     exit;
 }
