@@ -1,7 +1,8 @@
 import { useState, useRef } from 'react'
-import { BookOpen, Lightbulb, Users, CheckCircle2, ArrowRight, CreditCard, Phone, Building2, X, Search, ChevronLeft, ChevronRight, ArrowLeft } from 'lucide-react'
+import { BookOpen, Lightbulb, Users, CheckCircle2, ArrowRight, CreditCard, Phone, Building2, X, Search, ChevronLeft, ChevronRight, ArrowLeft, Video } from 'lucide-react'
 import { useTranslation, useLanguage } from '../i18n'
 import PageLayout from '../components/PageLayout'
+import YouTubeEmbed, { getYouTubeEmbedUrl } from '../components/YouTubeEmbed'
 
 export default function ProceedingPage({ theme }) {
   const t = useTranslation()
@@ -118,6 +119,23 @@ export default function ProceedingPage({ theme }) {
                         {selectedPoster.desc}
                       </p>
                     </div>
+
+                    {getYouTubeEmbedUrl(selectedPoster.youtubeUrl) && (
+                      <div className="pt-4 border-t border-white/10 space-y-3">
+                        <h2 className="text-base font-bold text-white flex items-center gap-2">
+                          <Video className="h-4 w-4 text-rose-400" />
+                          {language === 'id' ? 'Video Presentasi Poster:' : 'Poster Presentation Video:'}
+                        </h2>
+                        <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-white/10 shadow-lg bg-black">
+                          <iframe
+                            src={getYouTubeEmbedUrl(selectedPoster.youtubeUrl)}
+                            title={selectedPoster.title}
+                            className="absolute inset-0 h-full w-full border-0"
+                            allowFullScreen
+                          />
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -170,6 +188,9 @@ export default function ProceedingPage({ theme }) {
               </div>
             </div>
           </section>
+
+          {/* Video Section */}
+          <YouTubeEmbed url={p.youtubeUrl} title="Video Poster & Proceeding Expo" subtitle="Official Video" accentColor="rose" />
 
           {/* Gallery Poster Section (5 posters per row on desktop) */}
           {posters.length > 0 && (

@@ -39,9 +39,11 @@ import {
   Layers,
   Sparkles,
   ChevronRight,
-  Check
+  Check,
+  Video
 } from 'lucide-react'
 import { useLanguage, defaultTranslations } from '../i18n'
+import { getYouTubeEmbedUrl } from '../components/YouTubeEmbed'
 
 // Rich Text Editor Component for News Content (Inertia Filament Style)
 function RichTextEditor({ value, onChange, placeholder }) {
@@ -364,6 +366,8 @@ const FIELD_LABELS = {
   author: 'Penulis & Institusi',
   desc: 'Abstrak / Deskripsi Poster',
   title: 'Judul Utama / Nama',
+  youtubeUrl: 'Link Video YouTube',
+  youtubeLink: 'Link Video YouTube',
 }
 
 function formatFieldName(key) {
@@ -416,7 +420,8 @@ export default function AdminPage() {
     title: '',
     author: '',
     desc: '',
-    image: ''
+    image: '',
+    youtubeUrl: ''
   })
 
   const [articleForm, setArticleForm] = useState({
@@ -444,7 +449,16 @@ export default function AdminPage() {
 
   useEffect(() => {
     if (translations) {
-      setEditableTranslations(JSON.parse(JSON.stringify(translations)))
+      const cloned = JSON.parse(JSON.stringify(translations))
+      // Ensure hero default keys exist in editable translations
+      ;['id', 'en'].forEach((lang) => {
+        if (cloned[lang] && cloned[lang].hero) {
+          if (!cloned[lang].hero.timeValue) cloned[lang].hero.timeValue = lang === 'en' ? 'July 22 - 23, 2026' : '22 - 23 Juli 2026'
+          if (!cloned[lang].hero.locationValue) cloned[lang].hero.locationValue = 'Online (Zoom Hybrid)'
+          if (!cloned[lang].hero.organizerName) cloned[lang].hero.organizerName = 'Politeknik Indonusa Surakarta'
+        }
+      })
+      setEditableTranslations(cloned)
     }
   }, [translations])
 
@@ -765,7 +779,7 @@ export default function AdminPage() {
 
     setEditingPosterIndex(null)
     setIsPosterFormOpen(false)
-    setPosterForm({ title: '', author: '', desc: '', image: '' })
+    setPosterForm({ title: '', author: '', desc: '', image: '', youtubeUrl: '' })
   }
 
   const handleStartEditPoster = (index, poster) => {
@@ -774,7 +788,8 @@ export default function AdminPage() {
       title: poster.title || '',
       author: poster.author || '',
       desc: poster.desc || '',
-      image: poster.image || ''
+      image: poster.image || '',
+      youtubeUrl: poster.youtubeUrl || ''
     })
     setIsPosterFormOpen(true)
   }
@@ -1342,6 +1357,31 @@ export default function AdminPage() {
                         </div>
                       </div>
 
+                      <div>
+                        <label className="text-xs font-bold uppercase tracking-wider text-slate-600 block mb-1">
+                          Link Video YouTube Poster (Opsional)
+                        </label>
+                        <div className="flex gap-2 items-center">
+                          <input
+                            type="text"
+                            value={posterForm.youtubeUrl || ''}
+                            onChange={(e) => setPosterForm({ ...posterForm, youtubeUrl: e.target.value })}
+                            className="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-xs text-slate-800 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                            placeholder="https://www.youtube.com/watch?v=... atau https://youtu.be/..."
+                          />
+                        </div>
+                        {getYouTubeEmbedUrl(posterForm.youtubeUrl) && (
+                          <div className="mt-2 relative aspect-video w-full overflow-hidden rounded-xl border border-slate-200 shadow-sm bg-black">
+                            <iframe
+                              src={getYouTubeEmbedUrl(posterForm.youtubeUrl)}
+                              title="Preview Video Poster"
+                              className="absolute inset-0 h-full w-full border-0"
+                              allowFullScreen
+                            />
+                          </div>
+                        )}
+                      </div>
+
                       <div className="flex justify-end gap-2 border-t border-slate-200 pt-3">
                         <button
                           type="button"
@@ -1791,8 +1831,22 @@ export default function AdminPage() {
             <div className="space-y-6">
               {activeItem.sections.map((secId) => {
                 const secPath = SECTION_PATH_MAP[secId]
-                const sectionData = getNestedValue(editableTranslations?.[selectedLang], secPath) || getNestedValue(editableTranslations?.en, secPath) || getNestedValue(editableTranslations?.id, secPath)
+                let sectionData = getNestedValue(editableTranslations?.[selectedLang], secPath) || getNestedValue(editableTranslations?.en, secPath) || getNestedValue(editableTranslations?.id, secPath)
                 if (!sectionData) return null
+
+                if (secId === 'hero') {
+                  sectionData = {
+                    badge: '',
+                    description: '',
+                    time: 'Waktu',
+                    timeValue: '22 - 23 Juli 2026',
+                    location: 'Lokasi',
+                    locationValue: 'Online (Zoom Hybrid)',
+                    organizer: 'Penyelenggara',
+                    organizerName: 'Politeknik Indonusa Surakarta',
+                    ...sectionData
+                  }
+                }
 
                 return (
                   <div key={secId} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
@@ -1807,10 +1861,40 @@ export default function AdminPage() {
                         // Skip posters or news articles array if handled elsewhere
                         if (fieldKey === 'posters' || fieldKey === 'articles') return null
 
-                        // String inputs / images
+                        // String inputs / images / youtube video
                         if (typeof fieldValue === 'string') {
-                          const isImg = fieldKey.toLowerCase().includes('image') || fieldKey.toLowerCase().includes('poster') || fieldValue.startsWith('/') || fieldValue.startsWith('http')
-                          const isLong = fieldValue.length > 50
+                          const isYoutube = fieldKey.toLowerCase().includes('youtube') || fieldKey.toLowerCase().includes('video')
+                          const isImg = !isYoutube && (fieldKey.toLowerCase().includes('image') || fieldKey.toLowerCase().includes('poster') || fieldValue.startsWith('/') || fieldValue.startsWith('http'))
+                          const isLong = !isYoutube && fieldValue.length > 50
+
+                          if (isYoutube) {
+                            const embedUrl = getYouTubeEmbedUrl(fieldValue)
+                            return (
+                              <div key={fieldKey} className="sm:col-span-2 space-y-2">
+                                <label className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
+                                  <Video className="h-4 w-4 text-red-600" />
+                                  {formatFieldName(fieldKey)}
+                                </label>
+                                <input
+                                  type="text"
+                                  value={fieldValue || ''}
+                                  onChange={(e) => updateSectionValue(secId, fieldKey, e.target.value)}
+                                  className="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-xs text-slate-800 focus:border-red-500 focus:ring-2 focus:ring-red-100"
+                                  placeholder="https://www.youtube.com/watch?v=... atau https://youtu.be/..."
+                                />
+                                {embedUrl && (
+                                  <div className="mt-2 relative aspect-video w-full max-w-lg overflow-hidden rounded-xl border border-slate-200 shadow-sm bg-black">
+                                    <iframe
+                                      src={embedUrl}
+                                      title="YouTube Preview"
+                                      className="absolute inset-0 h-full w-full border-0"
+                                      allowFullScreen
+                                    />
+                                  </div>
+                                )}
+                              </div>
+                            )
+                          }
 
                           return (
                             <div key={fieldKey} className={isImg || isLong ? 'sm:col-span-2 space-y-1.5' : 'space-y-1.5'}>

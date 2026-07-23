@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Trophy, Lightbulb, Users, CheckCircle2, ArrowRight, CreditCard, Phone, Building2, X } from 'lucide-react'
 import { useTranslation } from '../i18n'
 import PageLayout from '../components/PageLayout'
+import YouTubeEmbed from '../components/YouTubeEmbed'
 
 export default function InnovationCompetitionPage({ theme }) {
   const t = useTranslation()
@@ -85,6 +86,9 @@ export default function InnovationCompetitionPage({ theme }) {
               </div>
             </div>
           </section>
+
+          {/* Video Section */}
+          <YouTubeEmbed url={p.youtubeUrl} title="Video Presentation Kompetisi Inovasi" subtitle="Official Video" accentColor="cyan" />
 
           {/* Categories — Soft warm purple */}
           <section className="fade-up relative overflow-hidden">
