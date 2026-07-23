@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Store, Award, ArrowRight, CheckCircle2, X } from 'lucide-react'
 import { useTranslation } from '../i18n'
 import PageLayout from '../components/PageLayout'
+import YouTubeEmbed from '../components/YouTubeEmbed'
 
 export default function MSMEPage({ theme }) {
   const t = useTranslation()
@@ -79,6 +80,9 @@ export default function MSMEPage({ theme }) {
               </div>
             </div>
           </section>
+
+          {/* Video Section */}
+          <YouTubeEmbed url={p.youtubeUrl} title="Video Penghargaan UMKM Award" subtitle="Official Video" accentColor="amber" />
 
           {/* Requirements */}
           <section className="fade-up relative overflow-hidden">

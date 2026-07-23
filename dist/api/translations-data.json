@@ -1,5 +1,5 @@
 {
-  "version": "2026-07-20-v1",
+  "version": "2026-07-23-v2",
   "id": {
     "nav": {
       "home": "Home",
@@ -302,7 +302,8 @@
             "phone": "+62 856-4731-2008"
           }
         ],
-        "posterImage": "/images/competition-poster.png"
+        "posterImage": "/images/competition-poster.png",
+        "youtubeUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
       },
       "proceeding": {
         "badge": "Poster Prosiding",
@@ -394,21 +395,25 @@
             "title": "Optimalisasi Panel Surya Pada Industri Hijau",
             "author": "Dr. Ahmad Fauzi - Universitas Indonesia",
             "desc": "Penelitian ini membahas mengenai sistem pelacakan otomatis panel surya guna mengoptimalkan konversi energi matahari di sektor manufaktur industri hijau.",
-            "image": "/images/proceeding-poster.png"
+            "image": "/images/proceeding-poster.png",
+            "youtubeUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
           },
           {
             "title": "Sistem Informasi Geografis Pemetaan Sampah Plastik",
             "author": "Budi Setiawan, M.T. - Politeknik Indonusa Surakarta",
             "desc": "Prototipe sistem informasi pemetaan penumpukan sampah plastik berbasis mobile GIS untuk mempercepat respons penanganan kebersihan lingkungan.",
-            "image": "/images/competition-poster.png"
+            "image": "/images/competition-poster.png",
+            "youtubeUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
           },
           {
             "title": "Analisis Efektivitas IoT Pada Greenhouse Hidroponik",
             "author": "Siti Aminah - Institut Teknologi Bandung",
             "desc": "Studi kasus penghematan air dan nutrisi dengan otomatisasi sensor kelembaban dan pH berbasis IoT pada perkebunan perkotaan modern.",
-            "image": "/images/conference-poster.png"
+            "image": "/images/conference-poster.png",
+            "youtubeUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
           }
-        ]
+        ],
+        "youtubeUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
       },
       "seminar": {
         "badge": "Konferensi Internasional",
@@ -592,7 +597,8 @@
             "phone": "HTTPS://POLTEKINDONUSA.AC.ID/"
           }
         ],
-        "posterImage": "/images/greenyouth_poster.png"
+        "posterImage": "/images/greenyouth_poster.png",
+        "youtubeUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
       },
       "msme": {
         "badge": "UMKM Award 2026",
@@ -649,7 +655,8 @@
           }
         ],
         "registrationLink": "https://forms.gle/6SmzHNpBP63deKGc7",
-        "posterImage": "/images/umkm-poster.png"
+        "posterImage": "/images/umkm-poster.png",
+        "youtubeUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
       },
       "news": {
         "badge": "Portal Berita",
@@ -1010,7 +1017,8 @@
             "phone": "+62 856-4731-2008"
           }
         ],
-        "posterImage": "/images/competition-poster.png"
+        "posterImage": "/images/competition-poster.png",
+        "youtubeUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
       },
       "proceeding": {
         "badge": "Proceeding Poster",
@@ -1102,21 +1110,25 @@
             "title": "Optimization of Solar Panels in Green Industries",
             "author": "Dr. Ahmad Fauzi - Universitas Indonesia",
             "desc": "This study discusses the automatic solar panel tracking system to optimize solar energy conversion in the green manufacturing industrial sector.",
-            "image": "/images/proceeding-poster.png"
+            "image": "/images/proceeding-poster.png",
+            "youtubeUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
           },
           {
             "title": "Geographic Information System for Plastic Waste Mapping",
             "author": "Budi Setiawan, M.T. - Politeknik Indonusa Surakarta",
             "desc": "A mobile GIS-based prototype system for mapping plastic waste accumulation to accelerate clean environmental response and handling.",
-            "image": "/images/competition-poster.png"
+            "image": "/images/competition-poster.png",
+            "youtubeUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
           },
           {
             "title": "Effectiveness Analysis of IoT in Hydroponic Greenhouse",
             "author": "Siti Aminah - ITB",
             "desc": "Case study of water and nutrition conservation using automated moisture and pH sensors based on IoT in modern urban farming.",
-            "image": "/images/conference-poster.png"
+            "image": "/images/conference-poster.png",
+            "youtubeUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
           }
-        ]
+        ],
+        "youtubeUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
       },
       "seminar": {
         "badge": "International Conference",
@@ -1300,7 +1312,8 @@
             "phone": "HTTPS://POLTEKINDONUSA.AC.ID/"
           }
         ],
-        "posterImage": "/images/greenyouth_poster.png"
+        "posterImage": "/images/greenyouth_poster.png",
+        "youtubeUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
       },
       "msme": {
         "badge": "UMKM Award 2026",
@@ -1357,7 +1370,8 @@
           }
         ],
         "registrationLink": "https://forms.gle/6SmzHNpBP63deKGc7",
-        "posterImage": "/images/umkm-poster.png"
+        "posterImage": "/images/umkm-poster.png",
+        "youtubeUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
       },
       "news": {
         "badge": "News Portal",

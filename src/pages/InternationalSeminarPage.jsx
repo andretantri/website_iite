@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Mic2, Lightbulb, Users, CheckCircle2, ArrowRight, CreditCard, Phone, Building2, X, Search, CalendarDays } from 'lucide-react'
 import { useTranslation } from '../i18n'
 import PageLayout from '../components/PageLayout'
+import YouTubeEmbed from '../components/YouTubeEmbed'
 
 export default function InternationalSeminarPage({ theme }) {
   const t = useTranslation()
@@ -82,6 +83,9 @@ export default function InternationalSeminarPage({ theme }) {
               </div>
             </div>
           </section>
+
+          {/* Video Section */}
+          <YouTubeEmbed url={p.youtubeUrl} title="Video Konferensi & Prosiding" subtitle="Official Video" accentColor="purple" />
 
           {/* Speakers */}
           <section className="fade-up relative overflow-hidden">

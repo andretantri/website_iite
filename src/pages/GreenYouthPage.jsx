@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Leaf, ArrowRight, CheckCircle2, Phone, Globe, MessageCircle, X } from 'lucide-react'
 import { useTranslation } from '../i18n'
 import PageLayout from '../components/PageLayout'
+import YouTubeEmbed from '../components/YouTubeEmbed'
 
 export default function GreenYouthPage({ theme }) {
   const t = useTranslation()
@@ -88,6 +89,9 @@ export default function GreenYouthPage({ theme }) {
               </div>
             </div>
           </section>
+
+          {/* Video Section */}
+          <YouTubeEmbed url={p.youtubeUrl} title="Video Program Pemuda Hijau" subtitle="Official Video" accentColor="emerald" />
 
           {/* Requirements */}
           <section className="fade-up relative overflow-hidden">
