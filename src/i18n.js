@@ -66,7 +66,8 @@ export function LanguageProvider({ language = 'en', toggleLanguage, children }) 
         if (res.ok) {
           const data = await res.json()
           if (data && (data.en || data.id)) {
-            setCurrentTranslations(data)
+            const merged = mergeDeep(defaultTranslations, data)
+            setCurrentTranslations(merged)
           }
         }
       } catch (err) {
@@ -75,7 +76,8 @@ export function LanguageProvider({ language = 'en', toggleLanguage, children }) 
           if (staticRes.ok) {
             const data = await staticRes.json()
             if (data && (data.en || data.id)) {
-              setCurrentTranslations(data)
+              const merged = mergeDeep(defaultTranslations, data)
+              setCurrentTranslations(merged)
             }
           }
         } catch (e) {
