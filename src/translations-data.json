@@ -1,5 +1,5 @@
 {
-  "version": "2026-07-23-v2",
+  "version": "2026-07-25-v1",
   "id": {
     "nav": {
       "home": "Home",
@@ -545,7 +545,10 @@
             "platform": "Zoom and YouTube"
           }
         ],
-        "posterImage": "/images/conference-poster.png"
+        "posterImage": "/images/conference-poster.png",
+        "youtubeUrl": "",
+        "journalLink": "https://iite-proceeding.poltekindonusa.ac.id/index.php/jurnal/index",
+        "journalBtn": "Access to Journal Proceeding"
       },
       "greenyouth": {
         "badge": "Green Youth",
@@ -1260,7 +1263,10 @@
             "platform": "Zoom and YouTube"
           }
         ],
-        "posterImage": "/images/conference-poster.png"
+        "posterImage": "/images/conference-poster.png",
+        "youtubeUrl": "",
+        "journalLink": "https://iite-proceeding.poltekindonusa.ac.id/index.php/jurnal/index",
+        "journalBtn": "Access to Journal Proceeding"
       },
       "greenyouth": {
         "badge": "Green Youth",

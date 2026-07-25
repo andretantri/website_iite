@@ -368,6 +368,8 @@ const FIELD_LABELS = {
   title: 'Judul Utama / Nama',
   youtubeUrl: 'Link Video YouTube',
   youtubeLink: 'Link Video YouTube',
+  journalLink: 'Link Jurnal Proceeding',
+  journalBtn: 'Teks Tombol Jurnal Proceeding',
 }
 
 function formatFieldName(key) {
@@ -1864,8 +1866,9 @@ export default function AdminPage() {
                         // String inputs / images / youtube video
                         if (typeof fieldValue === 'string') {
                           const isYoutube = fieldKey.toLowerCase().includes('youtube') || fieldKey.toLowerCase().includes('video')
-                          const isImg = !isYoutube && (fieldKey.toLowerCase().includes('image') || fieldKey.toLowerCase().includes('poster') || fieldValue.startsWith('/') || fieldValue.startsWith('http'))
-                          const isLong = !isYoutube && fieldValue.length > 50
+                          const isLink = fieldKey.toLowerCase().includes('link') || fieldKey.toLowerCase().includes('url') || fieldKey.toLowerCase().includes('btn')
+                          const isImg = !isYoutube && !isLink && (fieldKey.toLowerCase().includes('image') || fieldKey.toLowerCase().includes('poster') || fieldValue.startsWith('/') || fieldValue.startsWith('http'))
+                          const isLong = !isYoutube && !isLink && fieldValue.length > 50
 
                           if (isYoutube) {
                             const embedUrl = getYouTubeEmbedUrl(fieldValue)

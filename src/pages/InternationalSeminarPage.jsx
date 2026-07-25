@@ -78,6 +78,12 @@ export default function InternationalSeminarPage({ theme }) {
                       {p.joinBtn}
                       <ArrowRight className="h-4 w-4" />
                     </a>
+                    {p.journalLink && (
+                      <a href={p.journalLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10 hover:-translate-y-0.5">
+                        {p.journalBtn || "Access to Journal Proceeding"}
+                        <ArrowRight className="h-4 w-4" />
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
