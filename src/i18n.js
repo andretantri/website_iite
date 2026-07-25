@@ -25,6 +25,29 @@ function mergeDeep(target, source) {
   return output
 }
 
+function migrateOldKeys(data) {
+  if (!data) return data
+  const languages = ['id', 'en']
+  const pages = ['competition', 'proceeding']
+  
+  languages.forEach(lang => {
+    if (data[lang] && data[lang].pages) {
+      pages.forEach(page => {
+        const pageData = data[lang].pages[page]
+        if (pageData && pageData.youtubeUrl && !pageData.youtubeUrl1) {
+          pageData.youtubeUrl1 = pageData.youtubeUrl
+          if (!pageData.youtubeTitle1) {
+            pageData.youtubeTitle1 = page === 'competition'
+              ? (lang === 'id' ? 'Video Presentation Kompetisi Inovasi 1' : 'Innovation Competition Presentation Video 1')
+              : (lang === 'id' ? 'Video Poster & Proceeding Expo 1' : 'Poster & Proceeding Expo Video 1')
+          }
+        }
+      })
+    }
+  })
+  return data
+}
+
 const LanguageContext = createContext({
   language: 'en',
   toggleLanguage: () => { },
@@ -41,7 +64,8 @@ export function LanguageProvider({ language = 'en', toggleLanguage, children }) 
         const parsed = JSON.parse(stored)
         // Check version compatibility to invalidate old browser cache
         if (parsed && parsed.version && parsed.version === defaultTranslations.version) {
-          return mergeDeep(defaultTranslations, parsed)
+          const migrated = migrateOldKeys(parsed)
+          return mergeDeep(defaultTranslations, migrated)
         } else {
           localStorage.removeItem('iite_translations')
         }
@@ -66,7 +90,8 @@ export function LanguageProvider({ language = 'en', toggleLanguage, children }) 
         if (res.ok) {
           const data = await res.json()
           if (data && (data.en || data.id)) {
-            const merged = mergeDeep(defaultTranslations, data)
+            const migrated = migrateOldKeys(data)
+            const merged = mergeDeep(defaultTranslations, migrated)
             setCurrentTranslations(merged)
           }
         }
@@ -76,7 +101,8 @@ export function LanguageProvider({ language = 'en', toggleLanguage, children }) 
           if (staticRes.ok) {
             const data = await staticRes.json()
             if (data && (data.en || data.id)) {
-              const merged = mergeDeep(defaultTranslations, data)
+              const migrated = migrateOldKeys(data)
+              const merged = mergeDeep(defaultTranslations, migrated)
               setCurrentTranslations(merged)
             }
           }
