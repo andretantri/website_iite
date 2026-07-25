@@ -1,5 +1,5 @@
 {
-  "version": "2026-07-25-v1",
+  "version": "2026-07-25-v2",
   "id": {
     "nav": {
       "home": "Home",
@@ -303,7 +303,12 @@
           }
         ],
         "posterImage": "/images/competition-poster.png",
-        "youtubeUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        "youtubeTitle1": "Video Presentation Kompetisi Inovasi 1",
+        "youtubeUrl1": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "youtubeTitle2": "Video Presentation Kompetisi Inovasi 2",
+        "youtubeUrl2": "",
+        "youtubeTitle3": "Video Presentation Kompetisi Inovasi 3",
+        "youtubeUrl3": ""
       },
       "proceeding": {
         "badge": "Poster Prosiding",
@@ -413,7 +418,12 @@
             "youtubeUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
           }
         ],
-        "youtubeUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        "youtubeTitle1": "Video Poster & Proceeding Expo 1",
+        "youtubeUrl1": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "youtubeTitle2": "Video Poster & Proceeding Expo 2",
+        "youtubeUrl2": "",
+        "youtubeTitle3": "Video Poster & Proceeding Expo 3",
+        "youtubeUrl3": ""
       },
       "seminar": {
         "badge": "Konferensi Internasional",
@@ -1021,7 +1031,12 @@
           }
         ],
         "posterImage": "/images/competition-poster.png",
-        "youtubeUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        "youtubeTitle1": "Innovation Competition Presentation Video 1",
+        "youtubeUrl1": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "youtubeTitle2": "Innovation Competition Presentation Video 2",
+        "youtubeUrl2": "",
+        "youtubeTitle3": "Innovation Competition Presentation Video 3",
+        "youtubeUrl3": ""
       },
       "proceeding": {
         "badge": "Proceeding Poster",
@@ -1131,7 +1146,12 @@
             "youtubeUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
           }
         ],
-        "youtubeUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        "youtubeUrl1": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "youtubeTitle1": "Poster & Proceeding Expo Video 1",
+        "youtubeUrl2": "",
+        "youtubeTitle2": "Poster & Proceeding Expo Video 2",
+        "youtubeUrl3": "",
+        "youtubeTitle3": "Poster & Proceeding Expo Video 3"
       },
       "seminar": {
         "badge": "International Conference",

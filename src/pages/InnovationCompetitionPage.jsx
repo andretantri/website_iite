@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { Trophy, Lightbulb, Users, CheckCircle2, ArrowRight, CreditCard, Phone, Building2, X } from 'lucide-react'
+import { Trophy, Lightbulb, Users, CheckCircle2, ArrowRight, CreditCard, Phone, Building2, X, Video } from 'lucide-react'
 import { useTranslation } from '../i18n'
 import PageLayout from '../components/PageLayout'
-import YouTubeEmbed from '../components/YouTubeEmbed'
+import YouTubeEmbed, { getYouTubeEmbedUrl } from '../components/YouTubeEmbed'
 
 export default function InnovationCompetitionPage({ theme }) {
   const t = useTranslation()
@@ -88,7 +88,52 @@ export default function InnovationCompetitionPage({ theme }) {
           </section>
 
           {/* Video Section */}
-          <YouTubeEmbed url={p.youtubeUrl} title="Video Presentation Kompetisi Inovasi" subtitle="Official Video" accentColor="cyan" />
+          {(p.youtubeUrl1 || p.youtubeUrl2 || p.youtubeUrl3) && (
+            <section className="fade-up px-4 py-12 sm:px-6 lg:px-8">
+              <div className="mx-auto max-w-7xl">
+                <div className="mb-6">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-iite-cyan/30 bg-iite-cyan/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.2em] mb-2 text-iite-cyan">
+                    <Video className="h-3.5 w-3.5" />
+                    Official Videos
+                  </span>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                    Video Presentation Kompetisi Inovasi
+                  </h3>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {[
+                    { url: p.youtubeUrl1, title: p.youtubeTitle1 },
+                    { url: p.youtubeUrl2, title: p.youtubeTitle2 },
+                    { url: p.youtubeUrl3, title: p.youtubeTitle3 }
+                  ].map((video, idx) => {
+                    const embedUrl = getYouTubeEmbedUrl(video.url)
+                    if (!embedUrl) return null
+                    return (
+                      <div key={idx} className="flex flex-col space-y-3">
+                        <div className="relative overflow-hidden rounded-[24px] border border-iite-cyan/30 bg-slate-950/80 p-2 shadow-xl backdrop-blur-xl transition hover:border-iite-cyan/50 duration-300">
+                          <div className="relative aspect-video w-full overflow-hidden rounded-[18px]">
+                            <iframe
+                              src={embedUrl}
+                              title={video.title || `Video ${idx + 1}`}
+                              className="absolute inset-0 h-full w-full border-0"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; webshare"
+                              allowFullScreen
+                            />
+                          </div>
+                        </div>
+                        {video.title && (
+                          <h4 className="text-sm font-semibold text-white px-2 text-center line-clamp-2">
+                            {video.title}
+                          </h4>
+                        )}
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+            </section>
+          )}
 
           {/* Categories — Soft warm purple */}
           <section className="fade-up relative overflow-hidden">

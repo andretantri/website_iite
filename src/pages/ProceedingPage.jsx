@@ -186,7 +186,52 @@ export default function ProceedingPage({ theme }) {
           </section>
 
           {/* Video Section */}
-          <YouTubeEmbed url={p.youtubeUrl} title="Video Poster & Proceeding Expo" subtitle="Official Video" accentColor="rose" />
+          {(p.youtubeUrl1 || p.youtubeUrl2 || p.youtubeUrl3) && (
+            <section className="fade-up px-4 py-12 sm:px-6 lg:px-8">
+              <div className="mx-auto max-w-7xl">
+                <div className="mb-6">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-rose-400/30 bg-rose-400/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.2em] mb-2 text-rose-400">
+                    <Video className="h-3.5 w-3.5" />
+                    Official Videos
+                  </span>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                    Video Poster & Proceeding Expo
+                  </h3>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {[
+                    { url: p.youtubeUrl1, title: p.youtubeTitle1 },
+                    { url: p.youtubeUrl2, title: p.youtubeTitle2 },
+                    { url: p.youtubeUrl3, title: p.youtubeTitle3 }
+                  ].map((video, idx) => {
+                    const embedUrl = getYouTubeEmbedUrl(video.url)
+                    if (!embedUrl) return null
+                    return (
+                      <div key={idx} className="flex flex-col space-y-3">
+                        <div className="relative overflow-hidden rounded-[24px] border border-rose-400/30 bg-slate-950/80 p-2 shadow-xl backdrop-blur-xl transition hover:border-rose-400/50 duration-300">
+                          <div className="relative aspect-video w-full overflow-hidden rounded-[18px]">
+                            <iframe
+                              src={embedUrl}
+                              title={video.title || `Video ${idx + 1}`}
+                              className="absolute inset-0 h-full w-full border-0"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; webshare"
+                              allowFullScreen
+                            />
+                          </div>
+                        </div>
+                        {video.title && (
+                          <h4 className="text-sm font-semibold text-white px-2 text-center line-clamp-2">
+                            {video.title}
+                          </h4>
+                        )}
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+            </section>
+          )}
 
           {/* Gallery Poster Section (5 posters per row on desktop) */}
           {posters.length > 0 && (

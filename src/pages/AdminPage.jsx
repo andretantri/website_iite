@@ -368,6 +368,12 @@ const FIELD_LABELS = {
   title: 'Judul Utama / Nama',
   youtubeUrl: 'Link Video YouTube',
   youtubeLink: 'Link Video YouTube',
+  youtubeTitle1: 'Judul Video YouTube 1',
+  youtubeUrl1: 'Link Video YouTube 1',
+  youtubeTitle2: 'Judul Video YouTube 2',
+  youtubeUrl2: 'Link Video YouTube 2',
+  youtubeTitle3: 'Judul Video YouTube 3',
+  youtubeUrl3: 'Link Video YouTube 3',
   journalLink: 'Link Jurnal Proceeding',
   journalBtn: 'Teks Tombol Jurnal Proceeding',
 }
