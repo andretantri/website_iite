@@ -65,7 +65,7 @@ export default function MSMEPage({ theme }) {
                     {p.title}
                   </h1>
                   <p className="mt-4 text-sm font-medium uppercase tracking-widest text-amber-400">
-                    Supported by Dinkopukmperin Surakarta
+                    Supported by Politeknik Indonusa Surakarta
                   </p>
                   <p className="mt-6 max-w-3xl text-base leading-8 text-slate-300 sm:text-lg">
                     {p.description}
