@@ -5,7 +5,7 @@ export function getYouTubeEmbedUrl(url) {
   if (!url || typeof url !== 'string') return null
   const trimmed = url.trim()
   if (!trimmed) return null
-  const regExp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?|shorts)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i
+  const regExp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?|shorts|live)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i
   const match = trimmed.match(regExp)
   if (match && match[1]) {
     return `https://www.youtube.com/embed/${match[1]}`
