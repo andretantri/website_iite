@@ -15,7 +15,8 @@
       "news": "Berita",
       "adminLoginBtn": "Login Admin",
       "languageLabel": "EN",
-      "contactBtn": "Hubungi Kami"
+      "contactBtn": "Hubungi Kami",
+      "awards": "Penghargaan"
     },
     "hero": {
       "badge": "Pameran Inovasi Teknologi Internasional",
@@ -725,6 +726,197 @@
             "image": "/images/competition-poster.png"
           }
         ]
+      },
+      "awards": {
+        "badge": "IITE 2026 Awards & Honors",
+        "title": "Product Winners Exhibition",
+        "subtitle": "Merayakan karya inovasi terbaik dari para inovator, peneliti muda, dan pelaku usaha berkelanjutan.",
+        "categories": [
+          {
+            "id": "all",
+            "name": "Semua Kategori"
+          },
+          {
+            "id": "innovation",
+            "name": "Kompetisi Inovasi"
+          },
+          {
+            "id": "greenyouth",
+            "name": "Green Youth Ideathon"
+          },
+          {
+            "id": "msme",
+            "name": "Produk UMKM Unggulan"
+          },
+          {
+            "id": "proceeding",
+            "name": "Poster & Paper Terbaik"
+          }
+        ],
+        "winners": [
+          {
+            "id": "win-1",
+            "categoryId": "innovation",
+            "rank": 1,
+            "title": "Baterai Ramah Lingkungan dari Biomassa Singkong",
+            "team": "Tim BioVolt Nusantara",
+            "institution": "Universitas Indonesia",
+            "score": "98.5 / 100",
+            "badge": "Juara 1 Emas",
+            "image": "/images/logo.png",
+            "description": "Inovasi sel baterai ramah lingkungan dengan pemanfaatan kulit singkong berdensitas energi tinggi untuk perangkat portabel.",
+            "images": [
+              "/images/logo.png",
+              "/images/competition-poster.png",
+              "/images/conference-poster.png"
+            ],
+            "schema": "College",
+            "subTheme": "Pharmacy, Health, Medicine, and Humanistic Therapy",
+            "productCategory": "Ready-Made Product"
+          },
+          {
+            "id": "win-2",
+            "categoryId": "innovation",
+            "rank": 2,
+            "title": "Drone Otonom Tenaga Surya Pemantau Kualitas Sungai",
+            "team": "AquaTech Robotics",
+            "institution": "Institut Teknologi Bandung",
+            "score": "95.2 / 100",
+            "badge": "Juara 2 Perak",
+            "image": "/images/logo.png",
+            "description": "Wahana robotik air tanpa awak bertenaga surya untuk mendeteksi pencemaran air secara real-time berbasis IoT.",
+            "images": [
+              "/images/logo.png",
+              "/images/competition-poster.png",
+              "/images/conference-poster.png"
+            ],
+            "schema": "College",
+            "subTheme": "Engineering, Information, Communication, and Technology (ICT)",
+            "productCategory": "Prototype Product"
+          },
+          {
+            "id": "win-3",
+            "categoryId": "innovation",
+            "rank": 3,
+            "title": "Sistem Irigasi Cerdas Terintegrasi Sensor Hara Tanah",
+            "team": "AgriSense AI Labs",
+            "institution": "Universitas Gadjah Mada",
+            "score": "93.8 / 100",
+            "badge": "Juara 3 Perunggu",
+            "image": "/images/logo.png",
+            "description": "Perangkat pintar penghemat air hingga 40% dengan analisis kelembapan dan kesuburan tanah otomatis.",
+            "images": [
+              "/images/logo.png",
+              "/images/competition-poster.png",
+              "/images/conference-poster.png"
+            ],
+            "schema": "High School",
+            "subTheme": "Entrepreneurship (Economic, Business, Management, Education, Media, Design, Advertising, Arts, Publishing)",
+            "productCategory": "Potential Product"
+          },
+          {
+            "id": "win-4",
+            "categoryId": "greenyouth",
+            "rank": 1,
+            "title": "Bioplastik Degradabel Berbahan Ampas Kopi & Rumput Laut",
+            "team": "GreenEco Solusi",
+            "institution": "Institut Pertanian Bogor",
+            "score": "97.0 / 100",
+            "badge": "Juara 1 Emas",
+            "image": "/images/logo.png",
+            "description": "Pengganti kantong plastik konvensional yang dapat terurai alami dalam tanah kurang dari 60 hari.",
+            "images": [
+              "/images/logo.png",
+              "/images/competition-poster.png",
+              "/images/conference-poster.png"
+            ]
+          },
+          {
+            "id": "win-5",
+            "categoryId": "greenyouth",
+            "rank": 2,
+            "title": "Filter Air Portabel Berbasis Karbon Aktif Tempurung Kelapa",
+            "team": "PureWater Youth",
+            "institution": "Universitas Diponegoro",
+            "score": "94.5 / 100",
+            "badge": "Juara 2 Perak",
+            "image": "/images/logo.png",
+            "description": "Solusi air minum bersih darurat bencana berbiaya rendah dengan efektivitas filtrasi 99%.",
+            "images": [
+              "/images/logo.png",
+              "/images/competition-poster.png",
+              "/images/conference-poster.png"
+            ]
+          },
+          {
+            "id": "win-6",
+            "categoryId": "greenyouth",
+            "rank": 3,
+            "title": "Aplikasi Bank Sampah Cerdas Berbasis Gamifikasi",
+            "team": "WasteHero Digital",
+            "institution": "Politeknik Indonusa Surakarta",
+            "score": "92.0 / 100",
+            "badge": "Juara 3 Perunggu",
+            "image": "/images/logo.png",
+            "description": "Platform edukasi pemilahan sampah di lingkungan sekolah dengan sistem reward voucher.",
+            "images": [
+              "/images/logo.png",
+              "/images/competition-poster.png",
+              "/images/conference-poster.png"
+            ]
+          },
+          {
+            "id": "win-7",
+            "categoryId": "msme",
+            "rank": 1,
+            "title": "Kemasan Makanan Berkelanjutan Ekstrak Daun Pisang",
+            "team": "CV Daun Nusantara",
+            "institution": "UMKM Surakarta",
+            "score": "96.4 / 100",
+            "badge": "Juara 1 Emas",
+            "image": "/images/logo.png",
+            "description": "Food packaging anti-minyak alami tanpa zat kimia sintetis dan aman untuk microwave.",
+            "images": [
+              "/images/logo.png",
+              "/images/competition-poster.png",
+              "/images/conference-poster.png"
+            ]
+          },
+          {
+            "id": "win-8",
+            "categoryId": "msme",
+            "rank": 2,
+            "title": "Pupuk Organik Cair Fermentasi Limbah Pasar Tradisional",
+            "team": "Tani Makmur Mandiri",
+            "institution": "Kelompok Tani Karanganyar",
+            "score": "94.0 / 100",
+            "badge": "Juara 2 Perak",
+            "image": "/images/logo.png",
+            "description": "Pupuk organik kaya nutrisi mikro untuk meningkatkan ketahanan tanaman terhadap hama.",
+            "images": [
+              "/images/logo.png",
+              "/images/competition-poster.png",
+              "/images/conference-poster.png"
+            ]
+          },
+          {
+            "id": "win-9",
+            "categoryId": "msme",
+            "rank": 3,
+            "title": "Bahan Pewarna Batik Alami Ekstrak Kulit Manggis",
+            "team": "Batik Eco Warna",
+            "institution": "Sentra Batik Sukoharjo",
+            "score": "91.8 / 100",
+            "badge": "Juara 3 Perunggu",
+            "image": "/images/logo.png",
+            "description": "Pewarna tekstil ramah lingkungan tanpa limbah berbahaya bagi sungai.",
+            "images": [
+              "/images/logo.png",
+              "/images/competition-poster.png",
+              "/images/conference-poster.png"
+            ]
+          }
+        ]
       }
     }
   },
@@ -743,7 +935,8 @@
       "news": "News",
       "adminLoginBtn": "Admin Login",
       "languageLabel": "ID",
-      "contactBtn": "Contact Us"
+      "contactBtn": "Contact Us",
+      "awards": "Awards"
     },
     "hero": {
       "badge": "International Innovation Technology Expo",
@@ -1451,6 +1644,197 @@
             "category": "MSMEs",
             "summary": "The green MSMEs award program appreciates small business owners who demonstrate sustainable business innovation and positive social impact.",
             "image": "/images/competition-poster.png"
+          }
+        ]
+      },
+      "awards": {
+        "badge": "IITE 2026 Awards & Honors",
+        "title": "Product Winners Exhibition",
+        "subtitle": "Celebrating excellence in green innovation, technological research, and sustainable entrepreneurship.",
+        "categories": [
+          {
+            "id": "all",
+            "name": "All Categories"
+          },
+          {
+            "id": "innovation",
+            "name": "Innovation Competition"
+          },
+          {
+            "id": "greenyouth",
+            "name": "Green Youth Ideathon"
+          },
+          {
+            "id": "msme",
+            "name": "Featured MSME Products"
+          },
+          {
+            "id": "proceeding",
+            "name": "Best Poster & Paper"
+          }
+        ],
+        "winners": [
+          {
+            "id": "win-1",
+            "categoryId": "innovation",
+            "rank": 1,
+            "title": "Eco-Battery from Agricultural Cassava Biomass Waste",
+            "team": "BioVolt Team",
+            "institution": "Universitas Indonesia",
+            "score": "98.5 / 100",
+            "badge": "1st Place Gold",
+            "image": "/images/logo.png",
+            "description": "Eco-friendly battery cell using cassava peel biomass with high energy density for portable electronic devices.",
+            "images": [
+              "/images/logo.png",
+              "/images/competition-poster.png",
+              "/images/conference-poster.png"
+            ],
+            "schema": "College",
+            "subTheme": "Pharmacy, Health, Medicine, and Humanistic Therapy",
+            "productCategory": "Ready-Made Product"
+          },
+          {
+            "id": "win-2",
+            "categoryId": "innovation",
+            "rank": 2,
+            "title": "Solar-Powered Autonomous River Water Quality Drone",
+            "team": "AquaTech Robotics",
+            "institution": "Bandung Institute of Technology",
+            "score": "95.2 / 100",
+            "badge": "2nd Place Silver",
+            "image": "/images/logo.png",
+            "description": "Unmanned solar-powered aquatic vehicle for real-time river pollution monitoring using IoT sensors.",
+            "images": [
+              "/images/logo.png",
+              "/images/competition-poster.png",
+              "/images/conference-poster.png"
+            ],
+            "schema": "College",
+            "subTheme": "Engineering, Information, Communication, and Technology (ICT)",
+            "productCategory": "Prototype Product"
+          },
+          {
+            "id": "win-3",
+            "categoryId": "innovation",
+            "rank": 3,
+            "title": "Smart Irrigation System with Integrated Soil Nutrient Sensors",
+            "team": "AgriSense AI Labs",
+            "institution": "Universitas Gadjah Mada",
+            "score": "93.8 / 100",
+            "badge": "3rd Place Bronze",
+            "image": "/images/logo.png",
+            "description": "Intelligent water-saving device cutting consumption up to 40% with automated moisture & fertility analysis.",
+            "images": [
+              "/images/logo.png",
+              "/images/competition-poster.png",
+              "/images/conference-poster.png"
+            ],
+            "schema": "High School",
+            "subTheme": "Entrepreneurship (Economic, Business, Management, Education, Media, Design, Advertising, Arts, Publishing)",
+            "productCategory": "Potential Product"
+          },
+          {
+            "id": "win-4",
+            "categoryId": "greenyouth",
+            "rank": 1,
+            "title": "Biodegradable Bioplastic from Coffee Grounds & Seaweed",
+            "team": "GreenEco Solutions",
+            "institution": "IPB University",
+            "score": "97.0 / 100",
+            "badge": "1st Place Gold",
+            "image": "/images/logo.png",
+            "description": "Organic plastic alternative decomposing completely in soil in less than 60 days without residue.",
+            "images": [
+              "/images/logo.png",
+              "/images/competition-poster.png",
+              "/images/conference-poster.png"
+            ]
+          },
+          {
+            "id": "win-5",
+            "categoryId": "greenyouth",
+            "rank": 2,
+            "title": "Portable Water Filter from Coconut Shell Activated Carbon",
+            "team": "PureWater Youth",
+            "institution": "Diponegoro University",
+            "score": "94.5 / 100",
+            "badge": "2nd Place Silver",
+            "image": "/images/logo.png",
+            "description": "Affordable emergency clean drinking water solution with 99% pathogenic filtration efficiency.",
+            "images": [
+              "/images/logo.png",
+              "/images/competition-poster.png",
+              "/images/conference-poster.png"
+            ]
+          },
+          {
+            "id": "win-6",
+            "categoryId": "greenyouth",
+            "rank": 3,
+            "title": "Gamified Smart Waste Bank Platform for Schools",
+            "team": "WasteHero Digital",
+            "institution": "Politeknik Indonusa Surakarta",
+            "score": "92.0 / 100",
+            "badge": "3rd Place Bronze",
+            "image": "/images/logo.png",
+            "description": "Digital waste segregation education platform with voucher rewards and youth engagement.",
+            "images": [
+              "/images/logo.png",
+              "/images/competition-poster.png",
+              "/images/conference-poster.png"
+            ]
+          },
+          {
+            "id": "win-7",
+            "categoryId": "msme",
+            "rank": 1,
+            "title": "Sustainable Food Packaging with Banana Leaf Extract",
+            "team": "CV Daun Nusantara",
+            "institution": "Surakarta MSME Hub",
+            "score": "96.4 / 100",
+            "badge": "1st Place Gold",
+            "image": "/images/logo.png",
+            "description": "Grease-resistant natural packaging free of synthetic chemicals, biodegradable and microwave safe.",
+            "images": [
+              "/images/logo.png",
+              "/images/competition-poster.png",
+              "/images/conference-poster.png"
+            ]
+          },
+          {
+            "id": "win-8",
+            "categoryId": "msme",
+            "rank": 2,
+            "title": "Fermented Organic Liquid Fertilizer from Traditional Market Waste",
+            "team": "Tani Makmur Mandiri",
+            "institution": "Karanganyar Farmers Group",
+            "score": "94.0 / 100",
+            "badge": "2nd Place Silver",
+            "image": "/images/logo.png",
+            "description": "Micronutrient-rich organic fertilizer to strengthen crop resistance against pests.",
+            "images": [
+              "/images/logo.png",
+              "/images/competition-poster.png",
+              "/images/conference-poster.png"
+            ]
+          },
+          {
+            "id": "win-9",
+            "categoryId": "msme",
+            "rank": 3,
+            "title": "Eco-friendly Natural Batik Dye from Mangosteen Peel Extract",
+            "team": "Batik Eco Warna",
+            "institution": "Sukoharjo Batik Center",
+            "score": "91.8 / 100",
+            "badge": "3rd Place Bronze",
+            "image": "/images/logo.png",
+            "description": "Non-toxic organic textile coloring preventing hazardous runoff into local water bodies.",
+            "images": [
+              "/images/logo.png",
+              "/images/competition-poster.png",
+              "/images/conference-poster.png"
+            ]
           }
         ]
       }

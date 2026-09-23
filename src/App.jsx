@@ -11,6 +11,7 @@ import GreenYouthPage from './pages/GreenYouthPage'
 import MSMEPage from './pages/MSMEPage'
 import NewsPage from './pages/NewsPage'
 import NewsDetailPage from './pages/NewsDetailPage'
+import AwardsPage from './pages/AwardsPage'
 import AdminPage from './pages/AdminPage'
 import VantaNetBackground from './components/VantaNetBackground'
 
@@ -69,6 +70,18 @@ function App() {
     localStorage.setItem('language', language)
   }, [language])
 
+  // Track real visitor visits (once per session per day, excluding admin)
+  useEffect(() => {
+    if (location.pathname === '/admin') return
+    const today = new Date().toISOString().slice(0, 10)
+    const trackedKey = `iite_visit_${today}`
+    if (!sessionStorage.getItem(trackedKey)) {
+      sessionStorage.setItem(trackedKey, '1')
+      const endpoint = import.meta.env.DEV ? '/api/track-visit' : '/api/track-visit.php'
+      fetch(endpoint, { method: 'POST' }).catch(() => {})
+    }
+  }, [location.pathname])
+
   return (
     <LanguageProvider language="en" toggleLanguage={() => {}}>
       <div className={`min-h-screen ${theme === 'dark' ? 'bg-iite-dark text-white' : 'bg-white text-slate-900'} transition-colors duration-500`}>
@@ -84,6 +97,7 @@ function App() {
           <Route path="/msme" element={<MSMEPage theme={theme} />} />
           <Route path="/news" element={<NewsPage theme={theme} />} />
           <Route path="/news/:slug" element={<NewsDetailPage theme={theme} />} />
+          <Route path="/awards" element={<AwardsPage theme={theme} />} />
           <Route path="/admin" element={<AdminPage theme={theme} />} />
         </Routes>
         {location.pathname !== '/admin' && <Footer theme={theme} />}

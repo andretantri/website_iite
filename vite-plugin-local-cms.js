@@ -9,6 +9,108 @@ export default function localCmsPlugin() {
     name: 'vite-plugin-local-cms',
     configureServer(server) {
       server.middlewares.use(async (req, res, next) => {
+        // 0. GET /api/status
+        if ((req.url === '/api/status' || req.url === '/api/status.php') && req.method === 'GET') {
+          res.writeHead(200, { 'Content-Type': 'application/json' })
+          res.end(JSON.stringify({
+            connected: false,
+            storage: 'local_dev',
+            message: 'Vite Local Development Mode (JSON File Storage)',
+            details: 'Files saved to src/translations-data.json and public/uploads/'
+          }))
+          return
+        }
+
+        // 0.1 POST /api/track-visit
+        if ((req.url === '/api/track-visit' || req.url === '/api/track-visit.php') && req.method === 'POST') {
+          try {
+            const today = new Date().toISOString().slice(0, 10)
+            const statsPath = path.resolve(__dirname, 'public/api/visitor-stats.json')
+            let stats = {
+              todayDate: today,
+              todayCount: 0,
+              yesterdayCount: 0,
+              totalCount: 0,
+              todayIps: []
+            }
+            if (fs.existsSync(statsPath)) {
+              try {
+                const existing = JSON.parse(fs.readFileSync(statsPath, 'utf8'))
+                stats = { ...stats, ...existing }
+              } catch (e) {}
+            }
+
+            if (stats.todayDate !== today) {
+              stats.yesterdayCount = stats.todayCount
+              stats.todayCount = 0
+              stats.todayDate = today
+              stats.todayIps = []
+            }
+
+            const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress || '127.0.0.1'
+            if (!stats.todayIps.includes(clientIp)) {
+              stats.todayIps.push(clientIp)
+              stats.todayCount++
+              stats.totalCount++
+              const dir = path.dirname(statsPath)
+              if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true })
+              fs.writeFileSync(statsPath, JSON.stringify(stats, null, 2), 'utf8')
+            }
+
+            res.writeHead(200, { 'Content-Type': 'application/json' })
+            res.end(JSON.stringify({ success: true, tracked: true, storage: 'local_dev' }))
+            return
+          } catch (e) {
+            res.writeHead(500, { 'Content-Type': 'application/json' })
+            res.end(JSON.stringify({ success: false, error: e.message }))
+            return
+          }
+        }
+
+        // 0.2 GET /api/visitor-stats
+        if ((req.url === '/api/visitor-stats' || req.url === '/api/visitor-stats.php') && req.method === 'GET') {
+          try {
+            const today = new Date().toISOString().slice(0, 10)
+            const statsPath = path.resolve(__dirname, 'public/api/visitor-stats.json')
+            let todayCount = 0
+            let yesterdayCount = 0
+            let totalCount = 0
+
+            if (fs.existsSync(statsPath)) {
+              try {
+                const stats = JSON.parse(fs.readFileSync(statsPath, 'utf8'))
+                if (stats.todayDate === today) {
+                  todayCount = Number(stats.todayCount) || 0
+                  yesterdayCount = Number(stats.yesterdayCount) || 0
+                } else {
+                  todayCount = 0
+                  yesterdayCount = Number(stats.todayCount) || 0
+                }
+                totalCount = Number(stats.totalCount) || todayCount
+              } catch (e) {}
+            }
+
+            let percentChange = null
+            if (yesterdayCount > 0) {
+              percentChange = Number((((todayCount - yesterdayCount) / yesterdayCount) * 100).toFixed(1))
+            }
+
+            res.writeHead(200, { 'Content-Type': 'application/json' })
+            res.end(JSON.stringify({
+              today: todayCount,
+              yesterday: yesterdayCount,
+              percentChange,
+              total: totalCount,
+              storage: 'local_dev'
+            }))
+            return
+          } catch (e) {
+            res.writeHead(500, { 'Content-Type': 'application/json' })
+            res.end(JSON.stringify({ success: false, error: e.message }))
+            return
+          }
+        }
+
         // 1. POST /api/save-translations
         if (req.url === '/api/save-translations' && req.method === 'POST') {
           try {
@@ -23,7 +125,11 @@ export default function localCmsPlugin() {
             fs.writeFileSync(targetPath2, formattedJson, 'utf8')
             
             res.writeHead(200, { 'Content-Type': 'application/json' })
-            res.end(JSON.stringify({ success: true, message: 'Translations written to disk successfully!' }))
+            res.end(JSON.stringify({ 
+              success: true, 
+              storage: 'local_dev',
+              message: 'Translations written to local JSON files successfully!' 
+            }))
             return
           } catch (e) {
             res.writeHead(500, { 'Content-Type': 'application/json' })
@@ -68,7 +174,11 @@ export default function localCmsPlugin() {
             res.end(JSON.stringify({ 
               success: true, 
               url: `/uploads/${cleanFileName}`, 
-              message: 'Image uploaded successfully!' 
+              original_name: file.filename,
+              file_name: cleanFileName,
+              recorded_in_db: false,
+              storage: 'local_dev',
+              message: 'Image uploaded to local public/uploads directory!' 
             }))
             return
           } catch (e) {

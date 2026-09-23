@@ -10,6 +10,7 @@ const pageLinks = [
   { key: 'greenyouth', to: '/greenyouth' },
   { key: 'msme', to: '/msme' },
   { key: 'news', to: '/news' },
+  { key: 'awards', to: '/awards' },
 ]
 
 export default function Navbar({ theme, setTheme }) {

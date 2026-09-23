@@ -3,7 +3,7 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit(0);
 }
 
@@ -77,6 +77,36 @@ function get_translations() {
     return null;
 }
 
+// Function to get current database connection and storage status
+function get_db_status() {
+    global $conn, $db_error;
+    $use_mysql = defined('USE_MYSQL') && USE_MYSQL;
+
+    if ($conn && !$conn->connect_error) {
+        return [
+            'connected' => true,
+            'storage' => 'mysql',
+            'host' => DB_HOST,
+            'database' => DB_NAME,
+            'message' => 'Connected to MySQL database (' . DB_NAME . ')'
+        ];
+    }
+
+    $reason = 'MySQL is disabled or DB_PASSWORD is not set in .env';
+    if ($use_mysql && $db_error) {
+        $reason = 'MySQL Connection Error: ' . $db_error;
+    }
+
+    return [
+        'connected' => false,
+        'storage' => 'json_file',
+        'host' => DB_HOST,
+        'database' => DB_NAME,
+        'reason' => $reason,
+        'message' => 'Running on JSON file storage fallback'
+    ];
+}
+
 // Function to save the translations JSON
 function save_translations($data) {
     global $conn;
@@ -110,9 +140,28 @@ function save_translations($data) {
     if ($conn) {
         $conn->query("CREATE TABLE IF NOT EXISTS translations (id INT PRIMARY KEY, json_data LONGTEXT)");
         $stmt = $conn->prepare("INSERT INTO translations (id, json_data) VALUES (1, ?) ON DUPLICATE KEY UPDATE json_data = ?");
-        $stmt->bind_param("ss", $jsonStr, $jsonStr);
-        return $stmt->execute();
+        if ($stmt) {
+            $stmt->bind_param("ss", $jsonStr, $jsonStr);
+            $exec = $stmt->execute();
+            if ($exec) {
+                return [
+                    'success' => true,
+                    'storage' => 'mysql',
+                    'message' => 'Translations successfully saved to MySQL database!'
+                ];
+            }
+        }
+        return [
+            'success' => $writtenAny,
+            'storage' => 'json_file',
+            'warning' => 'Failed to write to MySQL: ' . ($conn->error ?: 'query failed'),
+            'message' => 'Saved to JSON file fallback (MySQL write failed).'
+        ];
     }
     
-    return $writtenAny;
+    return [
+        'success' => $writtenAny,
+        'storage' => 'json_file',
+        'message' => 'Saved to persistent JSON file (MySQL is not connected).'
+    ];
 }

@@ -40,10 +40,31 @@ import {
   Sparkles,
   ChevronRight,
   Check,
-  Video
+  Video,
+  Database,
+  Trophy,
+  Medal,
+  Award,
+  Crown,
+  GraduationCap
 } from 'lucide-react'
 import { useLanguage, defaultTranslations } from '../i18n'
 import { getYouTubeEmbedUrl } from '../components/YouTubeEmbed'
+
+const INNOVATION_SCHEMAS = ['High School', 'College']
+
+const INNOVATION_SUB_THEMES = [
+  'Pharmacy, Health, Medicine, and Humanistic Therapy',
+  'Hospitality & Tourism, Culinary & Food (Only University Student)',
+  'Engineering, Information, Communication, and Technology (ICT)',
+  'Entrepreneurship (Economic, Business, Management, Education, Media, Design, Advertising, Arts, Publishing)'
+]
+
+const INNOVATION_PRODUCT_CATEGORIES = [
+  'Ready-Made Product',
+  'Prototype Product',
+  'Potential Product'
+]
 
 // Rich Text Editor Component for News Content (Inertia Filament Style)
 function RichTextEditor({ value, onChange, placeholder }) {
@@ -232,6 +253,14 @@ const SIDEBAR_GROUPS = [
         icon: Newspaper,
         badge: 'Berita',
         sections: ['news_meta', 'news_articles']
+      },
+      {
+        id: 'awards',
+        title: 'Manajer Penghargaan & Juara',
+        desc: 'Kelola daftar juara podium 1 2 3 dan kategori penghargaan.',
+        icon: Trophy,
+        badge: 'Podium',
+        sections: ['awards']
       }
     ]
   },
@@ -314,7 +343,8 @@ const SECTION_PATH_MAP = {
   greenyouth: ['pages', 'greenyouth'],
   msme: ['pages', 'msme'],
   news_meta: ['pages', 'news'],
-  news_articles: ['pages', 'news', 'articles']
+  news_articles: ['pages', 'news', 'articles'],
+  awards: ['pages', 'awards']
 }
 
 // Technical field labels to Indonesian
@@ -416,6 +446,77 @@ export default function AdminPage() {
   const [showConfirmReset, setShowConfirmReset] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
   const [uploadingImageKey, setUploadingImageKey] = useState(null)
+  const [dbStatus, setDbStatus] = useState({
+    loading: true,
+    connected: false,
+    storage: 'checking',
+    message: 'Memeriksa status database...'
+  })
+
+  const checkDbStatus = async () => {
+    try {
+      const endpoint = import.meta.env.DEV ? '/api/status' : '/api/status.php'
+      const res = await fetch(endpoint)
+      if (res.ok) {
+        const data = await res.json()
+        setDbStatus({
+          loading: false,
+          connected: !!data.connected,
+          storage: data.storage || 'unknown',
+          message: data.message || '',
+          database: data.database,
+          host: data.host,
+          reason: data.reason
+        })
+      } else {
+        setDbStatus({
+          loading: false,
+          connected: false,
+          storage: 'error',
+          message: `Server HTTP ${res.status}`
+        })
+      }
+    } catch (e) {
+      setDbStatus({
+        loading: false,
+        connected: false,
+        storage: 'offline',
+        message: 'Endpoint API tidak merespons'
+      })
+    }
+  }
+
+  const [visitorStats, setVisitorStats] = useState({
+    loading: true,
+    today: 0,
+    yesterday: 0,
+    percentChange: null,
+    total: 0
+  })
+
+  const fetchVisitorStats = async () => {
+    try {
+      const endpoint = import.meta.env.DEV ? '/api/visitor-stats' : '/api/visitor-stats.php'
+      const res = await fetch(endpoint)
+      if (res.ok) {
+        const data = await res.json()
+        setVisitorStats({
+          loading: false,
+          today: Number(data.today) || 0,
+          yesterday: Number(data.yesterday) || 0,
+          percentChange: data.percentChange !== null ? Number(data.percentChange) : null,
+          total: Number(data.total) || 0
+        })
+      }
+    } catch (e) {
+      setVisitorStats(prev => ({ ...prev, loading: false }))
+    }
+  }
+
+  useEffect(() => {
+    checkDbStatus()
+    fetchVisitorStats()
+  }, [])
 
   // News editing state
   const [editingArticleIndex, setEditingArticleIndex] = useState(null)
@@ -447,6 +548,33 @@ export default function AdminPage() {
     metaKeywords: '',
     tags: ''
   })
+
+  // Awards management state
+  const [awardsActiveTab, setAwardsActiveTab] = useState('winners')
+  const [awardsCategoryFilter, setAwardsCategoryFilter] = useState('all')
+  const [editingWinnerIndex, setEditingWinnerIndex] = useState(null)
+  const [isWinnerFormOpen, setIsWinnerFormOpen] = useState(false)
+  const [winnerForm, setWinnerForm] = useState({
+    id: '',
+    categoryId: 'innovation',
+    rank: 1,
+    title: '',
+    team: '',
+    institution: '',
+    score: '',
+    badge: 'Juara 1 Emas',
+    image: '',
+    images: [],
+    schema: 'College',
+    subTheme: 'Engineering, Information, Communication, and Technology (ICT)',
+    productCategory: 'Prototype Product',
+    description: ''
+  })
+  const [newWinnerImageUrl, setNewWinnerImageUrl] = useState('')
+  const [isUploadingWinnerImages, setIsUploadingWinnerImages] = useState(false)
+  const [editingCategoryIndex, setEditingCategoryIndex] = useState(null)
+  const [isCategoryFormOpen, setIsCategoryFormOpen] = useState(false)
+  const [categoryForm, setCategoryForm] = useState({ id: '', name: '' })
 
   useEffect(() => {
     const auth = sessionStorage.getItem('iite_admin_auth')
@@ -515,9 +643,16 @@ export default function AdminPage() {
       const result = await res.json()
 
       if (result.success) {
-        showToast('Perubahan berhasil disimpan permanen ke database!')
+        if (result.storage === 'mysql') {
+          showToast('Perubahan berhasil disimpan permanen ke database MySQL!')
+        } else if (result.storage === 'local_dev') {
+          showToast('Perubahan disimpan ke file JSON lokal (Vite Dev Mode).', 'info')
+        } else {
+          showToast('Perubahan disimpan ke file JSON fallback server.', 'warning')
+        }
+        checkDbStatus()
       } else {
-        showToast('Tersimpan di local browser. Status server: ' + result.error, 'warning')
+        showToast('Tersimpan di local browser. Status server: ' + (result.error || 'Gagal menulis data'), 'warning')
       }
     } catch (err) {
       console.error(err)
@@ -600,7 +735,13 @@ export default function AdminPage() {
 
         setEditableTranslations(updated)
         await persistChanges(updated)
-        showToast('File gambar berhasil diunggah & disimpan permanen!')
+        if (data.recorded_in_db) {
+          showToast('File gambar berhasil diunggah & dicatat ke tabel media_uploads!')
+        } else if (data.storage === 'local_dev') {
+          showToast('File gambar berhasil diunggah ke folder lokal!')
+        } else {
+          showToast('File gambar disimpan ke disk server (MySQL belum aktif).', 'warning')
+        }
       } else {
         const errMsg = data.error || `Server HTTP Status ${response.status}`
         showToast('Gagal upload gambar: ' + errMsg, 'danger')
@@ -815,6 +956,155 @@ export default function AdminPage() {
     showToast('Poster penelitian dihapus dari galeri', 'warning')
   }
 
+  // Awards Winner & Category Managers
+  const handleSaveWinner = async (e) => {
+    e.preventDefault()
+    const path = ['pages', 'awards', 'winners']
+    const idWinners = getNestedValue(editableTranslations, ['id', ...path]) || []
+    const enWinners = getNestedValue(editableTranslations, ['en', ...path]) || []
+    const currentList = getNestedValue(editableTranslations[selectedLang], path) || (idWinners.length > 0 ? idWinners : enWinners)
+
+    let updatedWinners = [...currentList]
+    const validImages = Array.isArray(winnerForm.images) && winnerForm.images.length > 0
+      ? winnerForm.images.filter(Boolean)
+      : (winnerForm.image ? [winnerForm.image] : [])
+    const firstImg = validImages[0] || ''
+
+    const winnerData = {
+      ...winnerForm,
+      id: winnerForm.id || `win-${Date.now()}`,
+      rank: Number(winnerForm.rank) || 1,
+      image: firstImg,
+      images: validImages
+    }
+
+    if (editingWinnerIndex !== null) {
+      updatedWinners[editingWinnerIndex] = winnerData
+      showToast('Data juara berhasil diperbarui!')
+    } else {
+      updatedWinners.push(winnerData)
+      showToast('Juara baru berhasil ditambahkan!')
+    }
+
+    let updated = setNestedValue(editableTranslations, ['id', ...path], updatedWinners)
+    updated = setNestedValue(updated, ['en', ...path], updatedWinners)
+
+    setEditableTranslations(updated)
+    await persistChanges(updated)
+
+    setEditingWinnerIndex(null)
+    setIsWinnerFormOpen(false)
+    setWinnerForm({
+      id: '',
+      categoryId: 'innovation',
+      rank: 1,
+      title: '',
+      team: '',
+      institution: '',
+      score: '',
+      badge: 'Juara 1 Emas',
+      image: '',
+      images: [],
+      schema: 'College',
+      subTheme: 'Engineering, Information, Communication, and Technology (ICT)',
+      productCategory: 'Prototype Product',
+      description: ''
+    })
+    setNewWinnerImageUrl('')
+  }
+
+  const handleStartEditWinner = (index, winner) => {
+    setEditingWinnerIndex(index)
+    let imgs = []
+    if (Array.isArray(winner.images) && winner.images.length > 0) {
+      imgs = [...winner.images]
+    } else if (winner.image) {
+      imgs = [winner.image]
+    }
+
+    setWinnerForm({
+      id: winner.id || '',
+      categoryId: winner.categoryId || 'innovation',
+      rank: winner.rank || 1,
+      title: winner.title || '',
+      team: winner.team || '',
+      institution: winner.institution || '',
+      score: winner.score || '',
+      badge: winner.badge || '',
+      image: winner.image || (imgs[0] || ''),
+      images: imgs,
+      schema: winner.schema || 'College',
+      subTheme: winner.subTheme || 'Engineering, Information, Communication, and Technology (ICT)',
+      productCategory: winner.productCategory || 'Prototype Product',
+      description: winner.description || ''
+    })
+    setNewWinnerImageUrl('')
+    setIsWinnerFormOpen(true)
+  }
+
+  const handleDeleteWinner = async (index) => {
+    if (!window.confirm('Yakin ingin menghapus data juara ini?')) return
+    const path = ['pages', 'awards', 'winners']
+    const currentList = getNestedValue(editableTranslations[selectedLang], path) || []
+    const updatedWinners = currentList.filter((_, i) => i !== index)
+
+    let updated = setNestedValue(editableTranslations, ['id', ...path], updatedWinners)
+    updated = setNestedValue(updated, ['en', ...path], updatedWinners)
+
+    setEditableTranslations(updated)
+    await persistChanges(updated)
+    showToast('Data juara berhasil dihapus', 'warning')
+  }
+
+  const handleSaveCategory = async (e) => {
+    e.preventDefault()
+    const path = ['pages', 'awards', 'categories']
+    const currentList = getNestedValue(editableTranslations[selectedLang], path) || []
+
+    const cleanId = (categoryForm.id || categoryForm.name.toLowerCase().replace(/[^a-z0-9]/g, '-')).trim()
+    const catData = {
+      id: cleanId,
+      name: categoryForm.name
+    }
+
+    let updatedCategories = [...currentList]
+    if (editingCategoryIndex !== null) {
+      updatedCategories[editingCategoryIndex] = catData
+      showToast('Kategori berhasil diperbarui!')
+    } else {
+      updatedCategories.push(catData)
+      showToast('Kategori baru berhasil ditambahkan!')
+    }
+
+    let updated = setNestedValue(editableTranslations, ['id', ...path], updatedCategories)
+    updated = setNestedValue(updated, ['en', ...path], updatedCategories)
+
+    setEditableTranslations(updated)
+    await persistChanges(updated)
+
+    setEditingCategoryIndex(null)
+    setIsCategoryFormOpen(false)
+    setCategoryForm({ id: '', name: '' })
+  }
+
+  const handleDeleteCategory = async (index, catId) => {
+    if (catId === 'all') {
+      alert('Kategori default tidak dapat dihapus.')
+      return
+    }
+    if (!window.confirm(`Yakin ingin menghapus kategori ini? Data juara di kategori ini tetap tersimpan.`)) return
+    const path = ['pages', 'awards', 'categories']
+    const currentList = getNestedValue(editableTranslations[selectedLang], path) || []
+    const updatedCategories = currentList.filter((_, i) => i !== index)
+
+    let updated = setNestedValue(editableTranslations, ['id', ...path], updatedCategories)
+    updated = setNestedValue(updated, ['en', ...path], updatedCategories)
+
+    setEditableTranslations(updated)
+    await persistChanges(updated)
+    showToast('Kategori berhasil dihapus', 'warning')
+  }
+
   if (!isLoggedIn) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-slate-100 px-4 py-16">
@@ -883,6 +1173,9 @@ export default function AdminPage() {
 
   const currentPosters = getNestedValue(editableTranslations[selectedLang], ['pages', 'proceeding', 'posters']) || []
   const currentArticles = getNestedValue(editableTranslations[selectedLang], ['pages', 'news', 'articles']) || []
+  const currentAwards = getNestedValue(editableTranslations[selectedLang], ['pages', 'awards']) || {}
+  const currentWinners = currentAwards.winners || []
+  const currentCategories = currentAwards.categories || []
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col">
@@ -912,10 +1205,39 @@ export default function AdminPage() {
               <p className="text-[11px] text-slate-500 font-medium">Laravel Inertia Management Portal</p>
             </div>
           </div>
-          <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-semibold border border-emerald-200">
-            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-            Terhubung Database
-          </span>
+          {dbStatus.loading ? (
+            <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-semibold border border-slate-200 animate-pulse">
+              <Database className="h-3.5 w-3.5 animate-spin text-slate-400" />
+              Cek Database...
+            </span>
+          ) : dbStatus.storage === 'mysql' && dbStatus.connected ? (
+            <span 
+              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-semibold border border-emerald-200 shadow-sm cursor-help"
+              title={`Tersambung ke MySQL (${dbStatus.database || ''})`}
+            >
+              <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+              <Database className="h-3.5 w-3.5 text-emerald-600" />
+              MySQL Connected
+            </span>
+          ) : dbStatus.storage === 'local_dev' ? (
+            <span 
+              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 text-amber-800 text-xs font-semibold border border-amber-200 shadow-sm cursor-help"
+              title="Vite Dev Mode: Penyimpanan lokal ke src/translations-data.json dan public/uploads/"
+            >
+              <span className="h-2 w-2 rounded-full bg-amber-500" />
+              <Database className="h-3.5 w-3.5 text-amber-600" />
+              Local Dev (File JSON)
+            </span>
+          ) : (
+            <span 
+              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-50 text-orange-800 text-xs font-semibold border border-orange-200 shadow-sm cursor-help"
+              title={dbStatus.reason || 'MySQL tidak aktif. Menyimpan ke file JSON di hosting.'}
+            >
+              <span className="h-2 w-2 rounded-full bg-orange-500" />
+              <Database className="h-3.5 w-3.5 text-orange-600" />
+              MySQL Offline (JSON Fallback)
+            </span>
+          )}
         </div>
 
         {/* Right Header Controls */}
@@ -1061,6 +1383,45 @@ export default function AdminPage() {
                 Tambah Artikel Berita
               </button>
             )}
+
+            {activeItem.id === 'awards' && (
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => {
+                    setEditingCategoryIndex(null)
+                    setCategoryForm({ id: '', name: '' })
+                    setIsCategoryFormOpen(true)
+                  }}
+                  className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-xs font-bold text-slate-700 hover:bg-slate-50 transition shadow-sm"
+                >
+                  <Plus className="h-4 w-4 text-indigo-600" />
+                  Tambah Kategori
+                </button>
+                <button
+                  onClick={() => {
+                    setEditingWinnerIndex(null)
+                    const defaultCat = currentCategories.find(c => c.id !== 'all')?.id || 'innovation'
+                    setWinnerForm({
+                      id: '',
+                      categoryId: defaultCat,
+                      rank: 1,
+                      title: '',
+                      team: '',
+                      institution: '',
+                      score: '',
+                      badge: 'Juara 1 Emas',
+                      image: '',
+                      description: ''
+                    })
+                    setIsWinnerFormOpen(true)
+                  }}
+                  className="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-4 py-2.5 text-xs font-bold text-white shadow-md shadow-indigo-200 hover:bg-indigo-700 transition"
+                >
+                  <Plus className="h-4 w-4" />
+                  Tambah Juara Baru
+                </button>
+              </div>
+            )}
           </div>
 
           {/* SECTION 1: OVERVIEW DASHBOARD */}
@@ -1089,19 +1450,62 @@ export default function AdminPage() {
                 <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
                   <div className="flex items-center justify-between text-slate-500 mb-2">
                     <span className="text-xs font-bold uppercase tracking-wider">Pengunjung Hari Ini</span>
-                    <Users className="h-5 w-5 text-emerald-600" />
+                    <Users className="h-5 w-5 text-indigo-600" />
                   </div>
-                  <div className="text-3xl font-black text-slate-900">184</div>
-                  <p className="text-[11px] text-emerald-600 font-semibold mt-1">+12.4% dari kemarin</p>
+                  <div className="text-3xl font-black text-slate-900">
+                    {visitorStats.loading ? (
+                      <span className="text-slate-300 animate-pulse text-2xl font-bold">...</span>
+                    ) : (
+                      visitorStats.today
+                    )}
+                  </div>
+                  <div className="text-[11px] mt-1 font-semibold">
+                    {visitorStats.loading ? (
+                      <span className="text-slate-400 font-normal">Menghitung...</span>
+                    ) : visitorStats.percentChange !== null ? (
+                      visitorStats.percentChange >= 0 ? (
+                        <span className="text-emerald-600">+{visitorStats.percentChange}% dari kemarin</span>
+                      ) : (
+                        <span className="text-rose-500">{visitorStats.percentChange}% dari kemarin</span>
+                      )
+                    ) : (
+                      <span className="text-slate-500 font-normal">
+                        Total {visitorStats.total} kunjungan tercatat
+                      </span>
+                    )}
+                  </div>
                 </div>
 
                 <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
                   <div className="flex items-center justify-between text-slate-500 mb-2">
                     <span className="text-xs font-bold uppercase tracking-wider">Status Database</span>
-                    <CheckCircle className="h-5 w-5 text-emerald-600" />
+                    <Database className={`h-5 w-5 ${dbStatus.storage === 'mysql' && dbStatus.connected ? 'text-emerald-600' : dbStatus.storage === 'local_dev' ? 'text-amber-500' : 'text-orange-500'}`} />
                   </div>
-                  <div className="text-lg font-bold text-emerald-600">Aktif (Live JSON)</div>
-                  <p className="text-[11px] text-slate-500 mt-1">Tersimpan di file server</p>
+                  {dbStatus.loading ? (
+                    <>
+                      <div className="text-lg font-bold text-slate-400 animate-pulse">Memeriksa...</div>
+                      <p className="text-[11px] text-slate-400 mt-1">Menguji koneksi server</p>
+                    </>
+                  ) : dbStatus.storage === 'mysql' && dbStatus.connected ? (
+                    <>
+                      <div className="text-lg font-bold text-emerald-600">MySQL Connected</div>
+                      <p className="text-[11px] text-slate-500 mt-1 truncate" title={`Database: ${dbStatus.database || ''} (${dbStatus.host || ''})`}>
+                        DB: {dbStatus.database || 'MySQL'}
+                      </p>
+                    </>
+                  ) : dbStatus.storage === 'local_dev' ? (
+                    <>
+                      <div className="text-lg font-bold text-amber-600">Local Dev (Vite)</div>
+                      <p className="text-[11px] text-slate-500 mt-1">Penyimpanan file JSON lokal</p>
+                    </>
+                  ) : (
+                    <>
+                      <div className="text-lg font-bold text-orange-600">JSON Fallback</div>
+                      <p className="text-[11px] text-slate-500 mt-1 truncate" title={dbStatus.reason || 'Kredensial .env belum diisi'}>
+                        {dbStatus.reason ? 'MySQL Offline' : 'File JSON server'}
+                      </p>
+                    </>
+                  )}
                 </div>
               </div>
 
@@ -1834,8 +2238,730 @@ export default function AdminPage() {
             </div>
           )}
 
+          {/* SECTION: AWARDS & WINNERS MANAGEMENT */}
+          {activeItem.id === 'awards' && (
+            <div className="space-y-6">
+              {/* Header card with tab switch */}
+              <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => setAwardsActiveTab('winners')}
+                    className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition ${
+                      awardsActiveTab === 'winners'
+                        ? 'bg-indigo-600 text-white shadow-md shadow-indigo-200'
+                        : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                    }`}
+                  >
+                    <Trophy className="h-4 w-4" />
+                    Daftar Juara ({currentWinners.length})
+                  </button>
+                  <button
+                    onClick={() => setAwardsActiveTab('categories')}
+                    className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition ${
+                      awardsActiveTab === 'categories'
+                        ? 'bg-indigo-600 text-white shadow-md shadow-indigo-200'
+                        : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                    }`}
+                  >
+                    <Tag className="h-4 w-4" />
+                    Kategori Penghargaan ({currentCategories.length})
+                  </button>
+                </div>
+
+                {awardsActiveTab === 'winners' && (
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-bold text-slate-500">Filter Kategori:</span>
+                    <select
+                      value={awardsCategoryFilter}
+                      onChange={(e) => setAwardsCategoryFilter(e.target.value)}
+                      className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    >
+                      <option value="all">Semua Kategori</option>
+                      {currentCategories.filter(c => c.id !== 'all').map(c => (
+                        <option key={c.id} value={c.id}>{c.name}</option>
+                      ))}
+                    </select>
+                  </div>
+                )}
+              </div>
+
+              {/* TAB 1: DAFTAR JUARA */}
+              {awardsActiveTab === 'winners' && (
+                <div className="space-y-6">
+                  {/* Winners List Card */}
+                  <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-6">
+                    <div className="flex items-center justify-between border-b border-slate-200 pb-4">
+                      <div>
+                        <h3 className="text-base font-bold text-slate-900">
+                          Daftar Juara & Podium ({
+                            awardsCategoryFilter === 'all' 
+                              ? currentWinners.length 
+                              : currentWinners.filter(w => w.categoryId === awardsCategoryFilter).length
+                          })
+                        </h3>
+                        <p className="text-xs text-slate-500">
+                          Juara peringkat 1, 2, dan 3 akan otomatis ditampilkan dalam format podium 3D beranimasi pada halaman publik /awards.
+                        </p>
+                      </div>
+                      <button
+                        onClick={() => {
+                          setEditingWinnerIndex(null)
+                          const defaultCat = awardsCategoryFilter !== 'all' ? awardsCategoryFilter : (currentCategories.find(c => c.id !== 'all')?.id || 'innovation')
+                          setWinnerForm({
+                            id: '',
+                            categoryId: defaultCat,
+                            rank: 1,
+                            title: '',
+                            team: '',
+                            institution: '',
+                            score: '',
+                            badge: 'Juara 1 Emas',
+                            image: '',
+                            description: ''
+                          })
+                          setIsWinnerFormOpen(true)
+                        }}
+                        className="inline-flex items-center gap-1.5 rounded-xl bg-indigo-600 px-4 py-2 text-xs font-bold text-white shadow-md shadow-indigo-200 hover:bg-indigo-700 transition"
+                      >
+                        <Plus className="h-4 w-4" />
+                        Tambah Juara
+                      </button>
+                    </div>
+
+                    {/* Winners Cards Grid */}
+                    {(() => {
+                      const displayedWinners = awardsCategoryFilter === 'all'
+                        ? currentWinners
+                        : currentWinners.filter(w => w.categoryId === awardsCategoryFilter)
+
+                      if (displayedWinners.length === 0) {
+                        return (
+                          <div className="py-12 text-center text-slate-400">
+                            <Trophy className="h-10 w-10 mx-auto mb-2 opacity-30" />
+                            <p className="text-sm font-semibold">Belum ada data juara di kategori ini.</p>
+                            <p className="text-xs mt-1">Klik tombol &quot;Tambah Juara&quot; untuk memasukkan data pemenang baru.</p>
+                          </div>
+                        )
+                      }
+
+                      return (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                          {displayedWinners.map((winner, index) => {
+                            const realIndex = currentWinners.findIndex(w => w.id === winner.id || (w.title === winner.title && w.team === winner.team))
+                            const catObj = currentCategories.find(c => c.id === winner.categoryId)
+                            const isGold = Number(winner.rank) === 1
+                            const isSilver = Number(winner.rank) === 2
+                            const isBronze = Number(winner.rank) === 3
+
+                            return (
+                              <div
+                                key={winner.id || index}
+                                className={`rounded-2xl border p-4 transition-all duration-300 hover:shadow-md bg-white ${
+                                  isGold ? 'border-amber-300 ring-1 ring-amber-200' :
+                                  isSilver ? 'border-slate-300' :
+                                  isBronze ? 'border-amber-600/40' : 'border-slate-200'
+                                }`}
+                              >
+                                <div className="flex items-start justify-between gap-2 mb-3">
+                                  <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-black uppercase tracking-wider ${
+                                    isGold ? 'bg-amber-100 text-amber-900 border border-amber-300' :
+                                    isSilver ? 'bg-slate-100 text-slate-800 border border-slate-300' :
+                                    isBronze ? 'bg-amber-50 text-amber-900 border border-amber-600/30' :
+                                    'bg-indigo-50 text-indigo-700 border border-indigo-200'
+                                  }`}>
+                                    {isGold && <Crown className="h-3 w-3 text-amber-600" />}
+                                    {winner.badge || `Juara ${winner.rank}`}
+                                  </span>
+
+                                  <div className="flex items-center gap-1">
+                                    <button
+                                      onClick={() => handleStartEditWinner(realIndex >= 0 ? realIndex : index, winner)}
+                                      className="p-1.5 rounded-lg text-slate-400 hover:text-indigo-600 hover:bg-slate-100 transition"
+                                      title="Edit Data Juara"
+                                    >
+                                      <Edit3 className="h-3.5 w-3.5" />
+                                    </button>
+                                    <button
+                                      onClick={() => handleDeleteWinner(realIndex >= 0 ? realIndex : index)}
+                                      className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition"
+                                      title="Hapus Data Juara"
+                                    >
+                                      <Trash2 className="h-3.5 w-3.5" />
+                                    </button>
+                                  </div>
+                                </div>
+
+                                {(((winner.images && winner.images.length > 0) || winner.image)) && (
+                                  <div className="relative w-full h-32 rounded-xl overflow-hidden bg-slate-100 mb-3 border border-slate-100">
+                                    <img 
+                                      src={(winner.images && winner.images[0]) || winner.image} 
+                                      alt={winner.title} 
+                                      className="w-full h-full object-cover" 
+                                    />
+                                    {winner.images && winner.images.length > 1 && (
+                                      <span className="absolute bottom-2 right-2 px-2 py-0.5 rounded-md bg-black/70 text-white text-[10px] font-bold flex items-center gap-1 backdrop-blur-xs">
+                                        <ImageIcon className="h-3 w-3" />
+                                        {winner.images.length} Foto
+                                      </span>
+                                    )}
+                                  </div>
+                                )}
+
+                                <h4 className="text-sm font-bold text-slate-900 line-clamp-2 mb-2">
+                                  {winner.title}
+                                </h4>
+
+                                {(winner.schema || winner.productCategory) && (
+                                  <div className="flex flex-wrap items-center gap-1.5 mb-2">
+                                    {winner.schema && (
+                                      <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-indigo-50 text-indigo-700 border border-indigo-200">
+                                        {winner.schema}
+                                      </span>
+                                    )}
+                                    {winner.productCategory && (
+                                      <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-200">
+                                        {winner.productCategory}
+                                      </span>
+                                    )}
+                                  </div>
+                                )}
+
+                                <div className="space-y-1 text-xs text-slate-600">
+                                  <div className="flex items-center gap-1.5 font-semibold text-slate-800">
+                                    <Users className="h-3 w-3 text-indigo-600" />
+                                    <span className="truncate">{winner.team}</span>
+                                  </div>
+                                  {winner.institution && (
+                                    <div className="text-[11px] text-slate-500 truncate pl-4">
+                                      {winner.institution}
+                                    </div>
+                                  )}
+                                  <div className="flex items-center justify-between text-[11px] text-slate-400 pt-2 border-t border-slate-100">
+                                    <span className="truncate">{catObj?.name || winner.categoryId}</span>
+                                    {winner.score && (
+                                      <span className="font-bold text-amber-600">★ {winner.score}</span>
+                                    )}
+                                  </div>
+                                </div>
+                              </div>
+                            )
+                          })}
+                        </div>
+                      )
+                    })()}
+                  </div>
+                </div>
+              )}
+
+              {/* TAB 2: DAFTAR KATEGORI PENGHARGAAN */}
+              {awardsActiveTab === 'categories' && (
+                <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-6">
+                  <div className="flex items-center justify-between border-b border-slate-200 pb-4">
+                    <div>
+                      <h3 className="text-base font-bold text-slate-900">
+                        Kategori Penghargaan ({currentCategories.length})
+                      </h3>
+                      <p className="text-xs text-slate-500">
+                        Kategori ini akan muncul sebagai tombol filter podium di halaman publik.
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => {
+                        setEditingCategoryIndex(null)
+                        setCategoryForm({ id: '', name: '' })
+                        setIsCategoryFormOpen(true)
+                      }}
+                      className="inline-flex items-center gap-1.5 rounded-xl bg-indigo-600 px-4 py-2 text-xs font-bold text-white shadow-md shadow-indigo-200 hover:bg-indigo-700 transition"
+                    >
+                      <Plus className="h-4 w-4" />
+                      Tambah Kategori
+                    </button>
+                  </div>
+
+                  <div className="divide-y divide-slate-100">
+                    {currentCategories.map((cat, idx) => {
+                      const count = cat.id === 'all' 
+                        ? currentWinners.length 
+                        : currentWinners.filter(w => w.categoryId === cat.id).length
+
+                      return (
+                        <div key={cat.id || idx} className="py-3.5 flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <div className="h-8 w-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold text-xs">
+                              #{idx + 1}
+                            </div>
+                            <div>
+                              <h4 className="text-sm font-bold text-slate-800">{cat.name}</h4>
+                              <p className="text-xs text-slate-400 font-mono">ID: {cat.id} • {count} Juara terdaftar</p>
+                            </div>
+                          </div>
+
+                          <div className="flex items-center gap-2">
+                            {cat.id !== 'all' && (
+                              <>
+                                <button
+                                  onClick={() => {
+                                    setEditingCategoryIndex(idx)
+                                    setCategoryForm({ id: cat.id, name: cat.name })
+                                    setIsCategoryFormOpen(true)
+                                  }}
+                                  className="p-1.5 rounded-lg text-slate-400 hover:text-indigo-600 hover:bg-slate-100 transition"
+                                  title="Edit Kategori"
+                                >
+                                  <Edit3 className="h-4 w-4" />
+                                </button>
+                                <button
+                                  onClick={() => handleDeleteCategory(idx, cat.id)}
+                                  className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition"
+                                  title="Hapus Kategori"
+                                >
+                                  <Trash2 className="h-4 w-4" />
+                                </button>
+                              </>
+                            )}
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* MODAL FORM WINNER */}
+              {isWinnerFormOpen && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+                  <div className="relative w-full max-w-2xl rounded-2xl bg-white p-6 shadow-2xl max-h-[90vh] overflow-y-auto">
+                    <button
+                      onClick={() => setIsWinnerFormOpen(false)}
+                      className="absolute top-4 right-4 p-2 rounded-full text-slate-400 hover:bg-slate-100 transition"
+                    >
+                      <X className="h-5 w-5" />
+                    </button>
+
+                    <h3 className="text-lg font-bold text-slate-900 mb-1">
+                      {editingWinnerIndex !== null ? 'Edit Data Juara' : 'Tambah Juara Baru'}
+                    </h3>
+                    <p className="text-xs text-slate-500 mb-5">
+                      Lengkapi detail pemenang untuk ditampilkan di podium atau daftar penghargaan.
+                    </p>
+
+                    <form onSubmit={handleSaveWinner} className="space-y-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {/* Kategori */}
+                        <div>
+                          <label className="text-xs font-bold uppercase tracking-wider text-slate-700 block mb-1">Kategori</label>
+                          <select
+                            required
+                            value={winnerForm.categoryId}
+                            onChange={(e) => setWinnerForm(prev => ({ ...prev, categoryId: e.target.value }))}
+                            className="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-xs font-semibold text-slate-800 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                          >
+                            {currentCategories.filter(c => c.id !== 'all').map(c => (
+                              <option key={c.id} value={c.id}>{c.name}</option>
+                            ))}
+                          </select>
+                        </div>
+
+                        {/* Peringkat / Rank */}
+                        <div>
+                          <label className="text-xs font-bold uppercase tracking-wider text-slate-700 block mb-1">Peringkat / Posisi Podium</label>
+                          <select
+                            required
+                            value={winnerForm.rank}
+                            onChange={(e) => {
+                              const r = Number(e.target.value)
+                              let badge = 'Juara ' + r
+                              if (r === 1) badge = 'Juara 1 Emas'
+                              if (r === 2) badge = 'Juara 2 Perak'
+                              if (r === 3) badge = 'Juara 3 Perunggu'
+                              if (r > 3) badge = 'Juara Harapan ' + (r - 3)
+                              setWinnerForm(prev => ({ ...prev, rank: r, badge }))
+                            }}
+                            className="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-xs font-semibold text-slate-800 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                          >
+                            <option value={1}>Juara 1 (Emas - Podium Tengah)</option>
+                            <option value={2}>Juara 2 (Perak - Podium Kiri)</option>
+                            <option value={3}>Juara 3 (Perunggu - Podium Kanan)</option>
+                            <option value={4}>Juara Harapan 1 / Finalis</option>
+                            <option value={5}>Juara Harapan 2 / Finalis</option>
+                            <option value={6}>Juara Harapan 3 / Finalis</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      {/* Atribut Khusus Innovation Competition */}
+                      {winnerForm.categoryId === 'innovation' && (
+                        <div className="p-3.5 rounded-xl border border-indigo-200 bg-indigo-50/50 space-y-3">
+                          <div className="text-xs font-bold text-indigo-900 flex items-center gap-1.5">
+                            <Layers className="h-3.5 w-3.5 text-indigo-600" />
+                            Atribut Khusus: Innovation Competition
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            {/* Skema */}
+                            <div>
+                              <label className="text-[11px] font-bold uppercase tracking-wider text-indigo-900 block mb-1">
+                                Skema
+                              </label>
+                              <select
+                                value={winnerForm.schema || 'College'}
+                                onChange={(e) => setWinnerForm(prev => ({ ...prev, schema: e.target.value }))}
+                                className="w-full rounded-xl border border-indigo-200 bg-white px-3 py-2 text-xs font-semibold text-slate-800 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                              >
+                                {INNOVATION_SCHEMAS.map(s => (
+                                  <option key={s} value={s}>{s}</option>
+                                ))}
+                              </select>
+                            </div>
+
+                            {/* Kategori Produk */}
+                            <div>
+                              <label className="text-[11px] font-bold uppercase tracking-wider text-indigo-900 block mb-1">
+                                Kategori Produk
+                              </label>
+                              <select
+                                value={winnerForm.productCategory || 'Ready-Made Product'}
+                                onChange={(e) => setWinnerForm(prev => ({ ...prev, productCategory: e.target.value }))}
+                                className="w-full rounded-xl border border-indigo-200 bg-white px-3 py-2 text-xs font-semibold text-slate-800 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                              >
+                                {INNOVATION_PRODUCT_CATEGORIES.map(pc => (
+                                  <option key={pc} value={pc}>{pc}</option>
+                                ))}
+                              </select>
+                            </div>
+                          </div>
+
+                          {/* Sub-Tema */}
+                          <div>
+                            <label className="text-[11px] font-bold uppercase tracking-wider text-indigo-900 block mb-1">
+                              Sub-Tema
+                            </label>
+                            <select
+                              value={winnerForm.subTheme || INNOVATION_SUB_THEMES[0]}
+                              onChange={(e) => setWinnerForm(prev => ({ ...prev, subTheme: e.target.value }))}
+                              className="w-full rounded-xl border border-indigo-200 bg-white px-3 py-2 text-xs font-semibold text-slate-800 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                            >
+                              {INNOVATION_SUB_THEMES.map((st, i) => (
+                                <option key={st} value={st}>{i + 1}. {st}</option>
+                              ))}
+                            </select>
+                          </div>
+                        </div>
+                      )}
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {/* Label Badge */}
+                        <div>
+                          <label className="text-xs font-bold uppercase tracking-wider text-slate-700 block mb-1">Teks Badge / Gelar</label>
+                          <input
+                            type="text"
+                            required
+                            value={winnerForm.badge}
+                            onChange={(e) => setWinnerForm(prev => ({ ...prev, badge: e.target.value }))}
+                            placeholder="Contoh: Juara 1 Emas"
+                            className="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-xs text-slate-800 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                          />
+                        </div>
+
+                        {/* Skor / Nilai */}
+                        <div>
+                          <label className="text-xs font-bold uppercase tracking-wider text-slate-700 block mb-1">Skor / Nilai (Opsional)</label>
+                          <input
+                            type="text"
+                            value={winnerForm.score}
+                            onChange={(e) => setWinnerForm(prev => ({ ...prev, score: e.target.value }))}
+                            placeholder="Contoh: 98.5 / 100"
+                            className="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-xs text-slate-800 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Judul Inovasi */}
+                      <div>
+                        <label className="text-xs font-bold uppercase tracking-wider text-slate-700 block mb-1">Judul Inovasi / Karya</label>
+                        <input
+                          type="text"
+                          required
+                          value={winnerForm.title}
+                          onChange={(e) => setWinnerForm(prev => ({ ...prev, title: e.target.value }))}
+                          placeholder="Masukkan judul lengkap inovasi/karya..."
+                          className="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-xs text-slate-800 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 font-semibold"
+                        />
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {/* Tim / Inovator */}
+                        <div>
+                          <label className="text-xs font-bold uppercase tracking-wider text-slate-700 block mb-1">Nama Tim / Inovator</label>
+                          <input
+                            type="text"
+                            required
+                            value={winnerForm.team}
+                            onChange={(e) => setWinnerForm(prev => ({ ...prev, team: e.target.value }))}
+                            placeholder="Contoh: Tim BioVolt Nusantara"
+                            className="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-xs text-slate-800 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                          />
+                        </div>
+
+                        {/* Institusi */}
+                        <div>
+                          <label className="text-xs font-bold uppercase tracking-wider text-slate-700 block mb-1">Asal Institusi / Universitas / Sekolah</label>
+                          <input
+                            type="text"
+                            value={winnerForm.institution}
+                            onChange={(e) => setWinnerForm(prev => ({ ...prev, institution: e.target.value }))}
+                            placeholder="Contoh: Universitas Indonesia"
+                            className="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-xs text-slate-800 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Multi-Image Upload & Management */}
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <label className="text-xs font-bold uppercase tracking-wider text-slate-700 block">
+                            Foto Karya / Logo Tim (Bisa upload lebih dari 1 untuk Slider)
+                          </label>
+                          <span className="text-[11px] font-bold text-slate-400">
+                            {(winnerForm.images || []).length} Foto Terpilih
+                          </span>
+                        </div>
+
+                        {/* Upload button & manual URL input */}
+                        <div className="flex flex-col sm:flex-row gap-2">
+                          <label className="inline-flex items-center justify-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl px-4 py-2 cursor-pointer text-xs font-bold transition shrink-0 shadow-sm">
+                            <Upload className="h-3.5 w-3.5" />
+                            <span>{isUploadingWinnerImages ? 'Mengunggah...' : 'Upload Foto (Bisa Banyak)'}</span>
+                            <input
+                              type="file"
+                              multiple
+                              accept="image/*"
+                              disabled={isUploadingWinnerImages}
+                              className="hidden"
+                              onChange={async (e) => {
+                                const files = Array.from(e.target.files || [])
+                                if (files.length === 0) return
+                                setIsUploadingWinnerImages(true)
+                                const newUrls = []
+                                try {
+                                  for (const file of files) {
+                                    const formData = new FormData()
+                                    formData.append('image', file)
+                                    const res = await fetch(import.meta.env.DEV ? '/api/upload-image' : '/api/upload-image.php', {
+                                      method: 'POST',
+                                      body: formData
+                                    })
+                                    const data = await res.json()
+                                    if (data.success && data.url) {
+                                      newUrls.push(data.url)
+                                    }
+                                  }
+                                  if (newUrls.length > 0) {
+                                    setWinnerForm(prev => {
+                                      const combined = [...(prev.images || []), ...newUrls]
+                                      return {
+                                        ...prev,
+                                        images: combined,
+                                        image: combined[0] || ''
+                                      }
+                                    })
+                                    showToast(`${newUrls.length} foto berhasil diunggah!`)
+                                  } else {
+                                    showToast('Tidak ada foto yang berhasil diunggah.', 'warning')
+                                  }
+                                } catch (err) {
+                                  showToast('Gagal mengunggah foto.', 'danger')
+                                } finally {
+                                  setIsUploadingWinnerImages(false)
+                                  e.target.value = ''
+                                }
+                              }}
+                            />
+                          </label>
+
+                          {/* Manual URL input */}
+                          <div className="flex-1 flex gap-2">
+                            <input
+                              type="text"
+                              value={newWinnerImageUrl}
+                              onChange={(e) => setNewWinnerImageUrl(e.target.value)}
+                              placeholder="Atau tempel URL gambar (/uploads/...)"
+                              className="flex-1 rounded-xl border border-slate-300 px-3 py-2 text-xs text-slate-800 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                  e.preventDefault()
+                                  if (newWinnerImageUrl.trim()) {
+                                    const url = newWinnerImageUrl.trim()
+                                    setWinnerForm(prev => {
+                                      const combined = [...(prev.images || []), url]
+                                      return { ...prev, images: combined, image: combined[0] || '' }
+                                    })
+                                    setNewWinnerImageUrl('')
+                                  }
+                                }
+                              }}
+                            />
+                            <button
+                              type="button"
+                              onClick={() => {
+                                if (newWinnerImageUrl.trim()) {
+                                  const url = newWinnerImageUrl.trim()
+                                  setWinnerForm(prev => {
+                                    const combined = [...(prev.images || []), url]
+                                    return { ...prev, images: combined, image: combined[0] || '' }
+                                  })
+                                  setNewWinnerImageUrl('')
+                                }
+                              }}
+                              className="px-3 py-2 rounded-xl border border-slate-300 hover:bg-slate-50 text-xs font-bold text-slate-700 transition shrink-0"
+                            >
+                              + Tambah URL
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* Image thumbnails list with remove button */}
+                        {Array.isArray(winnerForm.images) && winnerForm.images.length > 0 ? (
+                          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200 mt-2">
+                            {winnerForm.images.map((imgUrl, imgIdx) => (
+                              <div key={imgIdx} className="relative group rounded-lg overflow-hidden border border-slate-200 bg-white aspect-video shadow-xs">
+                                <img src={imgUrl} alt={`Foto ${imgIdx + 1}`} className="w-full h-full object-cover" />
+                                <div className="absolute top-1 left-1 px-1.5 py-0.5 rounded bg-black/60 text-[9px] font-bold text-white">
+                                  #{imgIdx + 1}
+                                </div>
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    setWinnerForm(prev => {
+                                      const filtered = (prev.images || []).filter((_, idx) => idx !== imgIdx)
+                                      return {
+                                        ...prev,
+                                        images: filtered,
+                                        image: filtered[0] || ''
+                                      }
+                                    })
+                                  }}
+                                  className="absolute top-1 right-1 p-1 rounded-full bg-rose-600 hover:bg-rose-700 text-white shadow transition opacity-90 group-hover:opacity-100"
+                                  title="Hapus foto ini"
+                                >
+                                  <X className="h-3 w-3" />
+                                </button>
+                              </div>
+                            ))}
+                          </div>
+                        ) : (
+                          <p className="text-[11px] text-slate-400 italic">
+                            Belum ada foto yang dipilih. Anda dapat mengunggah 1 atau lebih foto untuk ditampilkan sebagai slider di publik.
+                          </p>
+                        )}
+                      </div>
+
+                      {/* Deskripsi */}
+                      <div>
+                        <label className="text-xs font-bold uppercase tracking-wider text-slate-700 block mb-1">Deskripsi Singkat Karya</label>
+                        <textarea
+                          rows={3}
+                          value={winnerForm.description}
+                          onChange={(e) => setWinnerForm(prev => ({ ...prev, description: e.target.value }))}
+                          placeholder="Jelaskan secara ringkas keunggulan dan dampak inovasi..."
+                          className="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-xs text-slate-800 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                        />
+                      </div>
+
+                      <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-200">
+                        <button
+                          type="button"
+                          onClick={() => setIsWinnerFormOpen(false)}
+                          className="px-4 py-2 rounded-xl border border-slate-300 text-xs font-bold text-slate-600 hover:bg-slate-50 transition"
+                        >
+                          Batal
+                        </button>
+                        <button
+                          type="submit"
+                          className="px-5 py-2 rounded-xl bg-indigo-600 text-xs font-bold text-white hover:bg-indigo-700 shadow-md shadow-indigo-200 transition"
+                        >
+                          {editingWinnerIndex !== null ? 'Simpan Perubahan' : 'Tambah Juara'}
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              )}
+
+              {/* MODAL FORM CATEGORY */}
+              {isCategoryFormOpen && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+                  <div className="relative w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl">
+                    <button
+                      onClick={() => setIsCategoryFormOpen(false)}
+                      className="absolute top-4 right-4 p-2 rounded-full text-slate-400 hover:bg-slate-100 transition"
+                    >
+                      <X className="h-5 w-5" />
+                    </button>
+
+                    <h3 className="text-lg font-bold text-slate-900 mb-1">
+                      {editingCategoryIndex !== null ? 'Edit Kategori' : 'Tambah Kategori Baru'}
+                    </h3>
+                    <p className="text-xs text-slate-500 mb-5">
+                      Kategori digunakan untuk mengelompokkan podium juara di halaman penghargaan.
+                    </p>
+
+                    <form onSubmit={handleSaveCategory} className="space-y-4">
+                      <div>
+                        <label className="text-xs font-bold uppercase tracking-wider text-slate-700 block mb-1">Nama Kategori</label>
+                        <input
+                          type="text"
+                          required
+                          value={categoryForm.name}
+                          onChange={(e) => {
+                            const name = e.target.value
+                            setCategoryForm(prev => ({
+                              ...prev,
+                              name,
+                              id: prev.id || name.toLowerCase().replace(/[^a-z0-9]/g, '-')
+                            }))
+                          }}
+                          placeholder="Contoh: Kompetisi Robotik Hijau"
+                          className="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-xs text-slate-800 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="text-xs font-bold uppercase tracking-wider text-slate-700 block mb-1">ID Kategori (Slug Unik)</label>
+                        <input
+                          type="text"
+                          required
+                          value={categoryForm.id}
+                          onChange={(e) => setCategoryForm(prev => ({ ...prev, id: e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '') }))}
+                          placeholder="contoh: kompetisi-robotik"
+                          className="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-xs text-slate-800 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 font-mono"
+                        />
+                      </div>
+
+                      <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-200">
+                        <button
+                          type="button"
+                          onClick={() => setIsCategoryFormOpen(false)}
+                          className="px-4 py-2 rounded-xl border border-slate-300 text-xs font-bold text-slate-600 hover:bg-slate-50 transition"
+                        >
+                          Batal
+                        </button>
+                        <button
+                          type="submit"
+                          className="px-5 py-2 rounded-xl bg-indigo-600 text-xs font-bold text-white hover:bg-indigo-700 shadow-md shadow-indigo-200 transition"
+                        >
+                          {editingCategoryIndex !== null ? 'Simpan Kategori' : 'Tambah Kategori'}
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
           {/* SECTION 4: GENERIC FORM FOR ALL OTHER PAGES (Competition, Proceeding, Seminar, Greenyouth, MSME, Home, Nav/Footer) */}
-          {activeItem.sections && activeItem.id !== 'news' && (
+          {activeItem.sections && activeItem.id !== 'news' && activeItem.id !== 'awards' && (
             <div className="space-y-6">
               {activeItem.sections.map((secId) => {
                 const secPath = SECTION_PATH_MAP[secId]
